@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Management System</title>
+    <link rel="shortcut icon" href="assets/images/logo/BU-small-logo.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <!-- Include Choices CSS -->
+    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
+    <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
+    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index.html"><img src="assets/images/logo/bu_navbar2.ico" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Reports</li>
+                        <li class="sidebar-item">
+                            <a href="index.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item has-sub ">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-poll-h"></i>
+                                <span>Election Results</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="usc-votes.html">USC</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="csc-votes.html">CSC</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-title">Manager</li>
+                        <li class="sidebar-item" style="display:none" id="acc">
+                            <a href="accounts.html" class='sidebar-link'>
+                                <i class="bi bi-person-lines-fill"></i>
+                                <span>Accounts</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a href="election-period.html" class='sidebar-link'>
+                                <i class="bi bi-archive-fill"></i>
+                                <span>Election Period</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="register-partylist.html" class='sidebar-link'>
+                                <i class="fas fa-handshake"></i>
+                                <span>Political Party</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-university"></i>
+                                <span>USC</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="usc-positions.html">Positions</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="usc-candidate.html">Candidates</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-building"></i>
+                                <span>CSC</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="csc-positions.html">Positions</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="csc-candidate.html">Candidates</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="e-ballot.html" class='sidebar-link'>
+                                <i class="fas fa-scroll"></i>
+                                <span>E-Ballot</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">Records</li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-users"></i>
+                                <span>Candidates</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="usc-candidates-records.html">USC</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="csc-candidates-records.html">CSC</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="political-party-records.html" class='sidebar-link'>
+                                <i class="fas fa-handshake"></i>
+                                <span>Political Party</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <br><br>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main" class='layout-navbar'>
+            <header class='mb-3'>
+                <nav class="navbar navbar-expand navbar-light ">
+                    <div class="container-fluid">
+                        <a href="#" class="burger-btn d-block">
+                            <i class="bi bi-justify fs-3"></i>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            </ul>
+                            <div class="dropdown">
+                                <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="user-menu d-flex">
+                                        <div class="user-name text-end me-3">
+                                            <h6 class="mb-0 text-gray-600" id = "name"></h6>
+                                            <p class="mb-0 text-sm text-gray-600">User</p>
+                                        </div>
+                                        <div class="user-img d-flex align-items-center">
+                                            <div class="avatar avatar-md">
+                                                <img src="assets/images/faces/default.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <h6 class="dropdown-header" id ="headname"></h6>
+                                    </li>
+                                    <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#uprofile" onclick="loadProfile()" id="prof">
+                                        <i class="icon-mid bi bi-person me-2"></i> My Profile</button></li>
+                                    <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cpass" id="pass">
+                                        <i class="icon-mid bi bi-shield-lock me-2"></i>Change Password</button></li>
+                                    <hr class="dropdown-divider">
+                                    <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout"><i
+                                        class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--My Profile Content-->
+                    <form method="post" id="updateProfile">
+                        <div class="modal fade" id="uprofile" tabindex="-1" role="dialog"
+                            aria-labelledby="uprofile" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable modal-lg"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">My Profile
+                                        </h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <i data-feather="x"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!--content here-->
+                                        <section id="input-with-icons">
+                                            <div class="row match-height">
+                                                <div class="col-12">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <h6>Username</h6>
+                                                                    <div class="form-group position-relative has-icon-left" >
+                                                                        <input type="text" class="form-control" id="username">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="fas fa-user-tag"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6>First Name</h6>
+                                                                    <div class="form-group position-relative has-icon-left">
+                                                                        <input type="text" class="form-control" id="firstname">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="bi bi-person"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6>Middle Name</h6>
+                                                                    <div class="form-group position-relative has-icon-left">
+                                                                        <input type="text" class="form-control" id="middlename">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="bi bi-person"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <h6>Last Name</h6>
+                                                                    <div class="form-group position-relative has-icon-left" >
+                                                                        <input type="text" class="form-control" id="lastname">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="bi bi-person"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6>Gender</h6>
+                                                                    <fieldset class="form-group">
+                                                                        <select class="form-select" id="gender">
+                                                                            <option value="Male">Male</option>
+                                                                            <option value="Female">Female</option>
+                                                                            <option value="Others">Others</option>
+                                                                        </select>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6>Address</h6>
+                                                                    <div class="form-group position-relative has-icon-left">
+                                                                        <input type="text" class="form-control" id="address">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="bi bi-person"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <h6>Contact Number</h6>
+                                                                    <div class="form-group position-relative has-icon-left">
+                                                                        <input type="text" class="form-control" id="contactnumber">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="bi bi-person"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                        <input class="btn btn-primary ml-1" type="submit" value="Update" id="profileUpdate" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--End of My Profile Content-->
+                    <!--Change Password Content-->
+                    <form method="post" id="changePass">
+                        <div class="modal fade" id="cpass" tabindex="-1" role="dialog"
+                            aria-labelledby="cpass" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Change Password
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!--content here-->
+                                        <section id="input-with-icons">
+                                            <div class="row match-height">
+                                                <div class="col-12">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h6>Current Password</h6>
+                                                                    <div class="form-group position-relative has-icon-left" >
+                                                                        <input type="password" class="form-control" id="currpass">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="fas fa-lock"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h6>New Password</h6>
+                                                                    <div class="form-group position-relative has-icon-left">
+                                                                        <input type="password" class="form-control" id="newpass">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="fas fa-key"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h6>Confirm New Password</h6>
+                                                                    <div class="form-group position-relative has-icon-left">
+                                                                        <input type="password" class="form-control" id="cnewpass">
+                                                                        <div class="form-control-icon">
+                                                                            <i class="fas fa-key"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                        <input class="btn btn-primary ml-1" type="submit" value="Update" id="passwordUpdate" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--End of Change Password Content-->
+                    <!--Logout Content-->
+                    <div class="modal fade" id="logout" tabindex="-1" role="dialog"
+                        aria-labelledby="logout" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                            role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="logout">End Session
+                                    </h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        <i data-feather="x"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4 style="text-align:center">
+                                        Are you sure you want to leave?
+                                    </h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light-secondary"
+                                        data-bs-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Cancel</span>
+                                    </button>
+                                    <button class="btn btn-primary ml-1" onClick="logout()">
+                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Logout</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End ofLogout Content-->
+                </nav>
+            </header>
+            <div id="main-content">
+                <div class="page-heading">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-12 col-md-6 order-md-1 order-last">
+                                <h4>USC & CSC Election Period</h4>
+                                <p class="text-subtitle text-muted">USC & CSC Election Period Manager</p>
+                            </div>
+                            <div class="col-12 col-md-6 order-md-2 order-first">
+                                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Election Period
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="section">
+                        <div class="card">
+                            <div class="card-header">
+                                <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addelectiontime" id="addelecttime"><i class="fas fa-clock"></i> Set Election Period</button>
+                            </div>
+                            <!--SET ELECTION PERIOD-->
+                            <form method="POST" action = "" id="addElectionTime">
+                                <div class="modal fade text-left" id="addelectiontime" tabindex="-1"
+                                    role="dialog" aria-labelledby="addelectiontime"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-lg"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-primary">
+                                                <h5 class="modal-title white">
+                                                    Set Election Period
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="col-md-5">
+                                                            <h6 for="disabledInput">Election Year</h6>
+                                                            <input type="text" class="form-control" id="election_year" readonly="readonly">
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6>Date</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="date" class="form-control" id="election_date">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="fas fa-calendar-alt"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6>Start Time</h6>
+                                                                <div class="form-group">
+                                                                    <input type="time" class="form-control" id="election_start_time">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>End Time</h6>
+                                                                <div class="form-group">
+                                                                    <input type="time" class="form-control" id="election_end_time">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col" id="uscpos">
+                                                                <ul class="list-group">
+                                                                    <br>
+                                                                    <h6>Select USC Positions</h6>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col" id="cscpos">
+                                                                <ul class="list-group">
+                                                                    <br>
+                                                                    <h6>Select CSC Positions</h6>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                                <input class="btn btn-primary ml-1" type="submit" value="Submit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--END OF SET ELECTION PERIOD-->
+                            <!--UPDATE ELECTION PERIOD-->
+                            <form method="POST" action = "" id="updateElectionTime"> 
+                                <div class="modal fade text-left" id="updateelectiontime" tabindex="-1"
+                                role="dialog" aria-labelledby="updateelectiontime"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
+                                    role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-primary">
+                                            <h5 class="modal-title white">
+                                                Update Election Period
+                                            </h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <section id="input-with-icons">
+                                                <div class="row match-height">
+                                                    <div class="col-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group">
+                                                                        <h6 for="disabledInput">Election Year</h6>
+                                                                        <input type="text" class="form-control" id="u_election_year" readonly="readonly">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <h6>Date</h6>
+                                                                        <div class="form-group position-relative has-icon-left">
+                                                                            <input type="date" class="form-control" id="u_election_date">
+                                                                            <div class="form-control-icon">
+                                                                                <i class="fas fa-calendar-alt"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <h6>Start Time</h6>
+                                                                        <div class="form-group">
+                                                                            <input type="time" class="form-control" id="u_election_start_time">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <h6>End Time</h6>
+                                                                        <div class="form-group">
+                                                                            <input type="time" class="form-control" id="u_election_end_time">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col" id="uscposupdate">
+                                                                        <ul class="list-group">
+                                                                            <br>
+                                                                            <h6>Select USC Positions</h6>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col" id="cscposupdate">
+                                                                        <ul class="list-group">
+                                                                            <br>
+                                                                            <h6>Select CSC Positions</h6>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                            <input class="btn btn-primary ml-1" type="submit" value="Submit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--END OF UPDATE ELECTION PERIOD-->
+                        <!--DELETE MODAL -->
+                        <div class="modal fade text-left" id="deleteelectiontime" tabindex="-1"
+                        role="dialog" aria-labelledby="deleteelectiontime"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                            role="document">
+                            <div class="modal-content">
+                                <form method="POST" action = "" id="deleteElectiontime"> 
+                                    <div class="modal-header bg-danger">
+                                        <h5 class="modal-title white">
+                                            DELETE POLITICAL PARTY
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this PARTY? 
+                                        Process cannot be undone.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                        <input class="btn btn-danger ml-1" type="submit" name = "delete" value="DELETE">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END OF DELETE MODAL -->
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Period ID</th>
+                                            <th>Date</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Election Year</th>
+                                            <th>Tools</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!--End of main content-->
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p id="footer"></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/fontawesome/all.min.js"></script>
+    <!--Datatable JS-->
+    <script type="text/javascript" src="assets/js/datatables.min.js"></script>
+    <script src="assets/js/election-period.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <!-- Include Choices JavaScript -->
+    <script src="assets/vendors/choices.js/choices.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script src="assets/vendors/toastify/toastify.js"></script>
+    <script defer src="assets/js/profile.js"></script>
+</body>
+
+</html>

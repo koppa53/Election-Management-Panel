@@ -1,0 +1,5 @@
+1. Candidate Number Manual or Auto?
+2. Candidate added to the system can join election n-times ?
+3. Able to extend or force stop election time ?
+4. Possible End-Users of the Administrator system? 
+5. Adminstrator System allowed to view voted candidates of a specific voter? 

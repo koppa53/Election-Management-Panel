@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Management System</title>
+    <link rel="shortcut icon" href="assets/images/logo/BU-small-logo.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <!-- Include Choices CSS -->
+    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
+    <link rel="stylesheet" href="assets/vendors/apexcharts/apexcharts.css">
+    
+
+    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index.html"><img src="assets/images/logo/bu_navbar2.ico" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Reports</li>
+                        <li class="sidebar-item active ">
+                            <a href="index.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item has-sub ">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-poll-h"></i>
+                                <span>Election Results</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="usc-votes.html">USC</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="csc-votes.html">CSC</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="csc-votes.html">Voters Turnout</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-title">Manager</li>
+                        <li class="sidebar-item">
+                            <a href="accounts.html" class='sidebar-link'>
+                                <i class="bi bi-person-lines-fill"></i>
+                                <span>Accounts</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="election-period.html" class='sidebar-link'>
+                                <i class="bi bi-archive-fill"></i>
+                                <span>Election Period</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="register-partylist.html" class='sidebar-link'>
+                                <i class="fas fa-handshake"></i>
+                                <span>Political Party</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-university"></i>
+                                <span>USC</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="usc-positions.html">Positions</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="usc-candidate.html">Candidates</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-building"></i>
+                                <span>CSC</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="csc-positions.html">Positions</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="csc-candidate.html">Candidates</a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="e-ballot.html" class='sidebar-link'>
+                                <i class="fas fa-scroll"></i>
+                                <span>E-Ballot</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">Records</li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-vote-yea"></i>
+                                <span>Votes</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="usc-vote-records.html">USC</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="csc-vote-records.html">CSC</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="fas fa-users"></i>
+                                <span>Candidates</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="usc-candidates-records.html">USC</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="csc-candidates-records.html">CSC</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="political-party-records.html" class='sidebar-link'>
+                                <i class="fas fa-handshake"></i>
+                                <span>Political Party</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">Miscellanous</li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Components</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="component-alert.html">Alert</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-badge.html">Badge</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-breadcrumb.html">Breadcrumb</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-button.html">Button</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-card.html">Card</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-carousel.html">Carousel</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-dropdown.html">Dropdown</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-list-group.html">List Group</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-modal.html">Modal</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-navs.html">Navs</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-pagination.html">Pagination</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-progress.html">Progress</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-spinner.html">Spinner</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="component-tooltip.html">Tooltip</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>Extra Components</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="extra-component-avatar.html">Avatar</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="extra-component-sweetalert.html">Sweet Alert</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="extra-component-toastify.html">Toastify</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="extra-component-rating.html">Rating</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="extra-component-divider.html">Divider</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Layouts</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="layout-default.html">Default Layout</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="layout-vertical-1-column.html">1 Column</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="layout-vertical-navbar.html">Vertical with Navbar</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="layout-horizontal.html">Horizontal Menu</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-title">Forms &amp; Tables</li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-hexagon-fill"></i>
+                                <span>Form Elements</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="form-element-input.html">Input</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-element-input-group.html">Input Group</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-element-select.html">Select</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-element-radio.html">Radio</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-element-checkbox.html">Checkbox</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-element-textarea.html">Textarea</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="form-layout.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-medical-fill"></i>
+                                <span>Form Layout</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-pen-fill"></i>
+                                <span>Form Editor</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="form-editor-quill.html">Quill</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-editor-ckeditor.html">CKEditor</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-editor-summernote.html">Summernote</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-editor-tinymce.html">TinyMCE</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="table.html" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Table</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="table-datatable.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Datatable</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-title">Extra UI</li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-pentagon-fill"></i>
+                                <span>Widgets</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="ui-widgets-chatbox.html">Chatbox</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-widgets-pricing.html">Pricing</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-widgets-todolist.html">To-do List</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-egg-fill"></i>
+                                <span>Icons</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="ui-icons-bootstrap-icons.html">Bootstrap Icons </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-icons-fontawesome.html">Fontawesome</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-icons-dripicons.html">Dripicons</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-bar-chart-fill"></i>
+                                <span>Charts</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="ui-chart-chartjs.html">ChartJS</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-chart-apexcharts.html">Apexcharts</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                                <i class="bi bi-cloud-arrow-up-fill"></i>
+                                <span>File Uploader</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-map-fill"></i>
+                                <span>Maps</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="ui-map-google-map.html">Google Map</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-map-jsvectormap.html">JS Vector Map</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-title">Pages</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="application-email.html" class='sidebar-link'>
+                                <i class="bi bi-envelope-fill"></i>
+                                <span>Email Application</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="application-chat.html" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Chat Application</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="application-gallery.html" class='sidebar-link'>
+                                <i class="bi bi-image-fill"></i>
+                                <span>Photo Gallery</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="application-checkout.html" class='sidebar-link'>
+                                <i class="bi bi-basket-fill"></i>
+                                <span>Checkout Page</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-person-badge-fill"></i>
+                                <span>Authentication</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="auth-login.html">Login</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="auth-register.html">Register</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="auth-forgot-password.html">Forgot Password</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-x-octagon-fill"></i>
+                                <span>Errors</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="error-403.html">403</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="error-404.html">404</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="error-500.html">500</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main" class='layout-navbar'>
+            <header class='mb-3'>
+                <nav class="navbar navbar-expand navbar-light ">
+                    <div class="container-fluid">
+                        <a href="#" class="burger-btn d-block">
+                            <i class="bi bi-justify fs-3"></i>
+                        </a>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            </ul>
+                            <div class="dropdown">
+                                <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="user-menu d-flex">
+                                        <div class="user-name text-end me-3">
+                                            <h6 class="mb-0 text-gray-600">Jezreel Juego</h6>
+                                            <p class="mb-0 text-sm text-gray-600">Administrator</p>
+                                        </div>
+                                        <div class="user-img d-flex align-items-center">
+                                            <div class="avatar avatar-md">
+                                                <img src="assets/images/faces/1.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <h6 class="dropdown-header">Hello, Jezreel!</h6>
+                                    </li>
+                                    <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                        <i class="icon-mid bi bi-person me-2"></i> My Profile</button></li>
+                                    <hr class="dropdown-divider">
+                                    <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout"><i
+                                        class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--My Profile Content-->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable modal-xl"
+                            role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">My Profile
+                                    </h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        <i data-feather="x"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!--content here-->
+                                    <section id="input-with-icons">
+                                        <div class="row match-height">
+                                            <div class="col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <h6>Username</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="text" class="form-control">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="fas fa-user-tag"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <h6>Password</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="password" class="form-control">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="fas fa-lock"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <h6>Confirm New Password</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="password" class="form-control">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="fas fa-lock"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <h6>First Name</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="text" class="form-control">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="bi bi-person"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <h6>Middle Name</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="password" class="form-control">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="bi bi-person"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <h6>Last Name</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="password" class="form-control">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="bi bi-person"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <h6>Gender</h6>
+                                                                <fieldset class="form-group">
+                                                                    <select class="form-select" id="basicSelect">
+                                                                        <option>Male</option>
+                                                                        <option>Female</option>
+                                                                    </select>
+                                                                </fieldset>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <h6>Address</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="password" class="form-control">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="bi bi-geo-alt"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <h6>Contact Number</h6>
+                                                                <div class="form-group position-relative has-icon-left">
+                                                                    <input type="password" class="form-control">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="bi bi-phone"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light-secondary"
+                                        data-bs-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Close</span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary ml-1"
+                                        data-bs-dismiss="modal">
+                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Accept</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End of My Profile Content-->
+                    <!--Logout Content-->
+                    <div class="modal fade" id="logout" tabindex="-1" role="dialog"
+                        aria-labelledby="logout" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                            role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="logout">End Session
+                                    </h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        <i data-feather="x"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4 style="text-align:center">
+                                        Are you sure you want to leave?
+                                    </h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light-secondary"
+                                        data-bs-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Cancel</span>
+                                    </button>
+                                    <a class="btn btn-primary ml-1"
+                                        href="auth-login.html">
+                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Logout</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End ofLogout Content-->
+                </nav>
+            </header>
+            <div id="main-content">
+                <h3>DASHBOARD</h3>
+                <div class="page-content">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-primary">
+                                        <h4 class="alert-heading"><i class="fas fa-calendar-day"></i> September 26,2021 8:00am - 6:00pm</h4>
+                                        <p>Election Date</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-warning">
+                                        <h4 class="alert-heading"><i class="fas fa-address-card"></i> 108 </h4>
+                                        <p>Active Election Candidates</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="alert alert-warning">
+                                        <h4 class="alert-heading"><i class="fas fa-handshake"></i> 4 </h4>
+                                        <p>Active Political Party</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-secondary">
+                                        <h4 class="alert-heading"><i class="fas fa-map-pin"></i> 8 </h4>
+                                        <p>USC Positions Declared</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="alert alert-secondary">
+                                        <h4 class="alert-heading"><i class="fas fa-map-pin"></i> 4</h4>
+                                        <p>CSC Positions Declared</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="alert alert-info">
+                                        <h4 class="alert-heading"><i class="fas fa-users"></i> 26,000</h4>
+                                        <p>Total Voters</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="alert alert-success">
+                                        <h4 class="alert-heading"><i class="fas fa-user-check"></i> 17,000</h4>
+                                        <p>Voted</p>
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>USC Voting Tally</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <div id="bar"></div>
+                    </div>
+                </div>
+                <h3>CSC Voting Tally</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <h6>Select College</h6>
+                                <select class="choices form-select">
+                                    <optgroup>
+                                    <option value="None" selected>None</option>
+                                    </optgroup>
+                                    <optgroup label="Main Campus">
+                                        <option value="College of Science">College of Science</option>
+                                        <option value="College of Arts and Letters">College of Arts and Letters</option>
+                                        <option value="College of Education">College of Education</option>
+                                        <option value="IPESR">IPESR</option>
+                                    </optgroup>
+                                    <optgroup label="Daraga Campus">
+                                        <option value="red">Red</option>
+                                        <option value="green">Green</option>
+                                        <option value="blue">Blue</option>
+                                        <option value="purple">Purple</option>
+                                    </optgroup>
+                                    <optgroup label="East Campus">
+                                        <option value="red">Red</option>
+                                        <option value="green">Green</option>
+                                        <option value="blue">Blue</option>
+                                        <option value="purple">Purple</option>
+                                    </optgroup>
+                                    <optgroup label="Tabaco Campus">
+                                        <option value="red">Red</option>
+                                        <option value="green">Green</option>
+                                        <option value="blue">Blue</option>
+                                        <option value="purple">Purple</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>Content Here</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/pages/dashboard.js"></script>
+    <script src="assets/vendors/fontawesome/all.min.js"></script>
+    <!-- Include Choices JavaScript -->
+    <script src="assets/vendors/choices.js/choices.min.js"></script>
+    <script src="assets/vendors/dayjs/dayjs.min.js"></script>
+    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="assets/js/pages/ui-apexchart.js"></script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
