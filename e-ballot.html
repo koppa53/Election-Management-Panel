@@ -428,7 +428,7 @@
                                                             </select>
                                                         </fieldset>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlist" id="loadaddlist"> + Add Candidate</button>
                                                         <label>Restore removed candidates here.</label>
                                                     </div>
@@ -519,7 +519,34 @@
                                                     </tr>
                                                 </thead>
                                             </table>
+                                            <br>
+                                            <div class="col">
+                                                <button class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#rmAllUSClist" id="loadaddlist"> Remove All</button>
+                                            </div>
                                         </div>
+                                        <div class="modal fade text-left" id="rmAllUSClist" tabindex="-1"
+                                        role="dialog" aria-labelledby="rmAllUSClist"
+                                        aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                role="document">
+                                                <div class="modal-content">
+                                                    <form method="POST" action = "" id="rmmAllUSCFromList"> 
+                                                        <div class="modal-header bg-dark">
+                                                            <h5 class="modal-title white">
+                                                                REMOVE ALL USC CANDIDATES
+                                                            </h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to remove all candidate from list? 
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                                            <input class="btn btn-dark ml-1" type="submit" name = "delete" value="REMOVE">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>  
                                     </div>
                                 </div>
                             </div>
@@ -607,12 +634,41 @@
                                                     </tr>
                                                 </thead>
                                             </table>
+                                            <br>
+                                            <div class="col">
+                                                <button class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#rmAllCSClist" id="loadaddlist"> Remove All</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--REMOVE ALL CSC MODAL-->
+                    <div class="modal fade text-left" id="rmAllCSClist" tabindex="-1"
+                    role="dialog" aria-labelledby="rmAllCSClist"
+                    aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                            role="document">
+                            <div class="modal-content">
+                                <form method="POST" action = "" id="rmmAllCSCFromList"> 
+                                    <div class="modal-header bg-dark">
+                                        <h5 class="modal-title white">
+                                            REMOVE ALL CSC CANDIDATES
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to remove all candidate from list? 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                        <input class="btn btn-dark ml-1" type="submit" name = "delete" value="REMOVE">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END OF REMOVE ALL CSC MODAL--> 
                     <!--DELETE CSC MODAL -->
                     <div class="modal fade text-left" id="removefromlistcsc" tabindex="-1"
                         role="dialog" aria-labelledby="removefromlistcsc"
@@ -665,6 +721,7 @@
                                                                     <th>First Name</th>
                                                                     <th>Last Name</th>
                                                                     <th>Political Party</th> 
+                                                                    <th>Position Level</th>  
                                                                     <th>Tools</th> 
                                                                 </tr>
                                                             </thead>

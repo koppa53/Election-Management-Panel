@@ -98,7 +98,6 @@ $(document).ready(function () {
                         level: level
                     })
                 });
-                $('#table1').DataTable().ajax.reload(null, false);
                 const data = await response.json();
                 if (response.ok) {
                     $('#a_username').val("");
@@ -120,6 +119,7 @@ $(document).ready(function () {
                         backgroundColor: "#4fbe87",
                     }).showToast();
                     $('#addacc').modal('hide');
+                    $('#table1').DataTable().ajax.reload(null, false);
                 } else {
                     if (data.errors != undefined) {
                         data.errors.forEach(function (v) {
@@ -152,7 +152,6 @@ $(document).ready(function () {
                         college: college,
                     })
                 });
-                $('#table2').DataTable().ajax.reload(null, false);
                 const data = await response.json();
                 if (response.ok) {
                     $('#a_username').val("");
@@ -174,6 +173,7 @@ $(document).ready(function () {
                         backgroundColor: "#4fbe87",
                     }).showToast();
                     $('#addacc').modal('hide');
+                    $('#table2').DataTable().ajax.reload(null, false);
                 } else {
                     if (data.errors != undefined) {
                         data.errors.forEach(function (v) {
@@ -240,7 +240,6 @@ $(document).ready(function () {
 
                 })
             });
-            $('#table1').DataTable().ajax.reload(null, false);
             const res = await response.json();
             if (response.ok) {
                 $('#editacc').modal('hide');
@@ -257,7 +256,16 @@ $(document).ready(function () {
                         backgroundColor: "#56B6F7",
                     }).showToast();
                     location.reload();
+                } else {
+                    Toastify({
+                        text: res.message,
+                        duration: 3000,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#56B6F7",
+                    }).showToast();
                 }
+                $('#table1').DataTable().ajax.reload(null, false);
             } else {
                 Toastify({
                     text: res.message,
@@ -319,7 +327,6 @@ $(document).ready(function () {
 
                 })
             });
-            $('#table2').DataTable().ajax.reload(null, false);
             const res = await response.json();
             if (response.ok) {
                 $('#v_editacc').modal('hide');
@@ -330,6 +337,7 @@ $(document).ready(function () {
                     position: "center",
                     backgroundColor: "#56B6F7",
                 }).showToast();
+                $('#table2').DataTable().ajax.reload(null, false);
             } else {
                 Toastify({
                     text: res.message,
@@ -436,7 +444,6 @@ $(document).ready(function () {
                     newpassword: resetPass
                 })
             });
-            $('#table1').DataTable().ajax.reload(null, false);
             $('#resetpass').modal('hide');
             const res = await response.json();
             Toastify({
@@ -446,6 +453,7 @@ $(document).ready(function () {
                 position: "center",
                 backgroundColor: "#212529",
             }).showToast();
+            $('#table1').DataTable().ajax.reload(null, false);
         } catch (error) {
             console.log(error);
         }
@@ -475,7 +483,6 @@ $(document).ready(function () {
                     newpassword: resetPass
                 })
             });
-            $('#table2').DataTable().ajax.reload(null, false);
             $('#v_resetpass').modal('hide');
             const res = await response.json();
             Toastify({
@@ -485,6 +492,7 @@ $(document).ready(function () {
                 position: "center",
                 backgroundColor: "#212529",
             }).showToast();
+            $('#table2').DataTable().ajax.reload(null, false);
         } catch (error) {
             console.log(error);
         }

@@ -64,7 +64,7 @@ $(document).ready(function () {
             { data: "usc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist">Remove From List  </a>`,
+                defaultContent: `<a href="#" data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist">Remove</a>`,
                 className: "text-center",
             }
         ],
@@ -88,7 +88,7 @@ $(document).ready(function () {
             { data: "usc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#addfromlist" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlist">Add From List  </a>`,
+                defaultContent: `<a href="#" data-target = "#addfromlist" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlist">Add</a>`,
                 className: "text-center",
             }
         ],
@@ -114,12 +114,6 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/add_usc_ballot_from_list_candidate/' + a_dataID.usc_candidate_ballot_id, {
                 method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    is_on_ballot_list: true
-                })
             });
             $('#table0').DataTable().ajax.reload();
             $('#table1').DataTable().ajax.reload();
@@ -153,18 +147,33 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/delete_usc_ballot_from_list_candidate/' + d_dataID.usc_candidate_ballot_id, {
                 method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    is_on_ballot_list: false
-                })
             });
             $('#table1').DataTable().ajax.reload();
             const data = await response.json();
             $('#removefromlist').modal('hide');
             Toastify({
                 text: "USC Candidate removed from E-Ballot",
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#F3616D",
+            }).showToast();
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+    $('#rmmAllUSCFromList').on('submit', async (event) => {
+        event.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/delete_ALL_usc_ballot_from_list_candidate', {
+                method: "PUT",
+            });
+            $('#table1').DataTable().ajax.reload();
+            const data = await response.json();
+            $('#rmAllUSClist').modal('hide');
+            Toastify({
+                text: "ALL USC Candidate removed from E-Ballot",
                 duration: 3000,
                 gravity: "top",
                 position: "center",
@@ -194,7 +203,7 @@ $(document).ready(function () {
             { data: "csc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#removefromlistcsc" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlistcsc">Remove From List  </a>`,
+                defaultContent: `<a href="#" data-target = "#removefromlistcsc" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlistcsc">Remove</a>`,
                 className: "text-center",
             }
         ],
@@ -219,7 +228,7 @@ $(document).ready(function () {
             { data: "csc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#addfromlistcsc" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlistcsc">Add From List  </a>`,
+                defaultContent: `<a href="#" data-target = "#addfromlistcsc" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlistcsc">Add</a>`,
                 className: "text-center",
             }
         ],
@@ -246,12 +255,6 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/add_csc_ballot_from_list_candidate/' + a_dataID_csc.csc_candidate_ballot_id, {
                 method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    is_on_ballot_list: true
-                })
             });
             $('#table2').DataTable().ajax.reload();
             $('#table3').DataTable().ajax.reload();
@@ -286,12 +289,6 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/delete_csc_ballot_from_list_candidate/' + d_dataID_csc.csc_candidate_ballot_id, {
                 method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    is_on_ballot_list: false
-                })
             });
             $('#table2').DataTable().ajax.reload();
             const data = await response.json();
@@ -307,4 +304,26 @@ $(document).ready(function () {
             console.log(error);
         }
     });
+
+    $('#rmmAllCSCFromList').on('submit', async (event) => {
+        event.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/delete_ALL_csc_ballot_from_list_candidate', {
+                method: "PUT",
+            });
+            $('#table2').DataTable().ajax.reload();
+            const data = await response.json();
+            $('#rmAllCSClist').modal('hide');
+            Toastify({
+                text: "ALL CSC Candidate removed from E-Ballot",
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#F3616D",
+            }).showToast();
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
 });
