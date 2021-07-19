@@ -19,8 +19,32 @@ $(document).ready(function () {
                     return date[0];
                 }
             },
-            { data: "period_start_time" },
-            { data: "period_end_time" },
+            {
+                data: "period_start_time", render: function (data) {
+                    // Check correct time format and split into components
+                    data = data.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [data];
+
+                    if (data.length > 1) { // If time format correct
+                        data = data.slice(1);  // Remove full string match value
+                        data[5] = +data[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+                        data[0] = +data[0] % 12 || 12; // Adjust hours
+                    }
+                    return data.join(''); // return adjusted time or original string
+                }
+            },
+            {
+                data: "period_end_time", render: function (data) {
+                    // Check correct time format and split into components
+                    data = data.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [data];
+
+                    if (data.length > 1) { // If time format correct
+                        data = data.slice(1);  // Remove full string match value
+                        data[5] = +data[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+                        data[0] = +data[0] % 12 || 12; // Adjust hours
+                    }
+                    return data.join(''); // return adjusted time or original string
+                }
+            },
             { data: "period_election_year" },
             {
                 data: null,
