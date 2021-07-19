@@ -62,9 +62,6 @@ $(document).ready(function () {
     //ADD MODAL
     let count = 0;
     $('#addelecttime').on('click', async function () {
-        var d = new Date();
-        var n = d.getFullYear();
-        $("#election_year").val(n);
         if (count == 0) {
             const data1 = await getUSCPositions()
             const data2 = await getCSCPositions()
@@ -77,6 +74,12 @@ $(document).ready(function () {
             count++
         }
     })
+
+    $('#election_date').change(function () {
+        let year = $('#election_date').val()
+        year = year.split('-')
+        $("#election_year").val(year[0]);
+    });
 
     $('#addElectionTime').on('submit', async (event) => {
         event.preventDefault();

@@ -1,17 +1,5 @@
 $(document).ready(function () {
 
-    setHeaderElectioYear();
-    async function setHeaderElectioYear() {
-        const response = await fetch('http://localhost:5000/election_period', {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-        const data = await response.json();
-        document.getElementById('electionyear').innerHTML = data[0].period_election_year + " USC Election Candidates With Highest Votes"
-        document.getElementById('footer').innerHTML = "&copy; " + data[0].period_election_year + " Bicol University USC | CSC Election System"
-    }
     let loaded = 0;
     $("#USCpositions").on('click', async (event) => {
         if (loaded == 0) {
@@ -96,7 +84,7 @@ $(document).ready(function () {
         });
     }
 
-    $('#table2').DataTable({
+    var table2 = $('#table2').DataTable({
         ajax: {
             url: `http://localhost:5000/all_usc_ballot_candidate_on_list`,
             dataSrc: "",
@@ -120,9 +108,13 @@ $(document).ready(function () {
         ],
         language: {
             loadingRecords: `<div class="spinner-border text-secondary" role="status"></div><span>&nbsp&nbspGathering Records...</span>`
+        },
+        initComplete: function () {
+            if (!table2.data().any()) {
+                document.getElementById("genRes").disabled = true;
+            } else {
+                document.getElementById("genRes").disabled = false;
+            }
         }
     });
-
-
-
 });

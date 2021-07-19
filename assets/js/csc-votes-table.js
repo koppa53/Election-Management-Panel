@@ -1,21 +1,9 @@
 $(document).ready(function () {
 
-    let loaded = 0;
-    setHeaderElectioYear();
-    async function setHeaderElectioYear() {
-        const response = await fetch('http://localhost:5000/election_period', {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-        const data = await response.json();
-        document.getElementById('electionyear').innerHTML = data[0].period_election_year + " CSC Election Candidates With Highest Votes"
-        document.getElementById('footer').innerHTML = "&copy; " + data[0].period_election_year + " Bicol University USC | CSC Election System"
-    }
     $('#college').change(function () {
         $('#genRes').prop('disabled', false);
     })
+
     $("#CSCpositions").on('click', async (event) => {
         if (loaded == 0) {
             const response = await fetch('http://localhost:5000/all_active_CSC_position', {
@@ -39,7 +27,7 @@ $(document).ready(function () {
         table.search($('#CSCpositions').val()).draw();
     })
 
-    $('#table2').DataTable({
+    var table2 = $('#table2').DataTable({
         ajax: {
             url: `http://localhost:5000/all_csc_ballot_candidate_on_list`,
             dataSrc: "",
@@ -64,9 +52,15 @@ $(document).ready(function () {
         ],
         language: {
             loadingRecords: `<div class="spinner-border text-secondary" role="status"></div><span>&nbsp&nbspGathering Records...</span>`
+        },
+        initComplete: function () {
+            if (!table2.data().any()) {
+                document.getElementById("college").disabled = true;
+            } else {
+                document.getElementById("college").disabled = false;
+            }
         }
     });
-
 });
 
 async function getHighestVotes(college) {

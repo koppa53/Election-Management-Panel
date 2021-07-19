@@ -16,12 +16,17 @@ $(document).ready(function () {
                 }
             });
             let info = await response.json();
-            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            let date = info[0].period_date.split('T')
-            let d = date[0].split('-')
-            document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + months[parseInt(d[1] - 1)] + " "
-                + d[2] + ", " + d[0] + ":  " + tConvert(info[0].period_start_time) + " - " + tConvert(info[0].period_end_time)
-            return info
+            if (info.length != 0) {
+                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                let date = info[0].period_date.split('T')
+                let d = date[0].split('-')
+                document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + months[parseInt(d[1] - 1)] + " "
+                    + d[2] + ", " + d[0] + ":  " + tConvert(info[0].period_start_time) + " - " + tConvert(info[0].period_end_time)
+                return info
+            } else {
+                document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + "No Election Date"
+                return 0;
+            }
         } catch (e) {
             console.log(e)
         }
@@ -40,21 +45,25 @@ $(document).ready(function () {
     }
 
     year.then(async function (result) {
-        for (let data of result) {
-            const response = await fetch(`http://localhost:5000/election_year_votes/` + data.period_election_year, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            let info = await response.json()
-            var ID = new Array()
-            info.forEach(function (v) {
-                ID.push(v.vote_student_id)
-            })
-            var filteredID = ID.filter((value, index) => ID.indexOf(value) === index)
-            document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + filteredID.length + " "
-            break;
+        if (result != 0) {
+            for (let data of result) {
+                const response = await fetch(`http://localhost:5000/election_year_votes/` + data.period_election_year, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                let info = await response.json()
+                var ID = new Array()
+                info.forEach(function (v) {
+                    ID.push(v.vote_student_id)
+                })
+                var filteredID = ID.filter((value, index) => ID.indexOf(value) === index)
+                document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + filteredID.length + " "
+                break;
+            }
+        } else {
+            document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + "---"
         }
     })
     async function totalCandidates() {

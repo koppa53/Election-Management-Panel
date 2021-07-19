@@ -9,23 +9,22 @@ async function generateResult() {
         }
     });
     let info = await response.json();
-    const r = await fetch(`http://localhost:5000/election_period`, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    let year = await r.json();
+    var year = 0
     var count = 0;
     var currentPos = "";
     var countCandidates = 1
     var pos = new Array()
-
+    let limit = 0
     info.forEach(function (g) {
         pos.push(g.usc_candidate_position)
+        if (limit == 0) {
+            year = g.usc_ballot_election_year
+            limit++
+        }
     })
     var filteredpos = pos.filter((value, index) => pos.indexOf(value) === index)
     var content = Array.from(Array(info.length + filteredpos.length + 1), () => new Array(17))
+    var voters = new Array()
     for (infos of info) {
         infos.voteCAF = 0
         infos.voteCAL = 0
@@ -68,6 +67,7 @@ async function generateResult() {
             if (v.vote_college == "GC") infos.voteGC = infos.voteGC + 1
             if (v.vote_college == "TC") infos.voteTC = infos.voteTC + 1
             if (v.vote_college == "PC") infos.votePC = infos.votePC + 1
+            voters.push(v.vote_student_id)
         })
         assistedvotes.forEach(function (v) {
             if (v.vote_college == "College of Science") infos.voteCS = infos.voteCS + 1
@@ -83,8 +83,11 @@ async function generateResult() {
             if (v.vote_college == "GC") infos.voteGC = infos.voteGC + 1
             if (v.vote_college == "TC") infos.voteTC = infos.voteTC + 1
             if (v.vote_college == "PC") infos.votePC = infos.votePC + 1
+            voters.push(v.vote_student_id)
         })
     }
+    var totalNumofVoters = voters.filter((value, index) => voters.indexOf(value) === index)
+
     info.forEach(function (v) {
         let total = 0;
         if (currentPos != v.usc_candidate_position) {
@@ -171,9 +174,9 @@ async function generateResult() {
         var textOffset = (pdf.internal.pageSize.width - textWidth) / 2;
         pdf.text(textOffset, 30, "Legazpi City, Albay");
         pdf.setFontSize(18)
-        var textWidth = pdf.getStringUnitWidth("SUMMARY OF ELECTION RETURNS " + year[0].period_election_year) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+        var textWidth = pdf.getStringUnitWidth("SUMMARY OF ELECTION RETURNS " + year) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
         var textOffset = (pdf.internal.pageSize.width - textWidth) / 2;
-        pdf.text(textOffset, 42, "SUMMARY OF ELECTION RETURNS " + year[0].period_election_year);
+        pdf.text(textOffset, 42, "SUMMARY OF ELECTION RETURNS " + year);
         pdf.setFontSize(14)
         var textWidth = pdf.getStringUnitWidth("UNIVERSITY STUDENT COUNCIL") * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
         var textOffset = (pdf.internal.pageSize.width - textWidth) / 2;
@@ -246,7 +249,7 @@ async function generateResult() {
             margin: { left: 10 },
             body: [
                 ['A. Total No. of Registered Student Voters: '],
-                ['B. Total No. of Who Actually Voted: '],
+                ['B. Total No. of Who Actually Voted: ', totalNumofVoters.length],
                 ['C. Total No. of Students Who did not Vote: ',],
                 [`Voter's Turnout(%) : ( B / A x 100 ): `,]
             ],

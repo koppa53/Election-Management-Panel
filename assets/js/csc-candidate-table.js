@@ -27,6 +27,7 @@ $(document).ready(function () {
             },
             { data: "candidate_first_name" },
             { data: "candidate_last_name" },
+            { data: "candidate_college" },
             { data: "candidate_party" },
             {
                 data: null,
