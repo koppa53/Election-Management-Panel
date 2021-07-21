@@ -15,8 +15,8 @@ $(document).ready(function () {
             {
                 data: "period_date",
                 render: function (data) {
-                    const date = data.split("T");
-                    return date[0];
+                    var d = new Date(data);
+                    return d;
                 }
             },
             {
@@ -108,7 +108,7 @@ $(document).ready(function () {
     $('#addElectionTime').on('submit', async (event) => {
         event.preventDefault();
         const election_year = $('#election_year').val();
-        const election_date = $('#election_date').val();
+        var election_date = $('#election_date').val();
         const election_start_time = $('#election_start_time').val();
         const election_end_time = $('#election_end_time').val();
 
@@ -208,9 +208,11 @@ $(document).ready(function () {
             u_count++
         }
         var data = $('.table').DataTable().row(current_row).data();
-        const date = data.period_date.split("T")
+        var d = new Date(data.period_date)
+        var MyDateString = ""
+        MyDateString = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
         $('#u_election_year').val(data.period_election_year);
-        $('#u_election_date').val(date[0]);
+        $('#u_election_date').val(MyDateString);
         $('#u_election_start_time').val(data.period_start_time);
         $('#u_election_end_time').val(data.period_end_time);
         $('#updateelectiontime').modal('show');
@@ -219,7 +221,7 @@ $(document).ready(function () {
     $('#updateElectionTime').on('submit', async (event) => {
         event.preventDefault();
         const election_year = $('#u_election_year').val();
-        const election_date = $('#u_election_date').val();
+        var d = $('#u_election_date').val();
         const election_start_time = $('#u_election_start_time').val();
         const election_end_time = $('#u_election_end_time').val();
         try {
@@ -282,7 +284,7 @@ $(document).ready(function () {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    period_date: election_date,
+                    period_date: d,
                     period_start_time: election_start_time,
                     period_end_time: election_end_time,
                     period_election_year: election_year

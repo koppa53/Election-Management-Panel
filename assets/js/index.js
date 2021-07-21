@@ -18,10 +18,12 @@ $(document).ready(function () {
             let info = await response.json();
             if (info.length != 0) {
                 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                let date = info[0].period_date.split('T')
-                let d = date[0].split('-')
-                document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + months[parseInt(d[1] - 1)] + " "
-                    + d[2] + ", " + d[0] + ":  " + tConvert(info[0].period_start_time) + " - " + tConvert(info[0].period_end_time)
+                let d = new Date(info[0].period_date)
+                var MyDateString = ""
+                MyDateString = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+                let g = MyDateString.split('-')
+                document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + months[parseInt(g[1] - 1)] + " "
+                    + g[2] + ", " + g[0] + ":  " + tConvert(info[0].period_start_time) + " - " + tConvert(info[0].period_end_time)
                 return info
             } else {
                 document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + "No Election Date"
@@ -54,12 +56,7 @@ $(document).ready(function () {
                     }
                 });
                 let info = await response.json()
-                var ID = new Array()
-                info.forEach(function (v) {
-                    ID.push(v.vote_student_id)
-                })
-                var filteredID = ID.filter((value, index) => ID.indexOf(value) === index)
-                document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + filteredID.length + " "
+                document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + info + " "
                 break;
             }
         } else {
