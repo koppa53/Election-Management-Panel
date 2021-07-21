@@ -19,7 +19,7 @@ async function generateResult(college) {
     info.forEach(function (g) {
         pos.push(g.csc_candidate_position)
         if (limit == 0) {
-            year = g.usc_ballot_election_year
+            year = g.csc_ballot_election_year
             limit++
         }
     })

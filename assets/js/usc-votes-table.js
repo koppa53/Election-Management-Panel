@@ -35,27 +35,29 @@ $(document).ready(function () {
         });
         let info = await response.json();
         info.forEach(function (a) {
-            if (!this[a.usc_candidate_position]) {
-                this[a.usc_candidate_position] = {
-                    Position: a.usc_candidate_position, First_name: a.usc_candidate_first_name,
-                    Last_name: a.usc_candidate_last_name, Political_party: a.usc_candidate_party, Votes: 0, ballot_pos: a.usc_ballot_pos
-                };
-                result.push(this[a.usc_candidate_position]);
-            }
-            var temp = this[a.usc_candidate_position].Votes
-            this[a.usc_candidate_position].Votes = Math.max(this[a.usc_candidate_position].Votes, a.usc_candidate_votes);
-            if (temp != this[a.usc_candidate_position].Votes) {
-                this[a.usc_candidate_position].First_name = a.usc_candidate_first_name
-                this[a.usc_candidate_position].Last_name = a.usc_candidate_last_name
-                this[a.usc_candidate_position].Political_party = a.usc_candidate_party
-                this[a.usc_candidate_position].ballot_pos = a.usc_ballot_pos
-            }
-            if (temp == a.usc_candidate_votes && this[a.usc_candidate_position].Position == a.usc_candidate_position) {
-                this[a.usc_candidate_position] = {
-                    Position: a.usc_candidate_position, First_name: a.usc_candidate_first_name,
-                    Last_name: a.usc_candidate_last_name, Political_party: a.usc_candidate_party, Votes: a.usc_candidate_votes, ballot_pos: a.usc_ballot_pos
-                };
-                result.push(this[a.usc_candidate_position]);
+            if (a.usc_candidate_votes != 0) {
+                if (!this[a.usc_candidate_position]) {
+                    this[a.usc_candidate_position] = {
+                        Position: a.usc_candidate_position, First_name: a.usc_candidate_first_name,
+                        Last_name: a.usc_candidate_last_name, Political_party: a.usc_candidate_party, Votes: 0, ballot_pos: a.usc_ballot_pos
+                    };
+                    result.push(this[a.usc_candidate_position]);
+                }
+                var temp = this[a.usc_candidate_position].Votes
+                this[a.usc_candidate_position].Votes = Math.max(this[a.usc_candidate_position].Votes, a.usc_candidate_votes);
+                if (temp != this[a.usc_candidate_position].Votes) {
+                    this[a.usc_candidate_position].First_name = a.usc_candidate_first_name
+                    this[a.usc_candidate_position].Last_name = a.usc_candidate_last_name
+                    this[a.usc_candidate_position].Political_party = a.usc_candidate_party
+                    this[a.usc_candidate_position].ballot_pos = a.usc_ballot_pos
+                }
+                if (temp == a.usc_candidate_votes && this[a.usc_candidate_position].Position == a.usc_candidate_position) {
+                    this[a.usc_candidate_position] = {
+                        Position: a.usc_candidate_position, First_name: a.usc_candidate_first_name,
+                        Last_name: a.usc_candidate_last_name, Political_party: a.usc_candidate_party, Votes: a.usc_candidate_votes, ballot_pos: a.usc_ballot_pos
+                    };
+                    result.push(this[a.usc_candidate_position]);
+                }
             }
         }, Object.create(null));
         $('#table1').DataTable({
