@@ -193,6 +193,7 @@ $(document).ready(function () {
           dataLabels: {
             enabled: false,
           },
+          colors: cl,
           stroke: {
             show: true,
             width: 2,
