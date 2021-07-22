@@ -4,6 +4,7 @@ $(document).ready(function () {
         $('#genRes').prop('disabled', false);
     })
 
+    let loaded = 0;
     $("#CSCpositions").on('click', async (event) => {
         if (loaded == 0) {
             const response = await fetch('http://localhost:5000/all_active_CSC_position', {

@@ -1,7 +1,10 @@
 
 
 let pos = new Array()
+let cl = new Array()
 let votes = allusccandidates()
+allactivePositions()
+allpoliticalParty()
 async function allusccandidates() {
   const response = await fetch('http://localhost:5000/all_usc_ballot_candidate_on_list', {
     method: "GET",
@@ -26,8 +29,32 @@ async function allusccandidates() {
   return data;
 }
 
+async function allpoliticalParty() {
+  const response = await fetch('http://localhost:5000/all_political_party', {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+  const de = await response.json();
+  de.forEach(function (v) {
+    cl.push(v.party_color_theme.toString())
+  })
+}
+async function allactivePositions() {
+  const response = await fetch('http://localhost:5000/all_active_USC_position', {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+  const data = await response.json();
+  data.forEach(function (v) {
+    pos.push(v.position_name)
+  })
+}
+
 votes.then(function (result) {
-  allactivePositions()
   var currentparty = ""
   var count = 0
   var d = new Array({ name: "", data: "" });
@@ -42,20 +69,8 @@ votes.then(function (result) {
     }
   })
   d.shift()
-  async function allactivePositions() {
-    const response = await fetch('http://localhost:5000/all_active_USC_position', {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-    const data = await response.json();
-    data.forEach(function (v) {
-      pos.push(v.position_name)
-    })
-  }
-  renderchart(pos)
-  function renderchart(pos) {
+  renderchart(pos, cl)
+  function renderchart(pos, cl) {
     var barOptions = {
       series: d,
       chart: {
@@ -72,6 +87,7 @@ votes.then(function (result) {
       dataLabels: {
         enabled: false,
       },
+      colors: cl,
       stroke: {
         show: true,
         width: 2,
