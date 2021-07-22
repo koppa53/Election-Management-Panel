@@ -2,33 +2,9 @@
 
 let pos = new Array()
 let cl = new Array()
-let votes = allusccandidates()
 allactivePositions()
 allpoliticalParty()
-async function allusccandidates() {
-  const response = await fetch('http://localhost:5000/all_usc_ballot_candidate_on_list', {
-    method: "GET",
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  });
-  const data = await response.json();
-  data.sort((a, b) => {
-    let fa = a.usc_candidate_party.toLowerCase(),
-      fb = b.usc_candidate_party.toLowerCase();
-
-    if (fa < fb) {
-      return -1;
-    }
-    if (fa > fb) {
-      return 1;
-    }
-    return 0;
-  });
-
-  return data;
-}
-
+let votes = allusccandidates()
 async function allpoliticalParty() {
   const response = await fetch('http://localhost:5000/all_political_party', {
     method: "GET",
@@ -52,6 +28,29 @@ async function allactivePositions() {
   data.forEach(function (v) {
     pos.push(v.position_name)
   })
+}
+async function allusccandidates() {
+  const response = await fetch('http://localhost:5000/all_usc_ballot_candidate_on_list', {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+  const data = await response.json();
+  data.sort((a, b) => {
+    let fa = a.usc_candidate_party.toLowerCase(),
+      fb = b.usc_candidate_party.toLowerCase();
+
+    if (fa < fb) {
+      return -1;
+    }
+    if (fa > fb) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return data;
 }
 
 votes.then(function (result) {
