@@ -1,5 +1,5 @@
 
-window.onload = checkAuth;
+
 function checkAuth() {
     let lvl = ""
     if (localStorage.hasOwnProperty('hasLoggedIn')) {
@@ -15,6 +15,7 @@ function checkAuth() {
         window.location.href = "auth-login.html"
     }
 }
+window.onpaint = checkAuth();
 
 function logout() {
     localStorage.clear();
@@ -113,16 +114,30 @@ $(document).ready(function () {
             })
         });
         let res = await response.json();
-        $('#profileUpdate').prop('disabled', true);
-        Toastify({
-            text: "Profile Updated",
-            duration: 3000,
-            gravity: "top",
-            position: "center",
-            backgroundColor: "#56B6F7",
-        }).showToast();
-        location.reload();
-        $('#uprofile').modal('hide');
+        if (response.ok) {
+            localStorage.setItem("First Name", firstname)
+            localStorage.setItem("Last Name", lastname)
+            $('#profileUpdate').prop('disabled', true);
+            Toastify({
+                text: "Profile Updated",
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#56B6F7",
+            }).showToast();
+            location.reload();
+            $('#uprofile').modal('hide');
+        } else {
+            Toastify({
+                text: "Failed to Update Profile",
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#CD201F",
+            }).showToast();
+            $('#uprofile').modal('hide');
+        }
+
     })
 
     $('#changePass').on('submit', async (event) => {
