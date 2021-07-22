@@ -416,141 +416,137 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4>University Student Council</h4>
-                                            <div class="form-group">    
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <fieldset class="form-group">
-                                                            <select class="form-select" id="USCpositions">
-                                                                <option value=""selected>All Position</option>
-                                                            </select>
-                                                        </fieldset>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlist" id="loadaddlist"> + Add Candidate</button>
-                                                        <label>Restore removed candidates here.</label>
-                                                    </div>
-                                                    <div class="modal fade text-left" id="addlist" tabindex="-1"
-                                                        role="dialog" aria-labelledby="addlist"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl"
-                                                            role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header bg-primary">
-                                                                    <h5 class="modal-title white">
-                                                                        ADD USC CANDIDATE
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <section id="input-with-icons">
-                                                                        <div class="row match-height">
-                                                                            <div class="col">
-                                                                                <div class="card">
-                                                                                    <div class="card-body">
-                                                                                        <table class="table table-striped" id="table0">
-                                                                                            <thead>
-                                                                                                <tr>
-                                                                                                    <th>Candidate ID</th>
-                                                                                                    <th>Position</th>                                                       
-                                                                                                    <th>First Name</th>
-                                                                                                    <th>Last Name</th>
-                                                                                                    <th>Political Party</th>
-                                                                                                    <th>Position Level</th>   
-                                                                                                    <th>Tools</th> 
-                                                                                                </tr>
-                                                                                            </thead>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </section>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-light-secondary"
-                                                                        data-bs-dismiss="modal">
-                                                                        <i class="bx bx-x d-block d-sm-none"></i>
-                                                                        <span class="d-none d-sm-block">Close</span>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                            <div class="card shadow">
+                                <div class="card-header">
+                                    <h4>University Student Council</h4>
+                                    <div class="form-group">    
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <fieldset class="form-group">
+                                                    <select class="form-select" id="USCpositions">
+                                                        <option value=""selected>All Position</option>
+                                                    </select>
+                                                </fieldset>
                                             </div>
-                                            <div class="modal fade text-left" id="addfromlist" tabindex="-1"
-                                                role="dialog" aria-labelledby="addfromlist"
+                                            <div class="col-md-4">
+                                                <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlist" id="loadaddlist"> + Add Candidate</button>
+                                                <label>Restore removed candidates here.</label>
+                                            </div>
+                                            <div class="modal fade text-left" id="addlist" tabindex="-1"
+                                                role="dialog" aria-labelledby="addlist"
                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl"
                                                     role="document">
                                                     <div class="modal-content">
-                                                        <form method="POST" action = "" id="addFromList"> 
-                                                            <div class="modal-header bg-success">
-                                                                <h5 class="modal-title white">
-                                                                    ADD CANDIDATE 
-                                                                </h5>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are you sure you want to add candidate from list? 
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
-                                                                <input class="btn btn-success ml-1" type="submit" name = "delete" value="ADD">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-striped" id="table1">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Candidate ID</th>
-                                                        <th>Position</th>                                                        
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Political Party</th> 
-                                                        <th>Position Level</th>  
-                                                        <th>Tools</th> 
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <br>
-                                            <div class="col">
-                                                <button class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#rmAllUSClist" id="loadaddlist"> Remove All</button>
-                                            </div>
-                                        </div>
-                                        <div class="modal fade text-left" id="rmAllUSClist" tabindex="-1"
-                                        role="dialog" aria-labelledby="rmAllUSClist"
-                                        aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                                role="document">
-                                                <div class="modal-content">
-                                                    <form method="POST" action = "" id="rmmAllUSCFromList"> 
-                                                        <div class="modal-header bg-dark">
+                                                        <div class="modal-header bg-primary">
                                                             <h5 class="modal-title white">
-                                                                REMOVE ALL USC CANDIDATES
+                                                                ADD USC CANDIDATE
                                                             </h5>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Are you sure you want to remove all candidate from list? 
+                                                            <section id="input-with-icons">
+                                                                <div class="row match-height">
+                                                                    <div class="col">
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <table class="table table-striped" id="table0">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Candidate ID</th>
+                                                                                            <th>Position</th>                                                       
+                                                                                            <th>First Name</th>
+                                                                                            <th>Last Name</th>
+                                                                                            <th>Political Party</th>
+                                                                                            <th>Position Level</th>   
+                                                                                            <th>Tools</th> 
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </section>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
-                                                            <input class="btn btn-dark ml-1" type="submit" name = "delete" value="REMOVE">
+                                                            <button type="button"
+                                                                class="btn btn-light-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                                <span class="d-none d-sm-block">Close</span>
+                                                            </button>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>  
+                                        </div>
+                                    </div>
+                                    <div class="modal fade text-left" id="addfromlist" tabindex="-1"
+                                        role="dialog" aria-labelledby="addfromlist"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <form method="POST" action = "" id="addFromList"> 
+                                                    <div class="modal-header bg-success">
+                                                        <h5 class="modal-title white">
+                                                            ADD CANDIDATE 
+                                                        </h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to add candidate from list? 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                                        <input class="btn btn-success ml-1" type="submit" name = "delete" value="ADD">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Candidate ID</th>
+                                                <th>Position</th>                                                        
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Political Party</th> 
+                                                <th>Position Level</th>  
+                                                <th>Tools</th> 
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <br>
+                                    <div class="col">
+                                        <button class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#rmAllUSClist" id="loadaddlist"> Remove All</button>
                                     </div>
                                 </div>
+                                <div class="modal fade text-left" id="rmAllUSClist" tabindex="-1"
+                                role="dialog" aria-labelledby="rmAllUSClist"
+                                aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <form method="POST" action = "" id="rmmAllUSCFromList"> 
+                                                <div class="modal-header bg-dark">
+                                                    <h5 class="modal-title white">
+                                                        REMOVE ALL USC CANDIDATES
+                                                    </h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to remove all candidate from list? 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
+                                                    <input class="btn btn-dark ml-1" type="submit" name = "delete" value="REMOVE">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -582,65 +578,61 @@
                     <!--END OF DELETE USC MODAL -->
                     <div class="row">
                         <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4>College Student Council</h4>
-                                            <div class="form-group">    
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <fieldset class="form-group">
-                                                            <select class="form-select" id="colleges">
-                                                                <option value="">All Colleges</option>
-                                                                <option value="College of Science">College of Science</option>
-                                                                <option value="College of Arts and Letters">College of Arts and Letters</option>
-                                                                <option value="College of Education">College of Education</option>
-                                                                <option value="College of Nursing">College of Nursing</option>
-                                                                <option value="College of Industrial Technology">College of Industrial Technology</option>
-                                                                <option value="College of Engineering">College of Engineering</option>
-                                                                <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
-                                                                <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
-                                                                <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
-                                                                <option value="IPESR">IPESR</option>
-                                                            </select>
-                                                        </fieldset>
-                                                    </div>
-                                                    <div class="col-md-4"style="display:none;">
-                                                        <fieldset class="form-group" >
-                                                            <select class="form-select" id="CSCpositions">
-                                                                <option value="" disabled selected>Select Position</option>
-                                                                <option value="">All Positions</option>
-                                                            </select>
-                                                        </fieldset>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlistcsc" id="loadaddlistcsc"> + Add Candidate</button>
-                                                        <label>Restore removed candidates here.</label>
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-striped" id="table2">
-                                                <thead>
-                                                    <tr>                                                       
-                                                        <th>Candidate ID</th>
-                                                        <th>Position</th>                                                        
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>College</th>
-                                                        <th>Political Party</th>
-                                                        <th>Position Level</th>  
-                                                        <th>Tools</th> 
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <br>
-                                            <div class="col">
-                                                <button class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#rmAllCSClist" id="loadaddlist"> Remove All</button>
+                            <div class="card shadow">
+                                <div class="card-header">
+                                    <h4>College Student Council</h4>
+                                    <div class="form-group">    
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <fieldset class="form-group">
+                                                    <select class="form-select" id="colleges">
+                                                        <option value="">All Colleges</option>
+                                                        <option value="College of Science">College of Science</option>
+                                                        <option value="College of Arts and Letters">College of Arts and Letters</option>
+                                                        <option value="College of Education">College of Education</option>
+                                                        <option value="College of Nursing">College of Nursing</option>
+                                                        <option value="College of Industrial Technology">College of Industrial Technology</option>
+                                                        <option value="College of Engineering">College of Engineering</option>
+                                                        <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
+                                                        <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
+                                                        <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
+                                                        <option value="IPESR">IPESR</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-4"style="display:none;">
+                                                <fieldset class="form-group" >
+                                                    <select class="form-select" id="CSCpositions">
+                                                        <option value="" disabled selected>Select Position</option>
+                                                        <option value="">All Positions</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlistcsc" id="loadaddlistcsc"> + Add Candidate</button>
+                                                <label>Restore removed candidates here.</label>
                                             </div>
                                         </div>
+                                    </div>  
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" id="table2">
+                                        <thead>
+                                            <tr>                                                       
+                                                <th>Candidate ID</th>
+                                                <th>Position</th>                                                        
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>College</th>
+                                                <th>Political Party</th>
+                                                <th>Position Level</th>  
+                                                <th>Tools</th> 
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <br>
+                                    <div class="col">
+                                        <button class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#rmAllCSClist" id="loadaddlist"> Remove All</button>
                                     </div>
                                 </div>
                             </div>
