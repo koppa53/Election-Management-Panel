@@ -1,25 +1,24 @@
 
 
-function checkAuth() {
-    let lvl = ""
-    if (localStorage.hasOwnProperty('hasLoggedIn')) {
-        let fname = localStorage.getItem("First Name")
-        fname = fname.charAt(0).toUpperCase() + fname.slice(1)
-        let lname = localStorage.getItem("Last Name")
-        lname = lname.charAt(0).toUpperCase() + lname.slice(1)
-        document.getElementById('name').innerHTML = fname + " " + lname
-        lvl = localStorage.getItem("Level")
-        if (lvl == 1) document.getElementById("acc").style.display = "block";
-        document.getElementById('headname').innerHTML = "Hello, " + fname + "!"
-    } else {
-        window.location.href = "auth-login.html"
-    }
-}
-window.onpaint = checkAuth();
+
 
 function logout() {
     localStorage.clear();
     window.location.href = "auth-login.html"
+}
+
+window.onload = setProfile()
+
+function setProfile() {
+    let lvl = ""
+    let fname = localStorage.getItem("First Name")
+    fname = fname.charAt(0).toUpperCase() + fname.slice(1)
+    let lname = localStorage.getItem("Last Name")
+    lname = lname.charAt(0).toUpperCase() + lname.slice(1)
+    document.getElementById('name').innerHTML = fname + " " + lname
+    lvl = localStorage.getItem("Level")
+    if (lvl == 1) document.getElementById("acc").style.display = "block";
+    document.getElementById('headname').innerHTML = "Hello, " + fname + "!"
 }
 
 let id = localStorage.getItem("User Name")
@@ -157,7 +156,7 @@ $(document).ready(function () {
                 })
             });
             let res = await response.json();
-            if (res.status == 200) {
+            if (response.ok) {
                 Toastify({
                     text: res.message,
                     duration: 3000,
@@ -166,7 +165,7 @@ $(document).ready(function () {
                     backgroundColor: "#56B6F7",
                 }).showToast();
                 $('#passwordUpdate').prop('disabled', true);
-                $('#uprofile').modal('hide');
+                $('#cpass').modal('hide');
             } else {
                 Toastify({
                     text: res.message,
