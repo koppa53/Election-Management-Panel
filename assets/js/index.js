@@ -1,37 +1,54 @@
 $(document).ready(function () {
 
-    let loaded = 0;
-    totalUSCPositions();
-    totalCSCPositions();
-    totalCandidates();
-    totalPolitcalParty();
 
-    let year = electionPeriod()
-    async function electionPeriod() {
-        try {
-            const response = await fetch(`http://localhost:5000/election_period`, {
+    window.onload = fetchData
+    async function fetchData() {
+        var [data1, data2, data3, data4, data5, data6, data7] = await Promise.all([
+            fetch(`http://localhost:5000/election_period`).then((response) => response.json()),// parse each response as json
+            fetch(`http://localhost:5000/all_candidate`).then((response) => response.json()),
+            fetch(`http://localhost:5000/all_political_party`).then((response) => response.json()),
+            fetch(`http://localhost:5000/all_USC_position`).then((response) => response.json()),
+            fetch(`http://localhost:5000/all_CSC_position`).then((response) => response.json()),
+            fetch('http://localhost:5000/all_active_USC_position').then((response) => response.json()),
+            fetch('http://localhost:5000/all_active_CSC_position').then((response) => response.json())
+        ]);
+        if (data1.length != 0) {
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            let d = new Date(data1[0].period_date)
+            var MyDateString = ""
+            MyDateString = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+            let g = MyDateString.split('-')
+            document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + months[parseInt(g[1] - 1)] + " "
+                + g[2] + ", " + g[0] + ":  " + tConvert(data1[0].period_start_time) + " - " + tConvert(data1[0].period_end_time)
+        } else {
+            document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + "No Election Date"
+        }
+        if (data1.length != 0) {
+            const response = await fetch(`http://localhost:5000/election_year_votes/` + data1[0].period_election_year, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-            let info = await response.json();
-            if (info.length != 0) {
-                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                let d = new Date(info[0].period_date)
-                var MyDateString = ""
-                MyDateString = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
-                let g = MyDateString.split('-')
-                document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + months[parseInt(g[1] - 1)] + " "
-                    + g[2] + ", " + g[0] + ":  " + tConvert(info[0].period_start_time) + " - " + tConvert(info[0].period_end_time)
-                return info
-            } else {
-                document.getElementById("electiondate").innerHTML = `<i class="fas fa-calendar-day"></i>  ` + "No Election Date"
-                return 0;
-            }
-        } catch (e) {
-            console.log(e)
+            let info = await response.json()
+            document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + info + " "
+        } else {
+            document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + "---"
         }
+        document.getElementById("totalcandidates").innerHTML = `<i class="fas fa-address-card"></i> ` + data2.length
+        document.getElementById("totalpoliticalparty").innerHTML = ` <i class="fas fa-handshake"></i> ` + data3.length
+        document.getElementById("USCpos").innerHTML = `<i class="fas fa-map-pin"></i> ` + data4.length
+        document.getElementById("CSCpos").innerHTML = `<i class="fas fa-map-pin"></i> ` + data5.length
+        data6.forEach(function (v) {
+            var o = new Option(v.position_name, v.position_name);
+            $(o).html(v.position_name);
+            $("#positions").append(o);
+        })
+        data7.forEach(function (v) {
+            var o = new Option(v.position_name, v.position_name);
+            $(o).html(v.position_name);
+            $("#cscpositions").append(o);
+        })
     }
 
     function tConvert(time) {
@@ -45,109 +62,4 @@ $(document).ready(function () {
         }
         return time.join(''); // return adjusted time or original string
     }
-
-    year.then(async function (result) {
-        if (result != 0) {
-            for (let data of result) {
-                const response = await fetch(`http://localhost:5000/election_year_votes/` + data.period_election_year, {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                let info = await response.json()
-                document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + info + " "
-                break;
-            }
-        } else {
-            document.getElementById("alreadyvoted").innerHTML = `<i class="fas fa-user-check"></i>  ` + "---"
-        }
-    })
-    async function totalCandidates() {
-        try {
-            const response = await fetch(`http://localhost:5000/all_candidate`, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            let info = await response.json();
-            document.getElementById("totalcandidates").innerHTML = `<i class="fas fa-address-card"></i> ` + info.length
-        } catch (e) {
-            console.log(e)
-        }
-    }
-    async function totalPolitcalParty() {
-        try {
-            const response = await fetch(`http://localhost:5000/all_political_party`, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            let info = await response.json();
-            let count = 0;
-            info.forEach(function (e) {
-                count++;
-            });
-            document.getElementById("totalpoliticalparty").innerHTML = ` <i class="fas fa-handshake"></i> ` + count
-        } catch (e) {
-            console.log(e)
-        }
-    }
-    async function totalUSCPositions() {
-        try {
-            const response = await fetch(`http://localhost:5000/all_USC_position`, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            let info = await response.json();
-            let count = 0;
-            info.forEach(function (e) {
-                count++;
-            });
-            document.getElementById("USCpos").innerHTML = `<i class="fas fa-map-pin"></i> ` + count
-        } catch (e) {
-            console.log(e)
-        }
-    }
-    async function totalCSCPositions() {
-        try {
-            const response = await fetch(`http://localhost:5000/all_CSC_position`, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            let info = await response.json();
-            let count = 0;
-            info.forEach(function (e) {
-                count++;
-            });
-            document.getElementById("CSCpos").innerHTML = `<i class="fas fa-map-pin"></i> ` + count
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    $("#CSCpositions").on('click', async (event) => {
-        if (loaded == 0) {
-            const response = await fetch('http://localhost:5000/all_active_CSC_position', {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-            const positiondata = await response.json();
-            positiondata.forEach(function (v) {
-                var o = new Option(v.position_name, v.position_name);
-                $(o).html(v.position_name);
-                $("#CSCpositions").append(o);
-            })
-            loaded++;
-        }
-    })
-
-});
+})

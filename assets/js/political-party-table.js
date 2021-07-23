@@ -22,8 +22,9 @@ $(document).ready(function () {
                 defaultContent: ` <a href="#" data-target = "#updateparty" data-toggle="modal" class="btn btn-success btn-sm" id="editparty">Edit</a>
                                 <a href="#" data-target = "#deletepos" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteparty">Delete</a>`,
                 className: "text-center",
-            }
-        ]
+            },
+        ],
+        order: [1, "asc"]
     });
 
     //ADD MODAL

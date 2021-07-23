@@ -7,7 +7,8 @@
     <title>Election Management System</title>
     <link rel="shortcut icon" href="assets/images/logo/BU-small-logo.png" type="image/x-icon">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
 
@@ -455,31 +456,52 @@
                         </div>
                     </div>
                 </div>
-                <h3>USC Voting Tally</h3>
-                <div class="card shadow">
-                    <div class="card-body">
-                        <div id="bar"></div>
-                    </div>
-                </div>
-                <h3>CSC Voting Tally</h3>
+                <h3>University Student Council Voting Tally</h3>
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="col-md-5">
                             <div class="form-group" >
-                                <h6>Colleges</h6>
-                                <select class="form-select" id="college">
-                                    <option value=""selected disabled>Select College</option>
-                                    <option value="College of Science">College of Science</option>
-                                    <option value="College of Arts and Letters">College of Arts and Letters</option>
-                                    <option value="College of Education">College of Education</option>
-                                    <option value="College of Nursing">College of Nursing</option>
-                                    <option value="College of Education">College of Education</option>
-                                    <option value="College of Engineering">College of Engineering</option>
-                                    <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
-                                    <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
-                                    <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
-                                    <option value="IPESR">IPESR</option>
+                                <h6>Positions</h6>
+                                <select class="form-select" id="positions">
+                                    <option value="All" selected>All Position</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="bar"></div>
+                    </div>
+                </div>
+                <h3>College Student Council Voting Tally</h3>
+                <div class="card shadow">
+                    <div class="card-header">
+                        <div class ="row">
+                            <div class="col-md-5">
+                                <div class="form-group" >
+                                    <h6>Colleges</h6>
+                                    <select class="form-select" id="college">
+                                        <option value=""selected disabled>Select College</option>
+                                        <option value="College of Science">College of Science</option>
+                                        <option value="College of Arts and Letters">College of Arts and Letters</option>
+                                        <option value="College of Education">College of Education</option>
+                                        <option value="College of Nursing">College of Nursing</option>
+                                        <option value="College of Education">College of Education</option>
+                                        <option value="College of Engineering">College of Engineering</option>
+                                        <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
+                                        <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
+                                        <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
+                                        <option value="IPESR">IPESR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group" >
+                                    <h6>Positions</h6>
+                                    <select class="form-select" id="cscpositions" disabled>
+                                        <option value="" disabled selected>Select Position</option>
+                                        <option value="All">All Position</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -510,7 +532,7 @@
     <script src="assets/vendors/toastify/toastify.js"></script>
 
     <script src="assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="assets/js/index-bar-chart.js"></script>
+    <script src="assets/js/barChartIndex.js"></script>
     <script src="assets/js/profile.js"></script>
 </body>
 

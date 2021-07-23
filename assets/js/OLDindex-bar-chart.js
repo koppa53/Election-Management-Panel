@@ -68,8 +68,8 @@ votes.then(function (result) {
     }
   })
   d.shift()
-  renderchart(pos, cl)
-  function renderchart(pos, cl) {
+  renderchart(pos, cl, d)
+  function renderchart(pos, cl, d) {
     var barOptions = {
       series: d,
       chart: {

@@ -22,7 +22,8 @@ $(document).ready(function () {
                 defaultContent: ` <a href="#" data-target = "#showmembers" data-toggle="modal" class="btn btn-info btn-sm" id="viewmembers"><i class="fas fa-users"></i> Members</a>`,
                 className: "text-center",
             }
-        ]
+        ],
+        order: [1, "asc"]
     });
 
     //VIEW SECTION
