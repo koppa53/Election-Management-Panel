@@ -20,7 +20,7 @@ $(document).ready(function () {
                             binary += String.fromCharCode(bytes[i]);
                         }
                         return '<img src="data:image/png;base64,' + binary + '"style="width: 60px; height:60px">' +
-                            '  <a href="#" data-target = "#editcandidatephoto" data-toggle="modal" class="btn btn-dark btn-sm" id="editcandidatephoto"><i class="far fa-edit"></i></a>'
+                            '  <a href="#" data-target = "#editcandidatephoto" data-toggle="modal" class="btn btn-dark btn-sm" id="editcandidatephoto"><i class="fas fa-edit"></i></a>'
                     }
                 },
                 className: "text-center"
@@ -31,8 +31,8 @@ $(document).ready(function () {
             { data: "candidate_party" },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#updatecandidate" data-toggle="modal" class="btn btn-success btn-sm" id="editcandidate">Edit</a>
-                                <a href="#" data-target = "#deletecandidate" data-toggle="modal" class="btn btn-danger btn-sm" id="deletecandidate">Delete</a>`,
+                defaultContent: `<a href="#" data-target = "#updatecandidate" data-toggle="modal" class="btn btn-success btn-sm" id="editcandidate"><i class="fas fa-edit"></i></a>
+                                <a href="#" data-target = "#deletecandidate" data-toggle="modal" class="btn btn-danger btn-sm" id="deletecandidate"><i class="fas fa-trash"></i></a>`,
                 className: "text-center",
             }
         ],

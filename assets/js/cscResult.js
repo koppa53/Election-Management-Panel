@@ -1,6 +1,7 @@
 
 async function generateResult(college) {
     document.getElementById("genRes").disabled = true;
+    document.getElementById("cscdlicon").style.display = "none";
     document.getElementById("loading").style.display = "inline-block";
     const response = await fetch(`http://localhost:5000/college_csc_ballot_candidate_on_list/` + college, {
         method: "GET",
@@ -200,7 +201,9 @@ async function generateResult(college) {
             pdf.text(`Page ${j} of ${pages}`, horizontalPos, verticalPos, { align: 'center' });
         }
         document.getElementById("genRes").disabled = false;
+        document.getElementById("cscdlicon").style.display = "inline-block";
         document.getElementById("loading").style.display = "none";
+        pdf.save(d.getFullYear() + '_CSC_Election_Results.pdf');
         pdf.output('dataurlnewwindow');
     };
 }

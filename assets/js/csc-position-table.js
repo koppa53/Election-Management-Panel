@@ -14,8 +14,8 @@ $(document).ready(function () {
             { data: "position_order", visible: false },
             {
                 data: null,
-                defaultContent: ` <a href="#" data-target = "#updatepos" data-toggle="modal" class="btn btn-success btn-sm" id="editposition">Edit</a>
-                                <a href="#" data-target = "#deletepos" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteposition">Delete</a>`,
+                defaultContent: ` <a href="#" data-target = "#updatepos" data-toggle="modal" class="btn btn-success btn-sm" id="editposition"><i class="fas fa-edit"></i></a>
+                                <a href="#" data-target = "#deletepos" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteposition"><i class="fas fa-trash"></i></a>`,
                 className: "text-center",
             }
         ],

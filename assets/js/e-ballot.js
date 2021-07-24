@@ -64,7 +64,7 @@ $(document).ready(function () {
             { data: "usc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist">Remove</a>`,
+                defaultContent: `<a href="#" data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist"><i class="fas fa-user-minus"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -88,7 +88,7 @@ $(document).ready(function () {
             { data: "usc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#addfromlist" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlist">Add</a>`,
+                defaultContent: `<a href="#" data-target = "#addfromlist" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlist"><i class="fas fa-user-plus"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -203,7 +203,7 @@ $(document).ready(function () {
             { data: "csc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#removefromlistcsc" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlistcsc">Remove</a>`,
+                defaultContent: `<a href="#" data-target = "#removefromlistcsc" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlistcsc"><i class="fas fa-user-minus"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -228,7 +228,7 @@ $(document).ready(function () {
             { data: "csc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#addfromlistcsc" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlistcsc">Add</a>`,
+                defaultContent: `<a href="#" data-target = "#addfromlistcsc" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlistcsc"><i class="fas fa-user-plus"></i></a>`,
                 className: "text-center",
             }
         ],

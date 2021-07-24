@@ -2,6 +2,7 @@
 async function generateResult() {
     document.getElementById("genRes").disabled = true;
     document.getElementById("loading").style.display = "inline-block";
+    document.getElementById("dlicon").style.display = "none";
     const response = await fetch(`http://localhost:5000/all_usc_ballot_candidate_on_list`, {
         method: "GET",
         headers: {
@@ -271,7 +272,9 @@ async function generateResult() {
             pdf.text(`Page ${j} of ${pages}`, horizontalPos, verticalPos, { align: 'center' });
         }
         document.getElementById("loading").style.display = "none";
+        document.getElementById("dlicon").style.display = "inline-block";
         document.getElementById("genRes").disabled = false;
+        pdf.save(d.getFullYear() + '_USC_Election_Results.pdf');
         pdf.output('dataurlnewwindow');
     };
 }

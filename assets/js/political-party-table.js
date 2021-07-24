@@ -19,8 +19,8 @@ $(document).ready(function () {
             },
             {
                 data: null,
-                defaultContent: ` <a href="#" data-target = "#updateparty" data-toggle="modal" class="btn btn-success btn-sm" id="editparty">Edit</a>
-                                <a href="#" data-target = "#deletepos" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteparty">Delete</a>`,
+                defaultContent: ` <a href="#" data-target = "#updateparty" data-toggle="modal" class="btn btn-success btn-sm" id="editparty"><i class="fas fa-edit"></i></a>
+                                <a href="#" data-target = "#deletepos" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteparty"><i class="fas fa-trash"></i></a>`,
                 className: "text-center",
             },
         ],

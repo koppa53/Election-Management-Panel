@@ -48,14 +48,16 @@ $(document).ready(function () {
             { data: "period_election_year" },
             {
                 data: null,
-                defaultContent: ` <a href="#" data-target = "#updateelectiontime" data-toggle="modal" class="btn btn-success btn-sm" id="editelectiontime">Edit</a>
-                                <a href="#" data-target = "#deleteelectiontime" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteelectiontime">Delete</a>`,
+                defaultContent: ` <a href="#" data-target = "#updateelectiontime" data-toggle="modal" class="btn btn-success btn-sm" id="editelectiontime"><i class="fas fa-edit"></i></a>
+                                <a href="#" data-target = "#deleteelectiontime" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteelectiontime"><i class="fas fa-trash"></i></a>`,
                 className: "text-center",
             }
         ],
         initComplete: function () {
             if (table.rows().count() !== 0) {
                 $("#addelecttime").attr("disabled", true);
+            } else {
+                $("#addelecttime").attr("disabled", false);
             }
         }
     });
