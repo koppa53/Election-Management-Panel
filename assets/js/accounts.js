@@ -80,7 +80,7 @@ $(document).ready(function () {
 
         try {
             if (system == 1) {
-                const response = await fetch('http://localhost:5000/register_account', {
+                const res = await fetch('http://localhost:5000/register_account', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
@@ -98,8 +98,8 @@ $(document).ready(function () {
                         level: level
                     })
                 });
-                const data = await response.json();
-                if (response.ok) {
+                const data = await res.json();
+                if (res.ok) {
                     $('#table1').DataTable().ajax.reload(null, false);
                     $('#a_username').val("");
                     $('#a_firstname').val("");

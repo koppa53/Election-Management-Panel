@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 
-    window.onload = fetchData
+    window.onload = fetchData()
     async function fetchData() {
         var [data1, data2, data3, data4, data5, data6, data7] = await Promise.all([
             fetch(`http://localhost:5000/election_period`).then((response) => response.json()),// parse each response as json

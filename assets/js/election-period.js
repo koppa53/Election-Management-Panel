@@ -334,7 +334,7 @@ $(document).ready(function () {
             $("#addelecttime").attr("disabled", false);
             $('#deleteelectiontime').modal('hide');
             Toastify({
-                text: "Political Party Deleted",
+                text: "Election Period Deleted",
                 duration: 3000,
                 gravity: "top",
                 position: "center",
