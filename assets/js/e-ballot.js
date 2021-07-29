@@ -1,11 +1,11 @@
 $(document).ready(function () {
-
     let loaded = 0;
     $("#USCpositions").on('click', async (event) => {
         if (loaded == 0) {
             const response = await fetch('http://localhost:5000/all_active_USC_position', {
                 method: "GET",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });
@@ -25,6 +25,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/all_active_CSC_position', {
                 method: "GET",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });
@@ -52,6 +53,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_usc_ballot_candidate_on_list`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -64,7 +68,7 @@ $(document).ready(function () {
             { data: "usc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist"><i class="fas fa-user-minus"></i></a>`,
+                defaultContent: `<a data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist"><i class="fas fa-user-minus"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -76,6 +80,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_usc_ballot_candidate_not_on_list`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -88,7 +95,7 @@ $(document).ready(function () {
             { data: "usc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#addfromlist" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlist"><i class="fas fa-user-plus"></i></a>`,
+                defaultContent: `<a data-target = "#addfromlist" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlist"><i class="fas fa-user-plus"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -114,6 +121,10 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/add_usc_ballot_from_list_candidate/' + a_dataID.usc_candidate_ballot_id, {
                 method: "PUT",
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
             });
             $('#table0').DataTable().ajax.reload();
             $('#table1').DataTable().ajax.reload();
@@ -147,6 +158,10 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/delete_usc_ballot_from_list_candidate/' + d_dataID.usc_candidate_ballot_id, {
                 method: "PUT",
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
             });
             $('#table1').DataTable().ajax.reload();
             const data = await response.json();
@@ -168,6 +183,10 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/delete_ALL_usc_ballot_from_list_candidate', {
                 method: "PUT",
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
             });
             $('#table1').DataTable().ajax.reload();
             const data = await response.json();
@@ -190,6 +209,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_csc_ballot_candidate_on_list`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -203,7 +225,7 @@ $(document).ready(function () {
             { data: "csc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#removefromlistcsc" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlistcsc"><i class="fas fa-user-minus"></i></a>`,
+                defaultContent: `<a data-target = "#removefromlistcsc" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlistcsc"><i class="fas fa-user-minus"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -216,6 +238,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_csc_ballot_candidate_not_on_list`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -228,7 +253,7 @@ $(document).ready(function () {
             { data: "csc_ballot_pos", visible: false },
             {
                 data: null,
-                defaultContent: `<a href="#" data-target = "#addfromlistcsc" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlistcsc"><i class="fas fa-user-plus"></i></a>`,
+                defaultContent: `<a data-target = "#addfromlistcsc" data-toggle="modal" class="btn btn-success btn-sm" id="adfromlistcsc"><i class="fas fa-user-plus"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -255,6 +280,10 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/add_csc_ballot_from_list_candidate/' + a_dataID_csc.csc_candidate_ballot_id, {
                 method: "PUT",
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
             });
             $('#table2').DataTable().ajax.reload();
             $('#table3').DataTable().ajax.reload();
@@ -289,6 +318,10 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/delete_csc_ballot_from_list_candidate/' + d_dataID_csc.csc_candidate_ballot_id, {
                 method: "PUT",
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
             });
             $('#table2').DataTable().ajax.reload();
             const data = await response.json();
@@ -310,6 +343,10 @@ $(document).ready(function () {
         try {
             const response = await fetch('http://localhost:5000/delete_ALL_csc_ballot_from_list_candidate', {
                 method: "PUT",
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
             });
             $('#table2').DataTable().ajax.reload();
             const data = await response.json();

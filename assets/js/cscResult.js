@@ -1,11 +1,13 @@
 
 async function generateResult(college) {
+    const tok = localStorage.getItem("Token")
     document.getElementById("genRes").disabled = true;
     document.getElementById("cscdlicon").style.display = "none";
     document.getElementById("loading").style.display = "inline-block";
     const response = await fetch(`http://localhost:5000/college_csc_ballot_candidate_on_list/` + college, {
         method: "GET",
         headers: {
+            "authorization": tok,
             'Content-Type': 'application/json'
         }
     });
@@ -31,6 +33,7 @@ async function generateResult(college) {
         const se = await fetch(`http://localhost:5000/student_votes_college_csc/` + infos.csc_candidate_id, {
             method: "GET",
             headers: {
+                "authorization": tok,
                 'Content-Type': 'application/json'
             }
         });
@@ -38,6 +41,7 @@ async function generateResult(college) {
         const set = await fetch(`http://localhost:5000/assisted_student_votes_college_csc/` + infos.csc_candidate_id, {
             method: "GET",
             headers: {
+                "authorization": tok,
                 'Content-Type': 'application/json'
             }
         });

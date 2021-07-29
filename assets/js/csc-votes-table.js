@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    const tok = localStorage.getItem("Token")
     $('#college').change(function () {
         $('#genRes').prop('disabled', false);
     })
@@ -10,7 +10,8 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/all_active_CSC_position', {
                 method: "GET",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
                 }
             });
             const positiondata = await response.json();
@@ -32,6 +33,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_csc_ballot_candidate_on_list`,
             dataSrc: "",
+            /*beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }*/
         },
         autoWidth: false,
         responsive: true,
@@ -69,6 +73,7 @@ async function getHighestVotes(college) {
     const response = await fetch(`http://localhost:5000/college_csc_ballot_candidate_on_list/` + college, {
         method: "GET",
         headers: {
+            "authorization": tok,
             'Content-Type': 'application/json'
         }
     });

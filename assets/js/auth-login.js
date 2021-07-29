@@ -15,11 +15,11 @@ async function login() {
         });
         const data = await response.json();
         if (response.ok) {
-            localStorage.setItem("First Name", data[0])
-            localStorage.setItem("Last Name", data[1])
-            localStorage.setItem("User Name", data[2])
-            localStorage.setItem("Level", data[3])
-            localStorage.setItem("hasLoggedIn", true)
+            localStorage.setItem("First Name", data.name[0])
+            localStorage.setItem("Last Name", data.name[1])
+            localStorage.setItem("User Name", data.name[2])
+            localStorage.setItem("Level", data.name[3])
+            localStorage.setItem("Token", data.token)
             window.location.href = "index.html";
         } else {
             Toastify({

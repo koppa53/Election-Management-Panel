@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    const tok = localStorage.getItem("Token")
     loadChart("All");
     async function loadChart(pos) {
         $('#bar').contents().remove();
@@ -10,7 +11,12 @@ $(document).ready(function () {
             url = 'http://localhost:5000/usc_ballot_candidate_on_list_posbased/' + pos
         }
         var [data3] = await Promise.all([
-            fetch(url).then((response) => response.json()),
+            fetch(url, {
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => response.json()),
         ]);
         data3.forEach(function (v) {
             d[0].data.push(v.usc_candidate_votes)
@@ -91,7 +97,12 @@ $(document).ready(function () {
             }
         }
         var [data3] = await Promise.all([
-            fetch(url).then((response) => response.json()),
+            fetch(url, {
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => response.json()),
         ]);
         data3.forEach(function (v) {
             cscd[0].data.push(v.csc_candidate_votes)

@@ -1,9 +1,12 @@
 $(document).ready(function () {
-
+    const tok = localStorage.getItem("Token")
     $('#table1').DataTable({
         ajax: {
             url: `http://localhost:5000/all_management_panel_accounts`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -28,6 +31,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_voting_assistance_accounts`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -83,6 +89,7 @@ $(document).ready(function () {
                 const res = await fetch('http://localhost:5000/register_account', {
                     method: "POST",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -100,7 +107,7 @@ $(document).ready(function () {
                 });
                 const data = await res.json();
                 if (res.ok) {
-                    $('#table1').DataTable().ajax.reload(null, false);
+                    $('#table1').DataTable().ajax.reload();
                     $('#a_username').val("");
                     $('#a_firstname').val("");
                     $('#a_middlename').val("");
@@ -137,6 +144,7 @@ $(document).ready(function () {
                 const response = await fetch('http://localhost:5000/vote_assist_register_account', {
                     method: "POST",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -154,7 +162,7 @@ $(document).ready(function () {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    $('#table2').DataTable().ajax.reload(null, false);
+                    $('#table2').DataTable().ajax.reload();
                     $('#a_username').val("");
                     $('#a_firstname').val("");
                     $('#a_middlename').val("");
@@ -226,6 +234,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/update_profile/' + u_dataID.account_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -302,6 +311,7 @@ $(document).ready(function () {
     $('#v_editAccount').on('submit', async (event) => {
         event.preventDefault();
         const v_username = $('#v_username').val();
+        console.log(v_username)
         const v_firstname = $('#v_firstname').val();
         const v_middlename = $('#v_middlename').val();
         const v_lastname = $('#v_lastname').val();
@@ -313,6 +323,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/vote_assist_update_profile/' + v_dataID.account_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -369,6 +380,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/delete_management_account/' + d_dataID.account_id, {
                 method: "DELETE",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });
@@ -403,6 +415,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/delete_vote_assist_account/' + vd_dataID.account_id, {
                 method: "DELETE",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });
@@ -438,6 +451,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/reset_managementacc_password/' + r_dataID.account_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -477,6 +491,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/reset_voteassist_password/' + vr_dataID.account_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({

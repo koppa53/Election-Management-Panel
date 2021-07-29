@@ -1,8 +1,12 @@
 $(document).ready(function () {
+    const tok = localStorage.getItem("Token")
     $('.table').DataTable({
         ajax: {
             url: `http://localhost:5000/all_political_party`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -38,6 +42,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/new_political_party', {
                 method: "POST",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -96,6 +101,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/update_political_party/' + u_dataID.party_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -136,6 +142,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/delete_political_party/' + d_dataID.party_id, {
                 method: "DELETE",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });

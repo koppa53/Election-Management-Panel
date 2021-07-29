@@ -3,12 +3,33 @@ $(document).ready(function () {
 
     window.onload = fetchData()
     async function fetchData() {
+        const tok = localStorage.getItem("Token")
         var [data1, data2, data3, data4, data5, data6, data7] = await Promise.all([
             fetch(`http://localhost:5000/election_period`).then((response) => response.json()),// parse each response as json
-            fetch(`http://localhost:5000/all_candidate`).then((response) => response.json()),
-            fetch(`http://localhost:5000/all_political_party`).then((response) => response.json()),
-            fetch(`http://localhost:5000/all_USC_position`).then((response) => response.json()),
-            fetch(`http://localhost:5000/all_CSC_position`).then((response) => response.json()),
+            fetch(`http://localhost:5000/all_candidate`, {
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => response.json()),
+            fetch(`http://localhost:5000/all_political_party`, {
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => response.json()),
+            fetch(`http://localhost:5000/all_USC_position`, {
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => response.json()),
+            fetch(`http://localhost:5000/all_CSC_position`, {
+                headers: {
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => response.json()),
             fetch('http://localhost:5000/all_active_USC_position').then((response) => response.json()),
             fetch('http://localhost:5000/all_active_CSC_position').then((response) => response.json())
         ]);
@@ -27,6 +48,7 @@ $(document).ready(function () {
             const response = await fetch(`http://localhost:5000/election_year_votes/` + data1[0].period_election_year, {
                 method: "GET",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json'
                 }
             });

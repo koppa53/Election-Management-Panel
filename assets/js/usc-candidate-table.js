@@ -3,6 +3,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_candidate_USC`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -50,12 +53,14 @@ $(document).ready(function () {
                 const r = await fetch('http://localhost:5000/all_political_party', {
                     method: "GET",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     }
                 });
                 const response = await fetch('http://localhost:5000/all_active_USC_position', {
                     method: "GET",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     }
                 });
@@ -111,6 +116,8 @@ $(document).ready(function () {
 
     $('#addCandidate').on('submit', async (event) => {
         event.preventDefault();
+        $('#subCandidateUSC').prop('disabled', true);
+        $('#adloading').show();
         const candidate_college = $('#candidate_college').val();
         const candidate_first_name = $('#candidate_first_name').val();
         const candidate_middle_name = $('#candidate_middle_name').val();
@@ -130,6 +137,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/new_candidate', {
                 method: "POST",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -157,6 +165,7 @@ $(document).ready(function () {
                 const res = await fetch('http://localhost:5000/USC_position_name/' + candidate_position, {
                     method: "GET",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     }
                 });
@@ -164,6 +173,7 @@ $(document).ready(function () {
                 const r = await fetch('http://localhost:5000/new_usc_ballot_candidate', {
                     method: "POST",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -203,6 +213,8 @@ $(document).ready(function () {
                     backgroundColor: "#CD201F",
                 }).showToast();
             }
+            $('#adloading').hide();
+            $('#subCandidateUSC').prop('disabled', false);
         } catch (error) {
             console.log(error);
         }
@@ -236,12 +248,14 @@ $(document).ready(function () {
                 const r = await fetch('http://localhost:5000/all_political_party', {
                     method: "GET",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     }
                 });
                 const response = await fetch('http://localhost:5000/all_active_USC_position', {
                     method: "GET",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     }
                 });
@@ -305,6 +319,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/update_candidate_photo/' + u_dataID.candidate_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -314,6 +329,7 @@ $(document).ready(function () {
             const r = await fetch('http://localhost:5000/update_usc_ballot_candidate_photo/' + u_dataID.candidate_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -356,6 +372,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/update_candidate/' + u_dataID.candidate_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -377,6 +394,7 @@ $(document).ready(function () {
             const res = await fetch('http://localhost:5000/USC_position_name/' + u_candidate_position, {
                 method: "GET",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });
@@ -384,6 +402,7 @@ $(document).ready(function () {
             const r = await fetch('http://localhost:5000/update_usc_ballot_candidate/' + u_dataID.candidate_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -428,12 +447,14 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/delete_candidate/' + d_dataID.candidate_id, {
                 method: "DELETE",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });
             const r = await fetch('http://localhost:5000/delete_usc_ballot_candidate/' + d_dataID.candidate_id, {
                 method: "DELETE",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });

@@ -1,12 +1,13 @@
 $(document).ready(function () {
-
+    const tok = localStorage.getItem("Token")
     let loaded = 0;
     $("#USCpositions").on('click', async (event) => {
         if (loaded == 0) {
             const response = await fetch('http://localhost:5000/all_active_USC_position', {
                 method: "GET",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
                 }
             });
             const positiondata = await response.json();
@@ -30,6 +31,7 @@ $(document).ready(function () {
         const response = await fetch(`http://localhost:5000/all_usc_ballot_candidate_on_list`, {
             method: "GET",
             headers: {
+                "authorization": tok,
                 'Content-Type': 'application/json'
             }
         });
@@ -90,6 +92,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_usc_ballot_candidate_on_list`,
             dataSrc: "",
+            /*beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }*/
         },
         autoWidth: false,
         responsive: true,

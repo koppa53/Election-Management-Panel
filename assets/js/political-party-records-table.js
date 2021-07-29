@@ -3,6 +3,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_political_party`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -19,7 +22,7 @@ $(document).ready(function () {
             },
             {
                 data: null,
-                defaultContent: ` <a href="#" data-target = "#showmembers" data-toggle="modal" class="btn btn-info btn-sm" id="viewmembers"><i class="fas fa-users"></i> Members</a>`,
+                defaultContent: ` <a data-target = "#showmembers" data-toggle="modal" class="btn btn-info btn-sm" id="viewmembers"><i class="fas fa-users"></i> Members</a>`,
                 className: "text-center",
             }
         ],
@@ -31,6 +34,7 @@ $(document).ready(function () {
         const response = await fetch(`http://localhost:5000/political_party_members/` + id, {
             method: "GET",
             headers: {
+                "authorization": tok,
                 'Content-Type': 'application/json'
             }
         });

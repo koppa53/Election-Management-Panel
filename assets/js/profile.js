@@ -1,13 +1,11 @@
 
-
-
-
 function logout() {
     localStorage.clear();
     window.location.href = "auth-login.html"
 }
 
 window.onload = setProfile()
+const tok = localStorage.getItem("Token")
 
 function setProfile() {
     let lvl = ""
@@ -26,7 +24,8 @@ async function loadProfile() {
     const response = await fetch('http://localhost:5000/account_details/' + id, {
         method: "GET",
         headers: {
-            'Content-Type': 'application/json',
+            "authorization": tok,
+            'Content-Type': 'application/json'
         }
     });
     const data = await response.json();
@@ -99,7 +98,8 @@ $(document).ready(function () {
         const response = await fetch('http://localhost:5000/update_profile/' + id, {
             method: "PUT",
             headers: {
-                'Content-Type': 'application/json',
+                "authorization": tok,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 username: username,
@@ -148,7 +148,8 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/change_password/' + id, {
                 method: "PUT",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "authorization": tok,
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     password: password,

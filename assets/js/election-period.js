@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    const tok = localStorage.getItem("Token")
     var table = $('.table').DataTable({
         searching: false,
         paging: false,
@@ -7,6 +7,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/election_period`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -67,6 +70,7 @@ $(document).ready(function () {
         const response = await fetch(`http://localhost:5000/all_USC_position`, {
             method: "GET",
             headers: {
+                "authorization": tok,
                 'Content-Type': 'application/json'
             }
         });
@@ -78,6 +82,7 @@ $(document).ready(function () {
         const response = await fetch(`http://localhost:5000/all_CSC_position`, {
             method: "GET",
             headers: {
+                "authorization": tok,
                 'Content-Type': 'application/json'
             }
         });
@@ -118,6 +123,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/new_election_period', {
                 method: "POST",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -134,6 +140,7 @@ $(document).ready(function () {
                     const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
                         method: "PUT",
                         headers: {
+                            "authorization": tok,
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
@@ -147,6 +154,7 @@ $(document).ready(function () {
                     const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
                         method: "PUT",
                         headers: {
+                            "authorization": tok,
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
@@ -232,6 +240,7 @@ $(document).ready(function () {
                 const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
                     method: "PUT",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -245,6 +254,7 @@ $(document).ready(function () {
                 const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
                     method: "PUT",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -258,6 +268,7 @@ $(document).ready(function () {
                 const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
                     method: "PUT",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -271,6 +282,7 @@ $(document).ready(function () {
                 const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
                     method: "PUT",
                     headers: {
+                        "authorization": tok,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -283,6 +295,7 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/update_election_period/' + dataID.period_id, {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -294,7 +307,6 @@ $(document).ready(function () {
             });
             $('.table').DataTable().ajax.reload();
             const data = await response.json();
-            console.log(data)
             $('#updateelectiontime').modal('hide');
             Toastify({
                 text: "Election Period Updated",
@@ -320,12 +332,14 @@ $(document).ready(function () {
             const response = await fetch('http://localhost:5000/delete_election_period/' + dataID.period_id, {
                 method: "DELETE",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });
             const r = await fetch('http://localhost:5000/reset_candidate_position_status', {
                 method: "PUT",
                 headers: {
+                    "authorization": tok,
                     'Content-Type': 'application/json',
                 }
             });
