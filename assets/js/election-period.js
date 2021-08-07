@@ -235,64 +235,8 @@ $(document).ready(function () {
         const election_start_time = $('#u_election_start_time').val();
         const election_end_time = $('#u_election_end_time').val();
         try {
-            $('#uscposupdate input:checked').each(async function () {
-                var split = $(this).val().split('_')
-                const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
-                    method: "PUT",
-                    headers: {
-                        "authorization": tok,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        position_active: true
-                    })
-                });
-                const data = await response.json();
-            });
-            $('#uscposupdate input:not(:checked)').each(async function () {
-                var split = $(this).val().split('_')
-                const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
-                    method: "PUT",
-                    headers: {
-                        "authorization": tok,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        position_active: false
-                    })
-                });
-                const data = await response.json();
-            });
-            $('#cscposupdate input:checked').each(async function () {
-                var split = $(this).val().split('_')
-                const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
-                    method: "PUT",
-                    headers: {
-                        "authorization": tok,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        position_active: true
-                    })
-                });
-                const data = await response.json();
-            });
-            $('#cscposupdate input:not(:checked)').each(async function () {
-                var split = $(this).val().split('_')
-                const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
-                    method: "PUT",
-                    headers: {
-                        "authorization": tok,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        position_active: false
-                    })
-                });
-                const data = await response.json();
-            });
             var dataID = $('.table').DataTable().row().data();
-            const response = await fetch('http://localhost:5000/update_election_period/' + dataID.period_id, {
+            const res = await fetch('http://localhost:5000/update_election_period/' + dataID.period_id, {
                 method: "PUT",
                 headers: {
                     "authorization": tok,
@@ -305,16 +249,84 @@ $(document).ready(function () {
                     period_election_year: election_year
                 })
             });
-            $('.table').DataTable().ajax.reload();
-            const data = await response.json();
-            $('#updateelectiontime').modal('hide');
-            Toastify({
-                text: "Election Period Updated",
-                duration: 3000,
-                gravity: "top",
-                position: "center",
-                backgroundColor: "#56B6F7",
-            }).showToast();
+            const de = await res.json();
+            if (res.ok) {
+                $('#uscposupdate input:checked').each(async function () {
+                    var split = $(this).val().split('_')
+                    const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
+                        method: "PUT",
+                        headers: {
+                            "authorization": tok,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            position_active: true
+                        })
+                    });
+                    const data = await response.json();
+                });
+                $('#uscposupdate input:not(:checked)').each(async function () {
+                    var split = $(this).val().split('_')
+                    const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
+                        method: "PUT",
+                        headers: {
+                            "authorization": tok,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            position_active: false
+                        })
+                    });
+                    const data = await response.json();
+                });
+                $('#cscposupdate input:checked').each(async function () {
+                    var split = $(this).val().split('_')
+                    const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
+                        method: "PUT",
+                        headers: {
+                            "authorization": tok,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            position_active: true
+                        })
+                    });
+                    const data = await response.json();
+                });
+                $('#cscposupdate input:not(:checked)').each(async function () {
+                    var split = $(this).val().split('_')
+                    const response = await fetch('http://localhost:5000/update_position_status/' + split[1], {
+                        method: "PUT",
+                        headers: {
+                            "authorization": tok,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            position_active: false
+                        })
+                    });
+                    const data = await response.json();
+                });
+
+                $('.table').DataTable().ajax.reload();
+                $('#updateelectiontime').modal('hide');
+                Toastify({
+                    text: "Election Period Updated",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#56B6F7",
+                }).showToast();
+            } else {
+                Toastify({
+                    text: de.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#CD201F",
+                }).showToast();
+            }
+
         } catch (error) {
             console.log(error);
         }
