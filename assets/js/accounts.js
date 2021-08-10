@@ -19,9 +19,9 @@ $(document).ready(function () {
             { data: "account_contact_number" },
             {
                 data: null,
-                defaultContent: ` <a href="#" data-target = "#editacc" data-toggle="modal" class="btn btn-success btn-sm" id="editaccount"><i class="fas fa-edit"></i></a>
-                                <a href="#" data-target = "#deleteaccount" data-toggle="modal" class="btn btn-danger btn-sm" id="delaccount"><i class="fas fa-trash"></i></a>
-                                <a href="#" data-target = "#resetpass" data-toggle="modal" class="btn btn-dark btn-sm" id="rpass">Reset</a>`,
+                defaultContent: ` <a data-target = "#editacc" data-toggle="modal" class="btn btn-success btn-sm" id="editaccount"><i class="fas fa-edit"></i></a>
+                                <a data-target = "#deleteaccount" data-toggle="modal" class="btn btn-danger btn-sm" id="delaccount"><i class="fas fa-trash"></i></a>
+                                <a data-target = "#resetpass" data-toggle="modal" class="btn btn-dark btn-sm" id="rpass">Reset</a>`,
                 className: "text-center",
             }
         ],
@@ -46,9 +46,9 @@ $(document).ready(function () {
             { data: "account_contact_number" },
             {
                 data: null,
-                defaultContent: ` <a href="#" data-target = "#v_editacc" data-toggle="modal" class="btn btn-success btn-sm" id="v_editaccount"><i class="fas fa-edit"></i></a>
-                                <a href="#" data-target = "#v_deleteaccount" data-toggle="modal" class="btn btn-danger btn-sm" id="v_delaccount"><i class="fas fa-trash"></i></a>
-                                <a href="#" data-target = "#v_resetpass" data-toggle="modal" class="btn btn-dark btn-sm" id="v_rpass">Reset</a>`,
+                defaultContent: ` <a data-target = "#v_editacc" data-toggle="modal" class="btn btn-success btn-sm" id="v_editaccount"><i class="fas fa-edit"></i></a>
+                                <a data-target = "#v_deleteaccount" data-toggle="modal" class="btn btn-danger btn-sm" id="v_delaccount"><i class="fas fa-trash"></i></a>
+                                <a data-target = "#v_resetpass" data-toggle="modal" class="btn btn-dark btn-sm" id="v_rpass">Reset</a>`,
                 className: "text-center",
             }
         ],
@@ -107,7 +107,6 @@ $(document).ready(function () {
                 });
                 const data = await res.json();
                 if (res.ok) {
-                    $('#table1').DataTable().ajax.reload();
                     $('#a_username').val("");
                     $('#a_firstname').val("");
                     $('#a_middlename').val("");
@@ -127,6 +126,7 @@ $(document).ready(function () {
                         backgroundColor: "#4fbe87",
                     }).showToast();
                     $('#addacc').modal('hide');
+                    $('#table1').DataTable().ajax.reload();
                 } else {
                     if (data.errors != undefined) {
                         data.errors.forEach(function (v) {
@@ -162,7 +162,6 @@ $(document).ready(function () {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    $('#table2').DataTable().ajax.reload();
                     $('#a_username').val("");
                     $('#a_firstname').val("");
                     $('#a_middlename').val("");
@@ -182,6 +181,7 @@ $(document).ready(function () {
                         backgroundColor: "#4fbe87",
                     }).showToast();
                     $('#addacc').modal('hide');
+                    $('#table2').DataTable().ajax.reload();
                 } else {
                     if (data.errors != undefined) {
                         data.errors.forEach(function (v) {

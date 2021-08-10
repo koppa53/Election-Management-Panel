@@ -2,7 +2,7 @@ $(document).ready(function () {
     let loaded = 0;
     $("#USCpositions").on('click', async (event) => {
         if (loaded == 0) {
-            const response = await fetch('http://localhost:5000/all_active_USC_position', {
+            const response = await fetch('http://localhost:5000/all_USC_position', {
                 method: "GET",
                 headers: {
                     "authorization": tok,
@@ -171,7 +171,7 @@ $(document).ready(function () {
                 duration: 3000,
                 gravity: "top",
                 position: "center",
-                backgroundColor: "#F3616D",
+                backgroundColor: "#CD201F",
             }).showToast();
         } catch (error) {
             console.log(error);
@@ -196,7 +196,7 @@ $(document).ready(function () {
                 duration: 3000,
                 gravity: "top",
                 position: "center",
-                backgroundColor: "#F3616D",
+                backgroundColor: "#CD201F",
             }).showToast();
         } catch (error) {
             console.log(error);
@@ -331,7 +331,7 @@ $(document).ready(function () {
                 duration: 3000,
                 gravity: "top",
                 position: "center",
-                backgroundColor: "#F3616D",
+                backgroundColor: "#CD201F",
             }).showToast();
         } catch (error) {
             console.log(error);
@@ -356,7 +356,7 @@ $(document).ready(function () {
                 duration: 3000,
                 gravity: "top",
                 position: "center",
-                backgroundColor: "#F3616D",
+                backgroundColor: "#CD201F",
             }).showToast();
         } catch (error) {
             console.log(error);

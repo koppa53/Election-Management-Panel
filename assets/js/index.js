@@ -4,7 +4,7 @@ $(document).ready(function () {
     window.onload = fetchData()
     async function fetchData() {
         const tok = localStorage.getItem("Token")
-        var [data1, data2, data3, data4, data5, data6, data7] = await Promise.all([
+        var [data1, data2, data3, data4, data5] = await Promise.all([
             fetch(`http://localhost:5000/election_period`).then((response) => response.json()),// parse each response as json
             fetch(`http://localhost:5000/all_candidate`, {
                 headers: {
@@ -29,9 +29,7 @@ $(document).ready(function () {
                     "authorization": tok,
                     'Content-Type': 'application/json'
                 }
-            }).then((response) => response.json()),
-            fetch('http://localhost:5000/all_active_USC_position').then((response) => response.json()),
-            fetch('http://localhost:5000/all_active_CSC_position').then((response) => response.json())
+            }).then((response) => response.json())
         ]);
         if (data1.length != 0) {
             var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -61,12 +59,12 @@ $(document).ready(function () {
         document.getElementById("totalpoliticalparty").innerHTML = ` <i class="fas fa-handshake"></i> ` + data3.length
         document.getElementById("USCpos").innerHTML = `<i class="fas fa-map-pin"></i> ` + data4.length
         document.getElementById("CSCpos").innerHTML = `<i class="fas fa-map-pin"></i> ` + data5.length
-        data6.forEach(function (v) {
+        data4.forEach(function (v) {
             var o = new Option(v.position_name, v.position_name);
             $(o).html(v.position_name);
             $("#positions").append(o);
         })
-        data7.forEach(function (v) {
+        data5.forEach(function (v) {
             var o = new Option(v.position_name, v.position_name);
             $(o).html(v.position_name);
             $("#cscpositions").append(o);

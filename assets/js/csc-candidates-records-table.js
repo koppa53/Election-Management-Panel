@@ -4,6 +4,9 @@ $(document).ready(function () {
         ajax: {
             url: `http://localhost:5000/all_candidate_CSC`,
             dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
         },
         autoWidth: false,
         responsive: true,
@@ -17,7 +20,7 @@ $(document).ready(function () {
             { data: "candidate_votes" },
             {
                 data: null,
-                defaultContent: ` <a href="#" data-target = "#showdetails" data-toggle="modal" class="btn btn-info btn-sm" id="viewdetails"><i class="fas fa-info-circle"></i> About</a>`,
+                defaultContent: ` <a data-target = "#showdetails" data-toggle="modal" class="btn btn-info btn-sm" id="viewdetails"><i class="fas fa-info-circle"></i> About</a>`,
                 className: "text-center",
             }
         ],
@@ -31,7 +34,8 @@ $(document).ready(function () {
         const response = await fetch(`http://localhost:5000/candidate/` + id, {
             method: "GET",
             headers: {
-                'Content-Type': 'application/json'
+                "authorization": tok,
+                'Content-Type': 'application/json',
             }
         });
         let info = await response.json();

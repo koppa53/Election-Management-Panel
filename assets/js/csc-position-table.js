@@ -109,14 +109,24 @@ $(document).ready(function () {
             });
             $('.table').DataTable().ajax.reload();
             const data = await response.json();
-            $('#updatepos').modal('hide');
-            Toastify({
-                text: "Position Updated",
-                duration: 3000,
-                gravity: "top",
-                position: "center",
-                backgroundColor: "#56B6F7",
-            }).showToast();
+            if (response.ok) {
+                $('#updatepos').modal('hide');
+                Toastify({
+                    text: "Position Updated",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#56B6F7",
+                }).showToast();
+            } else {
+                Toastify({
+                    text: data.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#CD201F",
+                }).showToast();
+            }
         } catch (error) {
             console.log(error);
         }
@@ -151,7 +161,7 @@ $(document).ready(function () {
                 duration: 3000,
                 gravity: "top",
                 position: "center",
-                backgroundColor: "#F3616D",
+                backgroundColor: "#CD201F",
             }).showToast();
         } catch (error) {
             console.log(error);

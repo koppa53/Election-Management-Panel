@@ -364,7 +364,7 @@ $(document).ready(function () {
                 duration: 3000,
                 gravity: "top",
                 position: "center",
-                backgroundColor: "#F3616D",
+                backgroundColor: "#CD201F",
             }).showToast();
         } catch (error) {
             console.log(error);

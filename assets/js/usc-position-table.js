@@ -19,7 +19,7 @@ $(document).ready(function () {
             {
                 data: null,
                 defaultContent: ` <a href="#" data-target = "#updatepos" data-toggle="modal" class="btn btn-success btn-sm" id="editposition"><i class="fas fa-edit"></i></a>
-                                <a href="#" data-target = "#deletepos" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteposition"><i class="fas fa-trash"></i></a>`,
+                                <a data-target = "#deletepos" data-toggle="modal" class="btn btn-danger btn-sm" id="deleteposition"><i class="fas fa-trash"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -111,14 +111,24 @@ $(document).ready(function () {
             });
             $('.table').DataTable().ajax.reload();
             const data = await response.json();
-            $('#updatepos').modal('hide');
-            Toastify({
-                text: "Position Updated",
-                duration: 3000,
-                gravity: "top",
-                position: "center",
-                backgroundColor: "#56B6F7",
-            }).showToast();
+            if (response.ok) {
+                $('#updatepos').modal('hide');
+                Toastify({
+                    text: "Position Updated",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#56B6F7",
+                }).showToast();
+            } else {
+                Toastify({
+                    text: data.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#CD201F",
+                }).showToast();
+            }
         } catch (error) {
             console.log(error);
         }
@@ -154,7 +164,7 @@ $(document).ready(function () {
                 duration: 3000,
                 gravity: "top",
                 position: "center",
-                backgroundColor: "#F3616D",
+                backgroundColor: "#CD201F",
             }).showToast();
         } catch (error) {
             console.log(error);

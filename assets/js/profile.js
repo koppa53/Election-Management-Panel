@@ -128,13 +128,12 @@ $(document).ready(function () {
             $('#uprofile').modal('hide');
         } else {
             Toastify({
-                text: "Failed to Update Profile",
+                text: res.message,
                 duration: 3000,
                 gravity: "top",
                 position: "center",
                 backgroundColor: "#CD201F",
             }).showToast();
-            $('#uprofile').modal('hide');
         }
 
     })

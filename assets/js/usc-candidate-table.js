@@ -23,7 +23,7 @@ $(document).ready(function () {
                             binary += String.fromCharCode(bytes[i]);
                         }
                         return '<img src="data:image/png;base64,' + binary + '"style="width: 60px; height:60px">' +
-                            '  <a href="#" data-target = "#editcandidatephoto" data-toggle="modal" class="btn btn-dark btn-sm" id="editcandidatephoto"><i class="fas fa-edit"></i></a>'
+                            '  <a  data-target = "#editcandidatephoto" data-toggle="modal" class="btn btn-dark btn-sm" id="editcandidatephoto"><i class="fas fa-edit"></i></a>'
                     }
                 },
                 className: "text-center"
@@ -34,7 +34,7 @@ $(document).ready(function () {
             {
                 data: null,
                 defaultContent: `<a href="#" data-target = "#updatecandidate" data-toggle="modal" class="btn btn-success btn-sm" id="editcandidate"><i class="fas fa-edit"></i></a>
-                                <a href="#" data-target = "#deletecandidate" data-toggle="modal" class="btn btn-danger btn-sm" id="deletecandidate"><i class="fas fa-trash"></i></a>`,
+                                <a data-target = "#deletecandidate" data-toggle="modal" class="btn btn-danger btn-sm" id="deletecandidate"><i class="fas fa-trash"></i></a>`,
                 className: "text-center",
             }
         ],
@@ -326,28 +326,38 @@ $(document).ready(function () {
                     candidate_photo: u_candidate_photo,
                 })
             });
-            const r = await fetch('http://localhost:5000/update_usc_ballot_candidate_photo/' + u_dataID.candidate_id, {
-                method: "PUT",
-                headers: {
-                    "authorization": tok,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    usc_candidate_photo: u_candidate_photo,
-                })
-            });
-            u_base64String = ""
-            $('.table').DataTable().ajax.reload(null, false);
-            $('#u_candidate_photo').val('');
             const data = await response.json();
-            $('#editcandidatephoto').modal('hide');
-            Toastify({
-                text: "Candidate Photo Updated",
-                duration: 3000,
-                gravity: "top",
-                position: "center",
-                backgroundColor: "#212529",
-            }).showToast();
+            if (response.ok) {
+                const r = await fetch('http://localhost:5000/update_usc_ballot_candidate_photo/' + u_dataID.candidate_id, {
+                    method: "PUT",
+                    headers: {
+                        "authorization": tok,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        usc_candidate_photo: u_candidate_photo,
+                    })
+                });
+                u_base64String = ""
+                $('.table').DataTable().ajax.reload(null, false);
+                $('#u_candidate_photo').val('');
+                $('#editcandidatephoto').modal('hide');
+                Toastify({
+                    text: "Candidate Photo Updated",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#212529",
+                }).showToast();
+            } else {
+                Toastify({
+                    text: data.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#CD201F",
+                }).showToast();
+            }
         } catch (error) {
             console.log(error);
         }
@@ -391,40 +401,50 @@ $(document).ready(function () {
                     candidate_election_year: u_candidate_election_year,
                 })
             });
-            const res = await fetch('http://localhost:5000/USC_position_name/' + u_candidate_position, {
-                method: "GET",
-                headers: {
-                    "authorization": tok,
-                    'Content-Type': 'application/json',
-                }
-            });
-            const d = await res.json();
-            const r = await fetch('http://localhost:5000/update_usc_ballot_candidate/' + u_dataID.candidate_id, {
-                method: "PUT",
-                headers: {
-                    "authorization": tok,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    usc_candidate_first_name: u_candidate_first_name,
-                    usc_candidate_middle_name: u_candidate_middle_name,
-                    usc_candidate_last_name: u_candidate_last_name,
-                    usc_candidate_position: u_candidate_position,
-                    usc_candidate_party: u_candidate_party,
-                    usc_ballot_election_year: u_candidate_election_year,
-                    usc_ballot_pos: d.position_order
-                })
-            });
             const data = await response.json();
-            $('#updatecandidate').modal('hide');
-            Toastify({
-                text: "Candidate Updated",
-                duration: 3000,
-                gravity: "top",
-                position: "center",
-                backgroundColor: "#56B6F7",
-            }).showToast();
-            $('.table').DataTable().ajax.reload(null, false);
+            if (response.ok) {
+                const res = await fetch('http://localhost:5000/USC_position_name/' + u_candidate_position, {
+                    method: "GET",
+                    headers: {
+                        "authorization": tok,
+                        'Content-Type': 'application/json',
+                    }
+                });
+                const d = await res.json();
+                const r = await fetch('http://localhost:5000/update_usc_ballot_candidate/' + u_dataID.candidate_id, {
+                    method: "PUT",
+                    headers: {
+                        "authorization": tok,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        usc_candidate_first_name: u_candidate_first_name,
+                        usc_candidate_middle_name: u_candidate_middle_name,
+                        usc_candidate_last_name: u_candidate_last_name,
+                        usc_candidate_position: u_candidate_position,
+                        usc_candidate_party: u_candidate_party,
+                        usc_ballot_election_year: u_candidate_election_year,
+                        usc_ballot_pos: d.position_order
+                    })
+                });
+                $('#updatecandidate').modal('hide');
+                Toastify({
+                    text: "Candidate Updated",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#56B6F7",
+                }).showToast();
+                $('.table').DataTable().ajax.reload(null, false);
+            } else {
+                Toastify({
+                    text: data.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#CD201F",
+                }).showToast();
+            }
         } catch (error) {
             console.log(error);
         }
@@ -465,7 +485,7 @@ $(document).ready(function () {
                 duration: 3000,
                 gravity: "top",
                 position: "center",
-                backgroundColor: "#F3616D",
+                backgroundColor: "#CD201F",
             }).showToast();
             $('.table').DataTable().ajax.reload(null, false);
         } catch (error) {

@@ -58,7 +58,7 @@ $(document).ready(function () {
                 $('#party_color').val("#000000");
                 $('#addparty').modal('hide');
                 Toastify({
-                    text: "Position Added",
+                    text: "Political Party Added",
                     duration: 3000,
                     gravity: "top",
                     position: "center",
@@ -98,7 +98,7 @@ $(document).ready(function () {
         const year_organized = $('#u_year_organized').val();
         const party_color = $('#u_party_color').val();
         try {
-            const response = await fetch('http://localhost:5000/update_political_party/' + u_dataID.party_id, {
+            const r = await fetch('http://localhost:5000/update_political_party/' + u_dataID.party_id, {
                 method: "PUT",
                 headers: {
                     "authorization": tok,
@@ -111,15 +111,25 @@ $(document).ready(function () {
                 })
             });
             $('.table').DataTable().ajax.reload();
-            const data = await response.json();
-            $('#updateparty').modal('hide');
-            Toastify({
-                text: "Political Party Updated",
-                duration: 3000,
-                gravity: "top",
-                position: "center",
-                backgroundColor: "#56B6F7",
-            }).showToast();
+            const data = await r.json();
+            if (r.ok) {
+                $('#updateparty').modal('hide');
+                Toastify({
+                    text: "Political Party Updated",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#56B6F7",
+                }).showToast();
+            } else {
+                Toastify({
+                    text: data.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#CD201F",
+                }).showToast();
+            }
         } catch (error) {
             console.log(error);
         }
