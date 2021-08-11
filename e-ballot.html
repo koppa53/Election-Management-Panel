@@ -428,9 +428,12 @@
                                                     </select>
                                                 </fieldset>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 mb-2">
                                                 <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlist" id="loadaddlist"><i class="fas fa-plus"></i> Add Candidate</button>
                                                 <label>Restore removed candidates here.</label>
+                                            </div>
+                                            <div>
+                                            <button class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#showUSCballot" id="showballotUSC"><i class="far fa-eye"></i> Preview Ballot</button>
                                             </div>
                                             <div class="modal fade text-left" id="addlist" tabindex="-1"
                                                 role="dialog" aria-labelledby="addlist"
@@ -462,6 +465,45 @@
                                                                                         </tr>
                                                                                     </thead>
                                                                                 </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </section>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button"
+                                                                class="btn btn-light-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                                <span class="d-none d-sm-block">Close</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade text-left" id="showUSCballot" tabindex="-1"
+                                                role="dialog" aria-labelledby="showUSCballot"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl"
+                                                    role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-warning">
+                                                            <h5 class="modal-title white">
+                                                                BALLOT PREVIEW
+                                                            </h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <section id="input-with-icons">
+                                                                <div class="row match-height">
+                                                                    <div class="col">
+                                                                        <div class="card">
+                                                                            <center><p><h3 style="color: rgb(255, 255, 255); background-color: #1E95DB; border-radius: 20px">USC CANDIDATES</h3></p></center>
+                                                                            <div class="card-body">
+                                                                                <div class=" col-xl-12" class="col-form-label justify-content-center align-items-center align-content-center align-self-center">
+                                                                                    <div id = "USCBALLOT">
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -608,9 +650,12 @@
                                                     </select>
                                                 </fieldset>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 mb-2">
                                                 <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlistcsc" id="loadaddlistcsc"><i class="fas fa-plus"></i> Add Candidate</button>
                                                 <label>Restore removed candidates here.</label>
+                                            </div>
+                                            <div>
+                                            <button class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#showCSCballot" id="showballotCSC"><i class="far fa-eye"></i> Preview Ballot</button>
                                             </div>
                                         </div>
                                     </div>  
@@ -737,6 +782,62 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade text-left" id="showCSCballot" tabindex="-1"
+                    role="dialog" aria-labelledby="showCSCballot"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl"
+                        role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-warning">
+                                <h5 class="modal-title white">
+                                    BALLOT PREVIEW
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <section id="input-with-icons">
+                                    <div class="row match-height">
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="col-md-4">
+                                                    <fieldset class="form-group">
+                                                        <select class="form-select" id="ballotcolleges">
+                                                            <option value=""selected disabled>Select College</option>
+                                                            <option value="College of Science">College of Science</option>
+                                                            <option value="College of Arts and Letters">College of Arts and Letters</option>
+                                                            <option value="College of Education">College of Education</option>
+                                                            <option value="College of Nursing">College of Nursing</option>
+                                                            <option value="College of Industrial Technology">College of Industrial Technology</option>
+                                                            <option value="College of Engineering">College of Engineering</option>
+                                                            <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
+                                                            <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
+                                                            <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
+                                                            <option value="IPESR">IPESR</option>
+                                                        </select>
+                                                    </fieldset>
+                                                </div>
+                                                <center><p><h3 style="color: #ffffff; background-color: #FB6F19; border-radius: 20px">CSC CANDIDATES</h3></p></center>
+                                                <div class="card-body">
+                                                    <div class=" col-xl-12" class="col-form-label justify-content-center align-items-center align-content-center align-self-center">
+                                                        <div id="CSCBALLOT">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button"
+                                    class="btn btn-light-secondary"
+                                    data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Close</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     <div class="modal fade text-left" id="addfromlistcsc" tabindex="-1"
                         role="dialog" aria-labelledby="addfromlistcsc"
                         aria-hidden="true">
@@ -785,6 +886,7 @@
 
     <script src="assets/vendors/toastify/toastify.js"></script>
     <script src="assets/js/profile.js"></script>
+    <script src="assets/js/loadCandidates.js"></script>
 </body>
 
 </html>
