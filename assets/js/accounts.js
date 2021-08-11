@@ -77,10 +77,6 @@ $(document).ready(function () {
         const address = $('#a_address').val();
         const contactnumber = $('#a_contactnumber').val();
         let level = $('#a_level').val();
-        if (level == "One") level = 1
-        else {
-            level = 2
-        }
         const college = $('#a_college').val();
         const system = $('#a_system').val();
 
