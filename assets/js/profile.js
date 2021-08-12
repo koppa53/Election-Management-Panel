@@ -15,7 +15,24 @@ function setProfile() {
     lname = lname.charAt(0).toUpperCase() + lname.slice(1)
     document.getElementById('name').innerHTML = fname + " " + lname
     lvl = localStorage.getItem("Level")
-    if (lvl == 1) document.getElementById("acc").style.display = "block";
+    if (lvl == 1) {
+        var li = document.getElementById("acc");
+        li.style.display = "block";
+        li.innerHTML += `
+        <a href="accounts.html" class='sidebar-link'>
+            <i class="bi bi-person-lines-fill"></i>
+            <span>Accounts</span>
+        </a>
+        `;
+        var eli = document.getElementById("Eperiod");
+        eli.style.display = "block";
+        eli.innerHTML += `
+        <a href="election-period.html" class='sidebar-link'>
+            <i class="bi bi-archive-fill"></i>
+            <span>Election Period</span>
+        </a>
+        `;
+    }
     document.getElementById('headname').innerHTML = "Hello, " + fname + "!"
 }
 
