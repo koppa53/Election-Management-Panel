@@ -1,6 +1,8 @@
 
 async function login() {
     try {
+        document.getElementById("loginbutton").disabled = true;
+        document.getElementById("loginbutton").value = "Logging in..."
         const usrnm = document.getElementById('username').value
         const pass = document.getElementById('password').value
         const response = await fetch('http://localhost:5000/user_login', {
@@ -22,6 +24,8 @@ async function login() {
             localStorage.setItem("Token", data.token)
             window.location.href = "index.html";
         } else {
+            document.getElementById("loginbutton").disabled = false;
+            document.getElementById("loginbutton").value = "Login"
             Toastify({
                 text: data.message,
                 duration: 3000,
