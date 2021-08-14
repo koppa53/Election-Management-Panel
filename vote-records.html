@@ -143,13 +143,13 @@
 									</li>
 								</ul>
 							</li>
-							<li class="sidebar-item active">
+							<li class="sidebar-item">
 								<a href="political-party-records.html" class="sidebar-link">
 									<i class="fas fa-handshake"></i>
 									<span>Political Party</span>
 								</a>
 							</li>
-							<li class="sidebar-item">
+							<li class="sidebar-item active">
 								<a href="vote-records.html" class="sidebar-link">
 									<i class="fas fa-vote-yea"></i>
 									<span>Votes</span>
@@ -616,10 +616,8 @@
 						<div class="page-title">
 							<div class="row">
 								<div class="col-12 col-md-6 order-md-1 order-last">
-									<h4>Political Party</h4>
-									<p class="text-subtitle text-muted">
-										Political Party Election Records
-									</p>
+									<h4>Vote Records</h4>
+									<p class="text-subtitle text-muted">Vote Election Records</p>
 								</div>
 								<div class="col-12 col-md-6 order-md-2 order-first">
 									<nav
@@ -631,7 +629,7 @@
 												<a href="index.html">Dashboard</a>
 											</li>
 											<li class="breadcrumb-item active" aria-current="page">
-												Political Party Records
+												Votes
 											</li>
 										</ol>
 									</nav>
@@ -641,78 +639,53 @@
 						<section class="section">
 							<div class="card shadow">
 								<div class="card-body">
+									<h4>Student Votes</h4>
+									<div class="col-md-2">
+										<div class="form-group">
+											<p>Sort by Election Year:</p>
+											<select class="form-select" id="electionyear1">
+												<option value="">All</option>
+											</select>
+										</div>
+									</div>
 									<table class="table table-striped" id="table1">
 										<thead>
 											<tr>
-												<th>Political Party ID</th>
-												<th>Political Party</th>
-												<th>Year Organized</th>
-												<th>Color Theme</th>
-												<th>View</th>
+												<th>Student ID</th>
+												<th>Date & Time Voted</th>
+												<th>College</th>
+												<th>Election Year</th>
+											</tr>
+										</thead>
+									</table>
+									<br />
+									<hr />
+									<br />
+									<h4>Assisted Student Votes</h4>
+									<div class="col-md-2">
+										<div class="form-group">
+											<p>Sort by Election Year:</p>
+											<select class="form-select" id="electionyear2">
+												<option value="">All</option>
+											</select>
+										</div>
+									</div>
+									<table class="table table-striped" id="table2">
+										<thead>
+											<tr>
+												<th>Student ID</th>
+												<th>Date & Time Voted</th>
+												<th>College</th>
+												<th>Election Year</th>
+												<th>Assisted By</th>
+												<th>Assisted By</th>
+												<th>Assisted By</th>
 											</tr>
 										</thead>
 									</table>
 								</div>
 							</div>
 						</section>
-						<div
-							class="modal fade text-left"
-							id="showmembers"
-							tabindex="-1"
-							role="dialog"
-							aria-labelledby="showmembers"
-							aria-hidden="true"
-						>
-							<div
-								class="
-									modal-dialog
-									modal-dialog-centered
-									modal-dialog-scrollable
-									modal-xl
-								"
-								role="document"
-							>
-								<div class="modal-content">
-									<div class="modal-header bg-info">
-										<h5 class="modal-title white">POLITICAL PARTY MEMBERS</h5>
-									</div>
-									<div class="modal-body">
-										<section id="input-with-icons">
-											<div class="row match-height">
-												<div class="col">
-													<div class="card">
-														<div class="card-body">
-															<table class="table table-striped" id="table2">
-																<thead>
-																	<tr>
-																		<th>Candidate ID</th>
-																		<th>Position</th>
-																		<th>First Name</th>
-																		<th>Last Name</th>
-																		<th>Council</th>
-																		<th>Election Year</th>
-																	</tr>
-																</thead>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-										</section>
-									</div>
-									<div class="modal-footer">
-										<button
-											type="button"
-											class="btn btn-light-secondary"
-											data-bs-dismiss="modal"
-										>
-											<i class="bx bx-x d-block d-sm-none"></i>
-											<span class="d-none d-sm-block">Close</span>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 					<!--End of main content-->
 					<footer>
@@ -731,7 +704,7 @@
 		<script src="assets/js/footer.js"></script>
 		<!--Datatable JS-->
 		<script type="text/javascript" src="assets/js/datatables.min.js"></script>
-		<script src="assets/js/political-party-records-table.js"></script>
+		<script src="assets/js/vote-records-table.js"></script>
 		<!-- Include Choices JavaScript -->
 		<script src="assets/vendors/choices.js/choices.min.js"></script>
 		<script src="assets/js/main.js"></script>
