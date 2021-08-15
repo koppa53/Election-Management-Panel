@@ -638,14 +638,170 @@
 						</div>
 						<section class="section">
 							<div class="card shadow">
+								<div class="card-header d-flex justify-content-center">
+									<button
+										class="btn btn-primary"
+										data-bs-toggle="modal"
+										data-bs-target="#authpass"
+										id="checkpass"
+									>
+										<i class="far fa-eye"></i> View Votes
+									</button>
+									<div
+										class="modal fade text-left show"
+										id="authpass"
+										tabindex="-1"
+										aria-labelledby="authpass"
+										aria-modal="true"
+										role="dialog"
+									>
+										<div
+											class="
+												modal-dialog
+												modal-dialog-centered
+												modal-dialog-scrollable
+											"
+											role="document"
+										>
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title" id="authpass">
+														Enter Account Password
+													</h4>
+												</div>
+												<form method="post" id="verifypassword">
+													<div class="modal-body">
+														<div class="form-group">
+															<input
+																type="password"
+																placeholder="Password"
+																class="form-control"
+																id="vpass"
+															/>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<input
+															class="btn btn-light-secondary ml-1"
+															type="button"
+															data-bs-dismiss="modal"
+															value="Close"
+														/>
+														<input
+															class="btn btn-primary ml-1"
+															type="submit"
+															value="Verify"
+															id="verifyPassword"
+														/>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<div
+										class="modal fade text-left"
+										id="showVotes"
+										tabindex="-1"
+										role="dialog"
+										aria-labelledby="showVotes"
+										aria-hidden="true"
+									>
+										<div
+											class="
+												modal-dialog
+												modal-dialog-centered
+												modal-dialog-scrollable
+												modal-xl
+											"
+											role="document"
+										>
+											<div class="modal-content">
+												<div class="modal-header bg-primary">
+													<h5 class="modal-title white">Votes List</h5>
+												</div>
+												<div class="modal-body">
+													<section id="input-with-icons">
+														<div class="row match-height">
+															<div class="col">
+																<div class="card">
+																	<div class="card-header">
+																		<div class="col-md-4">
+																			<select
+																				class="form-select"
+																				id="electionyear"
+																			>
+																				<option value="" selected disabled>
+																					Select Election Year
+																				</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="card-body">
+																		<h2>Student Votes</h2>
+																		<table
+																			class="table table-striped"
+																			id="tableVotes"
+																		>
+																			<thead>
+																				<tr>
+																					<th>Student ID</th>
+																					<th>Candidate</th>
+																					<th>Candidate</th>
+																					<th>Candidate</th>
+																					<th>Position</th>
+																					<th>Council</th>
+																					<th>College</th>
+																					<th>Tools</th>
+																				</tr>
+																			</thead>
+																		</table>
+																		<hr />
+																		<h2>Assisted Student Votes</h2>
+																		<table
+																			class="table table-striped"
+																			id="tableVotes2"
+																		>
+																			<thead>
+																				<tr>
+																					<th>Student ID</th>
+																					<th>Candidate</th>
+																					<th>Position</th>
+																					<th>Council</th>
+																					<th>Tools</th>
+																				</tr>
+																			</thead>
+																		</table>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</section>
+												</div>
+												<div class="modal-footer">
+													<button
+														type="button"
+														class="btn btn-light-secondary"
+														data-bs-dismiss="modal"
+													>
+														<i class="bx bx-x d-block d-sm-none"></i>
+														<span class="d-none d-sm-block">Close</span>
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="card-body">
-									<h4>Student Votes</h4>
-									<div class="col-md-2">
-										<div class="form-group">
-											<p>Sort by Election Year:</p>
-											<select class="form-select" id="electionyear1">
-												<option value="">All</option>
-											</select>
+									<hr />
+									<h4>Student Voter Logs</h4>
+									<div class="form-group">
+										<p>Sort by Election Year:</p>
+										<div class="row">
+											<div class="col-md-2">
+												<select class="form-select" id="electionyear1">
+													<option value="">All</option>
+												</select>
+											</div>
 										</div>
 									</div>
 									<table class="table table-striped" id="table1">
@@ -661,7 +817,7 @@
 									<br />
 									<hr />
 									<br />
-									<h4>Assisted Student Votes</h4>
+									<h4>Assisted Student Voter Logs</h4>
 									<div class="col-md-2">
 										<div class="form-group">
 											<p>Sort by Election Year:</p>
