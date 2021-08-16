@@ -122,7 +122,6 @@ $(document).ready(function () {
                         backgroundColor: "#4fbe87",
                     }).showToast();
                     $('#addacc').modal('hide');
-                    $('#table1').DataTable().ajax.reload();
                 } else {
                     if (data.errors != undefined) {
                         data.errors.forEach(function (v) {
@@ -177,7 +176,6 @@ $(document).ready(function () {
                         backgroundColor: "#4fbe87",
                     }).showToast();
                     $('#addacc').modal('hide');
-                    $('#table2').DataTable().ajax.reload();
                 } else {
                     if (data.errors != undefined) {
                         data.errors.forEach(function (v) {
@@ -192,6 +190,8 @@ $(document).ready(function () {
                     }
                 }
             }
+            $('#table1').DataTable().ajax.reload();
+            $('#table2').DataTable().ajax.reload();
         } catch (error) {
             console.log(error);
         }

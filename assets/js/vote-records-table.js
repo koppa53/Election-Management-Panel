@@ -128,6 +128,7 @@ $(document).ready(function () {
                 }).showToast();
                 $('#showVotes').modal('show');
             } else {
+                $('#vpass').val("");
                 Toastify({
                     text: d.message,
                     duration: 3000,
