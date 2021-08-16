@@ -161,7 +161,8 @@ $(document).ready(function () {
                 { data: "vote_candidate_last_name", visible: false },
                 {
                     mData: function (data) {
-                        return data.vote_candidate_last_name + " " + data.vote_candidate_first_name[0].toUpperCase() + ".";
+                        if (data.vote_candidate_first_name != "ABSTAINED") return data.vote_candidate_last_name + " " + data.vote_candidate_first_name[0].toUpperCase() + ".";
+                        return data.vote_candidate_last_name
                     }
                 },
                 { data: "vote_candidate_position" },
@@ -193,7 +194,8 @@ $(document).ready(function () {
                 { data: "vote_candidate_last_name", visible: false },
                 {
                     mData: function (data) {
-                        return data.vote_candidate_last_name + " " + data.vote_candidate_first_name[0].toUpperCase() + ".";
+                        if (data.vote_candidate_first_name != "ABSTAINED") return data.vote_candidate_last_name + " " + data.vote_candidate_first_name[0].toUpperCase() + ".";
+                        return data.vote_candidate_last_name
                     }
                 },
                 { data: "vote_candidate_position" },
