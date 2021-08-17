@@ -638,210 +638,350 @@
 						</div>
 						<section class="section">
 							<div class="card shadow">
-								<div class="card-header d-flex justify-content-center">
-									<button
-										class="btn btn-primary"
-										data-bs-toggle="modal"
-										data-bs-target="#authpass"
-										id="checkpass"
-									>
-										<i class="far fa-eye"></i> View Votes
-									</button>
-									<div
-										class="modal fade text-left show"
-										id="authpass"
-										tabindex="-1"
-										aria-labelledby="authpass"
-										aria-modal="true"
-										role="dialog"
-									>
-										<div
-											class="
-												modal-dialog
-												modal-dialog-centered
-												modal-dialog-scrollable
-											"
-											role="document"
-										>
-											<div class="modal-content">
-												<div class="modal-header">
-													<h4 class="modal-title" id="authpass">
-														Enter Account Password
-													</h4>
-												</div>
-												<form method="post" id="verifypassword">
-													<div class="modal-body">
-														<div class="form-group">
-															<input
-																type="password"
-																placeholder="Password"
-																class="form-control"
-																id="vpass"
-															/>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<input
-															class="btn btn-light-secondary ml-1"
-															type="button"
-															data-bs-dismiss="modal"
-															value="Close"
-														/>
-														<input
-															class="btn btn-primary ml-1"
-															type="submit"
-															value="Verify"
-															id="verifyPassword"
-														/>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div
-										class="modal fade text-left"
-										id="showVotes"
-										tabindex="-1"
-										role="dialog"
-										aria-labelledby="showVotes"
-										aria-hidden="true"
-									>
-										<div
-											class="
-												modal-dialog
-												modal-dialog-centered
-												modal-dialog-scrollable
-												modal-xl
-											"
-											role="document"
-										>
-											<div class="modal-content">
-												<div class="modal-header bg-primary">
-													<h5 class="modal-title white">Votes List</h5>
-												</div>
-												<div class="modal-body">
-													<section id="input-with-icons">
-														<div class="row match-height">
-															<div class="col">
-																<div class="card">
-																	<div class="card-header">
-																		<div class="col-md-4">
-																			<select
-																				class="form-select"
-																				id="electionyear"
-																			>
-																				<option value="" selected disabled>
-																					Select Election Year
-																				</option>
-																			</select>
-																		</div>
-																	</div>
-																	<div class="card-body">
-																		<h2>Student Votes</h2>
-																		<table
-																			class="table table-striped"
-																			id="tableVotes"
-																		>
-																			<thead>
-																				<tr>
-																					<th>Student ID</th>
-																					<th>Candidate</th>
-																					<th>Candidate</th>
-																					<th>Candidate</th>
-																					<th>Position</th>
-																					<th>Council</th>
-																					<th>College</th>
-																					<th>Tools</th>
-																				</tr>
-																			</thead>
-																		</table>
-																		<hr />
-																		<h2>Assisted Student Votes</h2>
-																		<table
-																			class="table table-striped"
-																			id="tableVotes2"
-																		>
-																			<thead>
-																				<tr>
-																					<th>Student ID</th>
-																					<th>Candidate</th>
-																					<th>Candidate</th>
-																					<th>Candidate</th>
-																					<th>Position</th>
-																					<th>Council</th>
-																					<th>College</th>
-																					<th>Tools</th>
-																				</tr>
-																			</thead>
-																		</table>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</section>
-												</div>
-												<div class="modal-footer">
-													<button
-														type="button"
-														class="btn btn-light-secondary"
-														data-bs-dismiss="modal"
-													>
-														<i class="bx bx-x d-block d-sm-none"></i>
-														<span class="d-none d-sm-block">Close</span>
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="card-header">
+									<ul class="nav nav-tabs" id="myTab" role="tablist">
+										<li class="nav-item" role="presentation">
+											<a
+												class="nav-link active"
+												id="votes-tab"
+												data-bs-toggle="tab"
+												href="#votes"
+												role="tab"
+												aria-controls="home"
+												aria-selected="true"
+												>Votes</a
+											>
+										</li>
+										<li class="nav-item" role="presentation">
+											<a
+												class="nav-link"
+												id="export-tab"
+												data-bs-toggle="tab"
+												href="#export"
+												role="tab"
+												aria-controls="profile"
+												aria-selected="false"
+												>Export</a
+											>
+										</li>
+									</ul>
 								</div>
 								<div class="card-body">
-									<hr />
-									<h4>Student Voter Logs</h4>
-									<div class="form-group">
-										<p>Sort by Election Year:</p>
-										<div class="row">
+									<div class="tab-content" id="myTabContent">
+										<div
+											class="tab-pane fade show active"
+											id="votes"
+											role="tabpanel"
+											aria-labelledby="home-tab"
+										>
+											<button
+												class="btn btn-primary"
+												data-bs-toggle="modal"
+												data-bs-target="#authpass"
+												id="checkpass"
+											>
+												<i class="far fa-eye"></i> View Votes
+											</button>
+											<div
+												class="modal fade text-left show"
+												id="authpass"
+												tabindex="-1"
+												aria-labelledby="authpass"
+												aria-modal="true"
+												role="dialog"
+											>
+												<div
+													class="
+														modal-dialog
+														modal-dialog-centered
+														modal-dialog-scrollable
+													"
+													role="document"
+												>
+													<div class="modal-content">
+														<div class="modal-header">
+															<h4 class="modal-title" id="authpass">
+																Enter Account Password
+															</h4>
+														</div>
+														<form method="post" id="verifypassword">
+															<div class="modal-body">
+																<div class="form-group">
+																	<input
+																		type="password"
+																		placeholder="Password"
+																		class="form-control"
+																		id="vpass"
+																	/>
+																</div>
+															</div>
+															<div class="modal-footer">
+																<input
+																	class="btn btn-light-secondary ml-1"
+																	type="button"
+																	data-bs-dismiss="modal"
+																	value="Close"
+																/>
+																<input
+																	class="btn btn-primary ml-1"
+																	type="submit"
+																	value="Verify"
+																	id="verifyPassword"
+																/>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div
+												class="modal fade text-left"
+												id="showVotes"
+												tabindex="-1"
+												role="dialog"
+												aria-labelledby="showVotes"
+												aria-hidden="true"
+											>
+												<div
+													class="
+														modal-dialog
+														modal-dialog-centered
+														modal-dialog-scrollable
+														modal-xl
+													"
+													role="document"
+												>
+													<div class="modal-content">
+														<div class="modal-header bg-primary">
+															<h5 class="modal-title white">Votes List</h5>
+														</div>
+														<div class="modal-body">
+															<section id="input-with-icons">
+																<div class="row match-height">
+																	<div class="col">
+																		<div class="card">
+																			<div class="card-header">
+																				<div class="col-md-4">
+																					<select
+																						class="form-select"
+																						id="electionyear"
+																					>
+																						<option value="" selected disabled>
+																							Select Election Year
+																						</option>
+																					</select>
+																				</div>
+																			</div>
+																			<div class="card-body">
+																				<h2>Student Votes</h2>
+																				<table
+																					class="table table-striped"
+																					id="tableVotes"
+																				>
+																					<thead>
+																						<tr>
+																							<th>Student ID</th>
+																							<th>Candidate</th>
+																							<th>Candidate</th>
+																							<th>Candidate</th>
+																							<th>Position</th>
+																							<th>Council</th>
+																							<th>College</th>
+																							<th>Tools</th>
+																						</tr>
+																					</thead>
+																				</table>
+																				<hr />
+																				<h2>Assisted Student Votes</h2>
+																				<table
+																					class="table table-striped"
+																					id="tableVotes2"
+																				>
+																					<thead>
+																						<tr>
+																							<th>Student ID</th>
+																							<th>Candidate</th>
+																							<th>Candidate</th>
+																							<th>Candidate</th>
+																							<th>Position</th>
+																							<th>Council</th>
+																							<th>College</th>
+																							<th>Tools</th>
+																						</tr>
+																					</thead>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</section>
+														</div>
+														<div class="modal-footer">
+															<button
+																type="button"
+																class="btn btn-light-secondary"
+																data-bs-dismiss="modal"
+															>
+																<i class="bx bx-x d-block d-sm-none"></i>
+																<span class="d-none d-sm-block">Close</span>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<hr />
+											<h4>Student Voter Logs</h4>
+											<div class="form-group">
+												<p>Sort by Election Year:</p>
+												<div class="row">
+													<div class="col-md-2">
+														<select class="form-select" id="electionyear1">
+															<option value="">All</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<table class="table table-striped" id="table1">
+												<thead>
+													<tr>
+														<th>Student ID</th>
+														<th>Date & Time Voted</th>
+														<th>College</th>
+														<th>Election Year</th>
+													</tr>
+												</thead>
+											</table>
+											<br />
+											<hr />
+											<br />
+											<h4>Assisted Student Voter Logs</h4>
 											<div class="col-md-2">
-												<select class="form-select" id="electionyear1">
-													<option value="">All</option>
-												</select>
+												<div class="form-group">
+													<p>Sort by Election Year:</p>
+													<select class="form-select" id="electionyear2">
+														<option value="">All</option>
+													</select>
+												</div>
+											</div>
+											<table class="table table-striped" id="table2">
+												<thead>
+													<tr>
+														<th>Student ID</th>
+														<th>Date & Time Voted</th>
+														<th>College</th>
+														<th>Election Year</th>
+														<th>Assisted By</th>
+														<th>Assisted By</th>
+														<th>Assisted By</th>
+													</tr>
+												</thead>
+											</table>
+										</div>
+										<div
+											class="tab-pane fade"
+											id="export"
+											role="tabpanel"
+											aria-labelledby="profile-tab"
+										>
+											<br />
+											<h4>USC & CSC Election Results</h4>
+											<p>*Select College to export a CSC Result</p>
+											<br />
+											<div class="form-group">
+												<div class="row">
+													<div class="col-md-4">
+														<select
+															class="form-select"
+															id="electionyear3"
+															onchange="enableUSCButton()"
+														>
+															<option value="" disabled selected>
+																Select Election Year
+															</option>
+														</select>
+													</div>
+													<div class="col-md-4">
+														<select
+															class="form-select"
+															id="colleges"
+															onchange="enableCSCButton()"
+														>
+															<option value="" disabled selected>
+																Select College
+															</option>
+															<option value="College of Science">
+																College of Science
+															</option>
+															<option value="College of Arts and Letters">
+																College of Arts and Letters
+															</option>
+															<option value="College of Education">
+																College of Education
+															</option>
+															<option value="College of Nursing">
+																College of Nursing
+															</option>
+															<option value="College of Industrial Technology">
+																College of Industrial Technology
+															</option>
+															<option value="College of Engineering">
+																College of Engineering
+															</option>
+															<option
+																value="College of Social Science and Philosophy"
+															>
+																College of Social Science and Philosophy
+															</option>
+															<option
+																value="College of Business, Economics and Management"
+															>
+																College of Business, Economics and Management
+															</option>
+															<option
+																value="College of Agriculture and Forestry"
+															>
+																College of Agriculture and Forestry
+															</option>
+															<option value="IPESR">IPESR</option>
+														</select>
+													</div>
+													<div class="col-md-4">
+														<button
+															class="btn btn-primary"
+															id="usc"
+															onclick="generateRecordUSC()"
+															disabled
+														>
+															<span
+																class="spinner-border spinner-border-sm"
+																role="status"
+																aria-hidden="true"
+																style="display: none"
+																id="loading"
+															></span>
+															<i class="fas fa-download" id="dlicon"></i>
+															Export USC
+														</button>
+														<button
+															class="btn btn-primary"
+															id="csc"
+															onclick="generateRecordCSC()"
+															disabled
+														>
+															<span
+																class="spinner-border spinner-border-sm"
+																role="status"
+																aria-hidden="true"
+																style="display: none"
+																id="cscloading"
+															></span>
+															<i class="fas fa-download" id="cscdlicon"></i>
+															Export CSC
+														</button>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-									<table class="table table-striped" id="table1">
-										<thead>
-											<tr>
-												<th>Student ID</th>
-												<th>Date & Time Voted</th>
-												<th>College</th>
-												<th>Election Year</th>
-											</tr>
-										</thead>
-									</table>
-									<br />
-									<hr />
-									<br />
-									<h4>Assisted Student Voter Logs</h4>
-									<div class="col-md-2">
-										<div class="form-group">
-											<p>Sort by Election Year:</p>
-											<select class="form-select" id="electionyear2">
-												<option value="">All</option>
-											</select>
-										</div>
-									</div>
-									<table class="table table-striped" id="table2">
-										<thead>
-											<tr>
-												<th>Student ID</th>
-												<th>Date & Time Voted</th>
-												<th>College</th>
-												<th>Election Year</th>
-												<th>Assisted By</th>
-												<th>Assisted By</th>
-												<th>Assisted By</th>
-											</tr>
-										</thead>
-									</table>
 								</div>
 							</div>
 						</section>
@@ -861,9 +1001,14 @@
 		<script src="assets/js/bootstrap.bundle.min.js"></script>
 		<script src="assets/vendors/fontawesome/all.min.js"></script>
 		<script src="assets/js/footer.js"></script>
+		<script type="text/javascript" src="assets/js/toWords.js"></script>
+		<script src="assets/js/jspdf.umd.min.js"></script>
+		<script src="assets/js/jspdf.plugin.autotable.js"></script>
 		<!--Datatable JS-->
 		<script type="text/javascript" src="assets/js/datatables.min.js"></script>
 		<script src="assets/js/vote-records-table.js"></script>
+		<script src="assets/js/uscResult-record.js"></script>
+		<script src="assets/js/cscResult-record.js"></script>
 		<!-- Include Choices JavaScript -->
 		<script src="assets/vendors/choices.js/choices.min.js"></script>
 		<script src="assets/js/main.js"></script>

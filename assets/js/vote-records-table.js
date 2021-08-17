@@ -14,9 +14,11 @@ $(document).ready(function () {
             var o = new Option(v.candidate_election_year, v.candidate_election_year);
             var x = new Option(v.candidate_election_year, v.candidate_election_year);
             var y = new Option(v.candidate_election_year, v.candidate_election_year);
+            var z = new Option(v.candidate_election_year, v.candidate_election_year);
             $("#electionyear").append(y);
             $("#electionyear1").append(o);
             $("#electionyear2").append(x);
+            $("#electionyear3").append(z);
         })
     }
 
