@@ -1,5 +1,6 @@
 $(document).ready(function () {
     let loaded = 0;
+    const lvl = localStorage.getItem("Level")
     $("#USCpositions").on('click', async (event) => {
         if (loaded == 0) {
             const response = await fetch('http://localhost:5000/all_USC_position', {
@@ -48,32 +49,74 @@ $(document).ready(function () {
         var table = $('#table1').DataTable();
         table.search($('#USCpositions').val()).draw();
     })
-
-    $('#table1').DataTable({
-        ajax: {
-            url: `http://localhost:5000/all_usc_ballot_candidate_on_list`,
-            dataSrc: "",
-            beforeSend: function (request) {
-                request.setRequestHeader("authorization", tok);
-            }
-        },
-        autoWidth: false,
-        responsive: true,
-        columns: [
-            { data: "usc_candidate_ballot_id", visible: false },
-            { data: "usc_candidate_position" },
-            { data: "usc_candidate_first_name" },
-            { data: "usc_candidate_last_name" },
-            { data: "usc_candidate_party" },
-            { data: "usc_ballot_pos", visible: false },
-            {
-                data: null,
-                defaultContent: `<a data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist"><i class="fas fa-user-minus"></i></a>`,
-                className: "text-center",
-            }
-        ],
-        order: [[5, "asc"]]
-    });
+    if (lvl == 1) {
+        var i = document.getElementById("uscbodyheader");
+        i.innerHTML += `<div class="col-md-4">
+            <fieldset class="form-group">
+                <select class="form-select" id="USCpositions">
+                    <option value=""selected>All Position</option>
+                </select>
+            </fieldset>
+        </div>
+        <div class="col-md-4 mb-2">
+            <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlist" id="loadaddlist"><i class="fas fa-plus"></i> Add Candidate</button>
+            <label>Restore removed candidates here.</label>
+        </div>
+        <div>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#showUSCballot" id="showballotUSC"><i class="far fa-eye"></i> Preview Ballot</button>
+        </div>
+        `
+        var li = document.getElementById("uscbodycontent");
+        li.innerHTML += `<table class="table table-striped" id="table1">
+            <thead>
+                <tr>
+                    <th>Candidate ID</th>
+                    <th>Position</th>                                                        
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Political Party</th> 
+                    <th>Position Level</th>  
+                    <th>Tools</th> 
+                </tr>
+            </thead>
+        </table>
+        <br>
+        <div class="col">
+            <button class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#rmAllUSClist" id="loadaddlist"><i class="fas fa-users-slash"></i> Remove All</button>
+        </div>
+        `;
+        $('#table1').DataTable({
+            ajax: {
+                url: `http://localhost:5000/all_usc_ballot_candidate_on_list`,
+                dataSrc: "",
+                beforeSend: function (request) {
+                    request.setRequestHeader("authorization", tok);
+                }
+            },
+            autoWidth: false,
+            responsive: true,
+            columns: [
+                { data: "usc_candidate_ballot_id", visible: false },
+                { data: "usc_candidate_position" },
+                { data: "usc_candidate_first_name" },
+                { data: "usc_candidate_last_name" },
+                { data: "usc_candidate_party" },
+                { data: "usc_ballot_pos", visible: false },
+                {
+                    data: null,
+                    defaultContent: `<a data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist"><i class="fas fa-user-minus"></i></a>`,
+                    className: "text-center",
+                }
+            ],
+            order: [[5, "asc"]]
+        });
+    } else {
+        var k = document.getElementById("uscbodycontent");
+        k.innerHTML += `
+        <div>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#showUSCballot" id="showballotUSC"><i class="far fa-eye"></i> Preview Ballot</button>
+        </div>`
+    }
 
     //USC ADD FROM LIST SECTION
     $('#table0').DataTable({

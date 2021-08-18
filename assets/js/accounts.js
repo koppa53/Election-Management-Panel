@@ -1,5 +1,6 @@
 $(document).ready(function () {
     const tok = localStorage.getItem("Token")
+    const lvl = localStorage.getItem("Level")
     $('#table1').DataTable({
         ajax: {
             url: `http://localhost:5000/usc_management_panel_accounts`,
@@ -69,23 +70,22 @@ $(document).ready(function () {
             { data: "account_last_name" },
             { data: "account_username" },
             { data: "account_contact_number" },
+            { data: "account_college" },
             {
                 data: null,
-                defaultContent: ` <a data-target = "#editacc" data-toggle="modal" class="btn btn-success btn-sm" id="editaccount"><i class="fas fa-edit"></i></a>
-                                <a data-target = "#deleteaccount" data-toggle="modal" class="btn btn-danger btn-sm" id="delaccount"><i class="fas fa-trash"></i></a>
-                                <a data-target = "#resetpass" data-toggle="modal" class="btn btn-dark btn-sm" id="rpass">Reset</a>`,
+                defaultContent: ` <a data-target = "#v_editacc" data-toggle="modal" class="btn btn-success btn-sm" id="v_editaccount"><i class="fas fa-edit"></i></a>
+                                <a data-target = "#v_deleteaccount" data-toggle="modal" class="btn btn-danger btn-sm" id="v_delaccount"><i class="fas fa-trash"></i></a>
+                                <a data-target = "#v_resetpass" data-toggle="modal" class="btn btn-dark btn-sm" id="v_rpass">Reset</a>`,
                 className: "text-center",
             }
         ],
     });
 
-    $('#a_system').change(function () {
-        if ($(this).val() == "1") {
-            $('#a_level').prop('disabled', false);
-            $('#a_college').prop('disabled', true);
-        } else {
-            $('#a_level').prop('disabled', true);
+    $('#a_level').change(function () {
+        if ($(this).val() != "1") {
             $('#a_college').prop('disabled', false);
+        } else {
+            $('#a_college').prop('disabled', true);
         }
     });
 
@@ -103,10 +103,9 @@ $(document).ready(function () {
         const contactnumber = $('#a_contactnumber').val();
         let level = $('#a_level').val();
         const college = $('#a_college').val();
-        const system = $('#a_system').val();
 
         try {
-            if (system == 1) {
+            if (level == 1) {
                 const res = await fetch('http://localhost:5000/register_account', {
                     method: "POST",
                     headers: {
@@ -123,7 +122,8 @@ $(document).ready(function () {
                         gender: gender,
                         address: address,
                         contactnumber: contactnumber,
-                        level: level
+                        level: level,
+                        college: "ALL"
                     })
                 });
                 const data = await res.json();
@@ -136,8 +136,6 @@ $(document).ready(function () {
                     $('#a_address').val("");
                     $('#a_contactnumber').val("");
                     $('#a_level').val("1");
-                    $('#a_system').val("");
-                    $('#a_level').prop('disabled', true);
                     $('#a_college').prop('disabled', true);
                     Toastify({
                         text: data.message,
@@ -161,7 +159,7 @@ $(document).ready(function () {
                     }
                 }
             } else {
-                const response = await fetch('http://localhost:5000/vote_assist_register_account', {
+                const response = await fetch('http://localhost:5000/register_account', {
                     method: "POST",
                     headers: {
                         "authorization": tok,
@@ -177,10 +175,13 @@ $(document).ready(function () {
                         gender: gender,
                         address: address,
                         contactnumber: contactnumber,
+                        level: level,
                         college: college,
                     })
                 });
                 const data = await response.json();
+                $('#table1').DataTable().ajax.reload();
+                $('#table2').DataTable().ajax.reload();
                 if (response.ok) {
                     $('#a_username').val("");
                     $('#a_firstname').val("");
@@ -190,8 +191,6 @@ $(document).ready(function () {
                     $('#a_address').val("");
                     $('#a_contactnumber').val("");
                     $('#a_level').val("1");
-                    $('#a_system').val("");
-                    $('#a_level').prop('disabled', true);
                     $('#a_college').prop('disabled', true);
                     Toastify({
                         text: data.message,
@@ -215,8 +214,6 @@ $(document).ready(function () {
                     }
                 }
             }
-            $('#table1').DataTable().ajax.reload();
-            $('#table2').DataTable().ajax.reload();
         } catch (error) {
             console.log(error);
         }
@@ -237,7 +234,6 @@ $(document).ready(function () {
         $('#u_gender').val(u_dataID.account_user_gender);
         $('#u_address').val(u_dataID.account_address);
         $('#u_contactnumber').val(u_dataID.account_contact_number)
-        $('#u_level').val(u_dataID.account_level)
         $('#editacc').modal('show');
     });
 
@@ -250,7 +246,6 @@ $(document).ready(function () {
         const gender = $('#u_gender').val();
         const address = $('#u_address').val();
         const contactnumber = $('#u_contactnumber').val();
-        const level = $('#u_level').val();
         try {
             const response = await fetch('http://localhost:5000/update_profile/' + u_dataID.account_id, {
                 method: "PUT",
@@ -266,18 +261,19 @@ $(document).ready(function () {
                     firstname: firstname,
                     middlename: middlename,
                     lastname: lastname,
-                    level: level
+                    level: lvl
 
                 })
             });
             const res = await response.json();
+            $('#table1').DataTable().ajax.reload();
             if (response.ok) {
                 $('#editacc').modal('hide');
                 var id = localStorage.getItem("User Name")
                 if (parseInt(id) === u_dataID.account_id) {
                     localStorage.setItem("First Name", firstname)
                     localStorage.setItem("Last Name", lastname)
-                    localStorage.setItem("Level", level)
+                    localStorage.setItem("Level", lvl)
                     Toastify({
                         text: res.message,
                         duration: 3000,
@@ -295,7 +291,6 @@ $(document).ready(function () {
                         backgroundColor: "#56B6F7",
                     }).showToast();
                 }
-                $('#table1').DataTable().ajax.reload(null, false);
             } else {
                 Toastify({
                     text: res.message,
@@ -312,12 +307,12 @@ $(document).ready(function () {
 
     //ASSISTANCE ACCOUNT EDIT
     let v_dataID = ""
-    $('#table2 tbody').on('click', '#v_editaccount', function () {
+    $('#table3 tbody').on('click', '#v_editaccount', function () {
         var current_row = $(this).parents('tr');//Get the current row
         if (current_row.hasClass('child')) {//Check if the current row is a child row
             current_row = current_row.prev();//If it is, then point to the row before it (its 'parent')
         }
-        v_dataID = $('#table2').DataTable().row(current_row).data();
+        v_dataID = $('#table3').DataTable().row(current_row).data();
         $('#v_username').val(v_dataID.account_username);
         $('#v_firstname').val(v_dataID.account_first_name);
         $('#v_middlename').val(v_dataID.account_middle_name);
@@ -332,7 +327,6 @@ $(document).ready(function () {
     $('#v_editAccount').on('submit', async (event) => {
         event.preventDefault();
         const v_username = $('#v_username').val();
-        console.log(v_username)
         const v_firstname = $('#v_firstname').val();
         const v_middlename = $('#v_middlename').val();
         const v_lastname = $('#v_lastname').val();
@@ -341,7 +335,7 @@ $(document).ready(function () {
         const v_contactnumber = $('#v_contactnumber').val();
         const v_college = $('#v_college').val();
         try {
-            const response = await fetch('http://localhost:5000/vote_assist_update_profile/' + v_dataID.account_id, {
+            const response = await fetch('http://localhost:5000/update_profile/' + v_dataID.account_id, {
                 method: "PUT",
                 headers: {
                     "authorization": tok,
@@ -355,11 +349,12 @@ $(document).ready(function () {
                     firstname: v_firstname,
                     middlename: v_middlename,
                     lastname: v_lastname,
-                    college: v_college
-
+                    college: v_college,
+                    level: "2"
                 })
             });
             const res = await response.json();
+            $('#table3').DataTable().ajax.reload();
             if (response.ok) {
                 $('#v_editacc').modal('hide');
                 Toastify({
@@ -369,7 +364,6 @@ $(document).ready(function () {
                     position: "center",
                     backgroundColor: "#56B6F7",
                 }).showToast();
-                $('#table2').DataTable().ajax.reload(null, false);
             } else {
                 Toastify({
                     text: res.message,

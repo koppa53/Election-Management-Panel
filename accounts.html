@@ -413,7 +413,7 @@
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 <div class="card-header">
-                                                                    <div class="alert alert-warning w-50" style="color:black">Default Password : <b>BicolUni</b></div>
+                                                                    <div class="alert alert-dark w-50" style="color:white">Default Password : <b>BicolUni</b></div>
                                                                 </div>
                                                                 <div class="card-body">
                                                                     <div class="row">
@@ -487,28 +487,17 @@
                                                                             </fieldset>
                                                                         </div>
                                                                         <div class="col">
-                                                                            <h6>Select System</h6>
+                                                                            <h6>Select Level</h6>
                                                                             <fieldset class="form-group">
-                                                                                <select class="form-select" id="a_system">
-                                                                                    <option value = "" disabled selected>Select System</option>
-                                                                                    <option value="1">Election Management System</option>
-                                                                                    <!--<option value="2">Voting Assistance System</option>-->
+                                                                                <select class="form-select" id="a_level">
+                                                                                    <option value="1">USC Electoral Board</option>
+                                                                                    <option value="2">CSC Electoral Board</option>
                                                                                 </select>
                                                                             </fieldset>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col">
-                                                                            <h6>Select Level</h6>
-                                                                            <fieldset class="form-group">
-                                                                                <select class="form-select" id="a_level"  disabled>
-                                                                                    <option value="1">USC Electoral Board</option>
-                                                                                    <option value="2">CSC Electoral Board</option>
-                                                                                </select>
-                                                                                <p><small class="text-muted">Only For Election Management System</small></p>
-                                                                            </fieldset>
-                                                                        </div>
-                                                                        <!--<div class="col">
+                                                                        <div class="col-md-6">
                                                                             <h6>Select College</h6>
                                                                             <fieldset class="form-group">
                                                                                 <select class="form-select" id="a_college" disabled>
@@ -524,9 +513,9 @@
                                                                                     <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
                                                                                     <option value="IPESR">IPESR</option>
                                                                                 </select>
-                                                                                <p><small class="text-muted">Only For Voting Assistance System</small></p>
+                                                                                <p><small class="text-muted">Only for CSC Electoral Board Accounts</small></p>
                                                                             </fieldset>
-                                                                        </div>-->
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -622,22 +611,13 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col">
+                                                                        <div class="col-md-4">
                                                                             <h6>Gender</h6>
                                                                             <fieldset class="form-group">
                                                                                 <select class="form-select" id="u_gender">
                                                                                     <option value="Male">Male</option>
                                                                                     <option value="Female">Female</option>
                                                                                     <option value="Others">Others</option>
-                                                                                </select>
-                                                                            </fieldset>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <h6>Select Level</h6>
-                                                                            <fieldset class="form-group">
-                                                                                <select class="form-select" id="u_level">
-                                                                                    <option value="1">USC Electoral Board</option>
-                                                                                    <option value="2">CSC Electoral Board</option>
                                                                                 </select>
                                                                             </fieldset>
                                                                         </div>
@@ -884,7 +864,7 @@
                             <!--END OF RESET MODAL -->
                             <div class="card-body">
                                 <h5>
-                                    USC Electoral Board Accounts
+                                    University Student Electoral Board Accounts
                                 </h5>
                                 <br>
                                 <table class="table table-striped" id="table1">
@@ -919,7 +899,7 @@
                                     </thead>
                                 </table>!-->
                                 <h5>
-                                    CSC Electoral Board Accounts
+                                    Collge Student Electoral Board Accounts
                                 </h5>
                                 <br>
                                 <table class="table table-striped" id="table3">
@@ -930,6 +910,7 @@
                                             <th>Last Name</th>
                                             <th>Username</th>
                                             <th>Contact Number</th>
+                                            <th>College</th>
                                             <th>Tools</th>
                                         </tr>
                                     </thead>

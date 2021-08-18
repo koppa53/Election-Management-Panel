@@ -395,23 +395,11 @@
                         <div class="col">
                             <div class="card shadow">
                                 <div class="card-header">
-                                    <h4>University Student Council</h4>
+                                    <div id="uscheader">
+                                        <h4>University Student Council</h4>
+                                    </div>
                                     <div class="form-group">    
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <fieldset class="form-group">
-                                                    <select class="form-select" id="USCpositions">
-                                                        <option value=""selected>All Position</option>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-md-4 mb-2">
-                                                <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addlist" id="loadaddlist"><i class="fas fa-plus"></i> Add Candidate</button>
-                                                <label>Restore removed candidates here.</label>
-                                            </div>
-                                            <div>
-                                            <button class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#showUSCballot" id="showballotUSC"><i class="far fa-eye"></i> Preview Ballot</button>
-                                            </div>
+                                        <div class="row" id="uscbodyheader">
                                             <div class="modal fade text-left" id="addlist" tabindex="-1"
                                                 role="dialog" aria-labelledby="addlist"
                                                 aria-hidden="true">
@@ -524,24 +512,7 @@
                                         </div>
                                     </div>  
                                 </div>
-                                <div class="card-body">
-                                    <table class="table table-striped" id="table1">
-                                        <thead>
-                                            <tr>
-                                                <th>Candidate ID</th>
-                                                <th>Position</th>                                                        
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Political Party</th> 
-                                                <th>Position Level</th>  
-                                                <th>Tools</th> 
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                    <br>
-                                    <div class="col">
-                                        <button class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#rmAllUSClist" id="loadaddlist"><i class="fas fa-users-slash"></i> Remove All</button>
-                                    </div>
+                                <div class="card-body" id="uscbodycontent">
                                 </div>
                                 <div class="modal fade text-left" id="rmAllUSClist" tabindex="-1"
                                 role="dialog" aria-labelledby="rmAllUSClist"

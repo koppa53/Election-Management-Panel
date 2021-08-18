@@ -21,6 +21,7 @@ async function login() {
             localStorage.setItem("Last Name", data.name[1])
             localStorage.setItem("User Name", data.name[2])
             localStorage.setItem("Level", data.name[3])
+            localStorage.setItem("College", data.name[4])
             localStorage.setItem("Token", data.token)
             window.location.href = "index.html";
         } else {
