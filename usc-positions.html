@@ -48,18 +48,12 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item has-sub ">
+                        <li class="sidebar-item has-sub " style="display:none" id="result">
                             <a href="#" class='sidebar-link'>
                                 <i class="fas fa-poll-h"></i>
                                 <span>Election Results</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="usc-votes.html">USC</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="csc-votes.html">CSC</a>
-                                </li>
+                            <ul class="submenu "id="subresult">
                             </ul>
                         </li>
                         <li class="sidebar-title">Manager</li>
@@ -67,39 +61,22 @@
                         </li>
                         <li class="sidebar-item" style="display:none" id="Eperiod">
                         </li>
-                        <li class="sidebar-item">
-                            <a href="register-partylist.html" class='sidebar-link'>
-                                <i class="fas fa-handshake"></i>
-                                <span>Political Party</span>
-                            </a>
+                        <li class="sidebar-item" style="display:none" id="party">
                         </li>
-                        <li class="sidebar-item  has-sub active">
+                        <li class="sidebar-item  has-sub active" style="display:none" id="USC">
                             <a href="#" class='sidebar-link'>
                                 <i class="fas fa-university"></i>
                                 <span>USC</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="usc-positions.html">Positions</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="usc-candidate.html">Candidates</a>
-                                </li>
+                            <ul class="submenu " id="subUSC">
                             </ul>
                         </li>
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item  has-sub" style="display:none" id="CSC">
                             <a href="#" class='sidebar-link'>
                                 <i class="fas fa-building"></i>
                                 <span>CSC</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="csc-positions.html">Positions</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="csc-candidate.html">Candidates</a>
-                                </li>
-                               
+                            <ul class="submenu " id="subCSC">
                             </ul>
                         </li>
                         <li class="sidebar-item">
@@ -131,10 +108,10 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-								<a href="vote-records.html" class="sidebar-link">
-									<i class="fas fa-vote-yea"></i>
-									<span>Votes</span>
-								</a>
+                            <a href="vote-records.html" class="sidebar-link">
+                                <i class="fas fa-vote-yea"></i>
+                                <span>Votes</span>
+                            </a>
 						</li>
                     </ul>
                     <br><br>
@@ -163,7 +140,7 @@
                                     <div class="user-menu d-flex">
                                         <div class="user-name text-end me-3">
                                             <h6 class="mb-0 text-gray-600" id = "name"></h6>
-                                            <p class="mb-0 text-sm text-gray-600">User</p>
+                                            <p class="mb-0 text-sm text-gray-600" id="accountlevel"></p>
                                         </div>
                                         <div class="user-img d-flex align-items-center">
                                             <div class="avatar avatar-md">

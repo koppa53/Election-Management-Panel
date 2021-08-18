@@ -16,6 +16,7 @@ function setProfile() {
     document.getElementById('name').innerHTML = fname + " " + lname
     lvl = localStorage.getItem("Level")
     if (lvl == 1) {
+        document.getElementById('accountlevel').innerHTML = "USC Electoral Board"
         var li = document.getElementById("acc");
         li.style.display = "block";
         li.innerHTML += `
@@ -31,6 +32,58 @@ function setProfile() {
             <i class="bi bi-archive-fill"></i>
             <span>Election Period</span>
         </a>
+        `;
+
+        var result = document.getElementById("result");
+        result.style.display = "block";
+        var subresult = document.getElementById("subresult");
+        subresult.innerHTML += `
+                <li class="submenu-item ">
+                    <a href="usc-votes.html">USC</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="csc-votes.html">CSC</a>
+                </li>
+            `
+        var party = document.getElementById("party");
+        party.style.display = "block";
+        party.innerHTML += `
+        <a href="register-partylist.html" class='sidebar-link'>
+            <i class="fas fa-handshake"></i>
+            <span>Political Party</span>
+        </a>
+        `;
+        var usc = document.getElementById("USC");
+        usc.style.display = "block";
+        var subUSC = document.getElementById("subUSC");
+        subUSC.innerHTML += `
+        <li class="submenu-item ">
+            <a href="usc-positions.html">Positions</a>
+        </li>
+        <li class="submenu-item ">
+            <a href="usc-candidate.html">Candidates</a>
+        </li>
+        `;
+    } else {
+        document.getElementById('accountlevel').innerHTML = "CSC Electoral Board"
+        var cscresult = document.getElementById("result");
+        cscresult.style.display = "block";
+        var cscsubresult = document.getElementById("subresult");
+        cscsubresult.innerHTML += `
+                <li class="submenu-item ">
+                    <a href="csc-votes.html">CSC</a>
+                </li>
+            `
+        var csc = document.getElementById("CSC");
+        csc.style.display = "block";
+        var subUSC = document.getElementById("subCSC");
+        subCSC.innerHTML += `
+        <li class="submenu-item ">
+            <a href="csc-positions.html">Positions</a>
+        </li>
+        <li class="submenu-item ">
+            <a href="csc-candidate.html">Candidates</a>
+        </li>
         `;
     }
     document.getElementById('headname').innerHTML = "Hello, " + fname + "!"

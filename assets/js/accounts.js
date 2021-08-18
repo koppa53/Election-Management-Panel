@@ -2,7 +2,7 @@ $(document).ready(function () {
     const tok = localStorage.getItem("Token")
     $('#table1').DataTable({
         ajax: {
-            url: `http://localhost:5000/all_management_panel_accounts`,
+            url: `http://localhost:5000/usc_management_panel_accounts`,
             dataSrc: "",
             beforeSend: function (request) {
                 request.setRequestHeader("authorization", tok);
@@ -15,7 +15,6 @@ $(document).ready(function () {
             { data: "account_first_name" },
             { data: "account_last_name" },
             { data: "account_username" },
-            { data: "account_level" },
             { data: "account_contact_number" },
             {
                 data: null,
@@ -27,7 +26,7 @@ $(document).ready(function () {
         ],
     });
 
-    $('#table2').DataTable({
+    /*$('#table2').DataTable({
         ajax: {
             url: `http://localhost:5000/all_voting_assistance_accounts`,
             dataSrc: "",
@@ -49,6 +48,32 @@ $(document).ready(function () {
                 defaultContent: ` <a data-target = "#v_editacc" data-toggle="modal" class="btn btn-success btn-sm" id="v_editaccount"><i class="fas fa-edit"></i></a>
                                 <a data-target = "#v_deleteaccount" data-toggle="modal" class="btn btn-danger btn-sm" id="v_delaccount"><i class="fas fa-trash"></i></a>
                                 <a data-target = "#v_resetpass" data-toggle="modal" class="btn btn-dark btn-sm" id="v_rpass">Reset</a>`,
+                className: "text-center",
+            }
+        ],
+    });*/
+
+    $('#table3').DataTable({
+        ajax: {
+            url: `http://localhost:5000/csc_management_panel_accounts`,
+            dataSrc: "",
+            beforeSend: function (request) {
+                request.setRequestHeader("authorization", tok);
+            }
+        },
+        autoWidth: false,
+        responsive: true,
+        columns: [
+            { data: "account_id", visible: false },
+            { data: "account_first_name" },
+            { data: "account_last_name" },
+            { data: "account_username" },
+            { data: "account_contact_number" },
+            {
+                data: null,
+                defaultContent: ` <a data-target = "#editacc" data-toggle="modal" class="btn btn-success btn-sm" id="editaccount"><i class="fas fa-edit"></i></a>
+                                <a data-target = "#deleteaccount" data-toggle="modal" class="btn btn-danger btn-sm" id="delaccount"><i class="fas fa-trash"></i></a>
+                                <a data-target = "#resetpass" data-toggle="modal" class="btn btn-dark btn-sm" id="rpass">Reset</a>`,
                 className: "text-center",
             }
         ],
