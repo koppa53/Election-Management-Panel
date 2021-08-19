@@ -1,5 +1,6 @@
 function enableUSCButton() {
-    document.getElementById("usc").disabled = false;
+    var uscbut = document.getElementById("usc")
+    if (uscbut != null) uscbut.disabled = false;
     var s = document.getElementById('colleges');
     var college = s.options[s.selectedIndex].value;
     if (college != "") document.getElementById("csc").disabled = false;

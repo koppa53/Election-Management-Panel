@@ -1,6 +1,12 @@
 function enableCSCButton() {
     var uscbutton = document.getElementById('usc');
-    if (!uscbutton.disabled) document.getElementById("csc").disabled = false;
+    if (uscbutton != null) {
+        if (!uscbutton.disabled) document.getElementById("csc").disabled = false;
+    } else {
+        var s = document.getElementById('colleges');
+        var college = s.options[s.selectedIndex].value;
+        if (college != "") document.getElementById("csc").disabled = false;
+    }
 }
 async function generateRecordCSC() {
     const tok = localStorage.getItem("Token")

@@ -126,8 +126,7 @@ $(document).ready(function () {
                     defaultContent: `<a data-target = "#removefromlist" data-toggle="modal" class="btn btn-danger btn-sm" id="rmfromlist"><i class="fas fa-user-minus"></i></a>`,
                     className: "text-center",
                 }
-            ],
-            order: [[5, "asc"]]
+            ]
         });
         $('#table2').DataTable({
             ajax: {

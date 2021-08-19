@@ -655,14 +655,6 @@
 											role="tabpanel"
 											aria-labelledby="home-tab"
 										>
-											<button
-												class="btn btn-primary"
-												data-bs-toggle="modal"
-												data-bs-target="#authpass"
-												id="checkpass"
-											>
-												<i class="far fa-eye"></i> View Votes
-											</button>
 											<div
 												class="modal fade text-left show"
 												id="authpass"
@@ -732,7 +724,7 @@
 													role="document"
 												>
 													<div class="modal-content">
-														<div class="modal-header bg-primary">
+														<div class="modal-header bg-dark">
 															<h5 class="modal-title white">Votes List</h5>
 														</div>
 														<div class="modal-body">
@@ -809,30 +801,7 @@
 													</div>
 												</div>
 											</div>
-											<hr />
-											<h4>Student Voter Logs</h4>
-											<div class="form-group">
-												<p>Sort by Election Year:</p>
-												<div class="row">
-													<div class="col-md-2">
-														<select class="form-select" id="electionyear1">
-															<option value="">All</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<table class="table table-striped" id="table1">
-												<thead>
-													<tr>
-														<th>Student ID</th>
-														<th>Date & Time Voted</th>
-														<th>College</th>
-														<th>Election Year</th>
-													</tr>
-												</thead>
-											</table>
-											<br />
-											<hr />
+											<!--<hr />
 											<br />
 											<h4>Assisted Student Voter Logs</h4>
 											<div class="col-md-2">
@@ -855,7 +824,7 @@
 														<th>Assisted By</th>
 													</tr>
 												</thead>
-											</table>
+											</table>!-->
 										</div>
 										<div
 											class="tab-pane fade"
@@ -864,7 +833,7 @@
 											aria-labelledby="profile-tab"
 										>
 											<br />
-											<h4>USC & CSC Election Results</h4>
+											<h4 id="exporttitle"></h4>
 											<p>*Select College to export a CSC Result</p>
 											<br />
 											<div class="form-group">
@@ -925,40 +894,7 @@
 															<option value="IPESR">IPESR</option>
 														</select>
 													</div>
-													<div class="col-md-4">
-														<button
-															class="btn btn-primary"
-															id="usc"
-															onclick="generateRecordUSC()"
-															disabled
-														>
-															<span
-																class="spinner-border spinner-border-sm"
-																role="status"
-																aria-hidden="true"
-																style="display: none"
-																id="loading"
-															></span>
-															<i class="fas fa-download" id="dlicon"></i>
-															Export USC
-														</button>
-														<button
-															class="btn btn-primary"
-															id="csc"
-															onclick="generateRecordCSC()"
-															disabled
-														>
-															<span
-																class="spinner-border spinner-border-sm"
-																role="status"
-																aria-hidden="true"
-																style="display: none"
-																id="cscloading"
-															></span>
-															<i class="fas fa-download" id="cscdlicon"></i>
-															Export CSC
-														</button>
-													</div>
+													<div class="col-md-4" id="exportbuttons"></div>
 												</div>
 											</div>
 										</div>

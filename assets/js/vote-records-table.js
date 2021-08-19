@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    const lvl = localStorage.getItem("Level")
+    const college = localStorage.getItem("College")
     fetchData()
     async function fetchData() {
         const response = await fetch(`http://localhost:5000/all_election_year`, {
@@ -21,7 +22,201 @@ $(document).ready(function () {
             $("#electionyear3").append(z);
         })
     }
+    if (lvl == 1) {
+        var htitle = document.getElementById("exporttitle")
+        htitle.innerHTML += "USC & CSC Election Results"
+        var j = document.getElementById("votes")
+        j.innerHTML += `
+        <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#authpass"
+            id="checkpass">
+            <i class="far fa-eye"></i> View Votes
+        </button>
+        <hr/>
+        <h4>Student Voter Logs</h4>
+        <div class="form-group">
+            <p>Sort by Election Year:</p>
+            <div class="row">
+                <div class="col-md-2">
+                    <select class="form-select" id="electionyear1">
+                        <option value="">All</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped" id="table1">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Date & Time Voted</th>
+                    <th>College</th>
+                    <th>Election Year</th>
+                </tr>
+            </thead>
+        </table>
+        <br />
+        `
+        var x = document.getElementById("exportbuttons")
+        x.innerHTML += `<button
+        class="btn btn-primary"
+        id = "usc"
+        onclick = "generateRecordUSC()"
+        disabled>
+            <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+                style="display: none"
+                id="loading"
+            ></span>
+            <i class="fas fa-download" id="dlicon"></i>
+        Export USC
+        </button>
+            <button
+                class="btn btn-primary"
+                id="csc"
+                onclick="generateRecordCSC()"
+                disabled>
+                <span
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                    style="display: none"
+                    id="cscloading"
+                ></span>
+                <i class="fas fa-download" id="cscdlicon"></i>
+                Export CSC
+            </button>`
+        $('#table1').DataTable({
+            ajax: {
+                url: `http://localhost:5000/all_student_voters_logs`,
+                dataSrc: "",
+                beforeSend: function (request) {
+                    request.setRequestHeader("authorization", tok);
+                }
+            },
+            destroy: true,
+            autoWidth: false,
+            responsive: true,
+            columns: [
+                { data: "vote_student_id" },
+                {
+                    data: "created_at",
+                    render: function (data) {
+                        var date = new Date(data)
+                        var str = date.toString()
+                        var split = str.split("GMT")
+                        return split[0];
+                    }
+                },
+                { data: "vote_college" },
+                { data: "vote_election_year" }
+            ]
+        });
 
+        /*$('#table2').DataTable({
+            ajax: {
+                url: `http://localhost:5000/all_assisted_student_voters_logs`,
+                dataSrc: "",
+                beforeSend: function (request) {
+                    request.setRequestHeader("authorization", tok);
+                }
+            },
+            destroy: true,
+            autoWidth: false,
+            responsive: true,
+            columns: [
+                { data: "vote_student_id" },
+                {
+                    data: "created_at",
+                    render: function (data) {
+                        var date = new Date(data)
+                        var str = date.toString()
+                        var split = str.split("GMT")
+                        return split[0];
+                    }
+                },
+                { data: "vote_college" },
+                { data: "vote_election_year" },
+                { data: "vote_assistant_last_name", visible: false },
+                { data: "vote_assistant_first_name", visible: false },
+                {
+                    mData: function (data) {
+                        return data.vote_assistant_last_name + " " + data.vote_assistant_first_name[0].toUpperCase() + ".";
+                    }
+                }
+
+            ]
+        });*/
+    } else {
+        var title = document.getElementById("exporttitle")
+        title.innerHTML += "CSC Election Results"
+        var j2 = document.getElementById("votes")
+        j2.innerHTML +=
+            `<h4>Student Voter Logs ( ` + college + ` )</h4>
+            <div class="form-group">
+                <p>Sort by Election Year:</p>
+                <div class="row">
+                    <div class="col-md-2">
+                        <select class="form-select" id="electionyear1">
+                            <option value="">All</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped" id="table1">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Date & Time Voted</th>
+                        <th>Election Year</th>
+                    </tr>
+                </thead>
+            </table>
+            <br />`
+        var x = document.getElementById("exportbuttons")
+        x.innerHTML += `
+            <button
+                class="btn btn-primary"
+                id="csc"
+                onclick="generateRecordCSC()"
+                disabled
+            >
+                <span
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                    style="display: none"
+                    id="cscloading"
+                ></span>
+                <i class="fas fa-download" id="cscdlicon"></i>
+                Export CSC
+            </button>
+        `
+        $('#table1').DataTable({
+            ajax: {
+                url: `http://localhost:5000/college_student_voters_logs/` + college,
+                dataSrc: "",
+                beforeSend: function (request) {
+                    request.setRequestHeader("authorization", tok);
+                }
+            },
+            destroy: true,
+            autoWidth: false,
+            responsive: true,
+            columns: [
+                { data: "vote_student_id" },
+                {
+                    data: "created_at"
+                },
+                { data: "vote_election_year" }
+            ],
+            columnDefs: [{ type: 'date', 'targets': [1] }],
+            order: [[1, 'desc']]
+        });
+    }
     $('#electionyear1').change(function () {
         var table = $('#table1').DataTable();
         table.search($('#electionyear1').val()).draw();
@@ -31,70 +226,6 @@ $(document).ready(function () {
         var table = $('#table2').DataTable();
         table.search($('#electionyear2').val()).draw();
     })
-
-    $('#table1').DataTable({
-        ajax: {
-            url: `http://localhost:5000/all_student_voters_logs`,
-            dataSrc: "",
-            beforeSend: function (request) {
-                request.setRequestHeader("authorization", tok);
-            }
-        },
-        destroy: true,
-        autoWidth: false,
-        responsive: true,
-        columns: [
-            { data: "vote_student_id" },
-            {
-                data: "created_at",
-                render: function (data) {
-                    var date = new Date(data)
-                    var str = date.toString()
-                    var split = str.split("GMT")
-                    return split[0];
-                }
-            },
-            { data: "vote_college" },
-            { data: "vote_election_year" }
-        ],
-        order: [1, "asc"]
-    });
-
-    $('#table2').DataTable({
-        ajax: {
-            url: `http://localhost:5000/all_assisted_student_voters_logs`,
-            dataSrc: "",
-            beforeSend: function (request) {
-                request.setRequestHeader("authorization", tok);
-            }
-        },
-        destroy: true,
-        autoWidth: false,
-        responsive: true,
-        columns: [
-            { data: "vote_student_id" },
-            {
-                data: "created_at",
-                render: function (data) {
-                    var date = new Date(data)
-                    var str = date.toString()
-                    var split = str.split("GMT")
-                    return split[0];
-                }
-            },
-            { data: "vote_college" },
-            { data: "vote_election_year" },
-            { data: "vote_assistant_last_name", visible: false },
-            { data: "vote_assistant_first_name", visible: false },
-            {
-                mData: function (data) {
-                    return data.vote_assistant_last_name + " " + data.vote_assistant_first_name[0].toUpperCase() + ".";
-                }
-            }
-
-        ],
-        order: [1, "asc"]
-    });
 
     $('#verifypassword').on('submit', async (event) => {
         event.preventDefault();
