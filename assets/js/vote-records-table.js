@@ -104,12 +104,6 @@ $(document).ready(function () {
                 { data: "vote_student_id" },
                 {
                     data: "created_at",
-                    render: function (data) {
-                        var date = new Date(data)
-                        var str = date.toString()
-                        var split = str.split("GMT")
-                        return split[0];
-                    }
                 },
                 { data: "vote_college" },
                 { data: "vote_election_year" }
