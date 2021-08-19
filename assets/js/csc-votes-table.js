@@ -1,9 +1,7 @@
 $(document).ready(function () {
     const tok = localStorage.getItem("Token")
-    $('#college').change(function () {
-        $('#genRes').prop('disabled', false);
-    })
-
+    const lvl = localStorage.getItem("Level")
+    const college = localStorage.getItem("College")
     let loaded = 0;
     $("#CSCpositions").on('click', async (event) => {
         if (loaded == 0) {
@@ -29,43 +27,133 @@ $(document).ready(function () {
         table.search($('#CSCpositions').val()).draw();
     })
 
-    var table2 = $('#table2').DataTable({
-        ajax: {
-            url: `http://localhost:5000/all_csc_ballot_candidate_on_list`,
-            dataSrc: "",
-            /*beforeSend: function (request) {
-                request.setRequestHeader("authorization", tok);
-            }*/
-        },
-        autoWidth: false,
-        responsive: true,
-        columns: [
-            { data: "csc_candidate_ballot_id", visible: false },
-            { data: "csc_candidate_position" },
-            { data: "csc_candidate_first_name" },
-            { data: "csc_candidate_last_name" },
-            { data: "csc_ballot_college" },
-            { data: "csc_candidate_party" },
-            {
-                data: "csc_candidate_votes"
+    if (lvl == 1) {
+        var colTitle = document.getElementById("collegetitle");
+        colTitle.innerHTML += `CSC Electoral Report ( All Colleges )`
+        var colSelect = document.getElementById("collegeSelect");
+        colSelect.innerHTML += `<fieldset class="form-group">
+            <select class="form-select" id="colleges" onchange="getHighestVotes(document.getElementById('colleges').value)">
+                <option value="" selected disabled>Select College</option>
+                <option value="College of Science">College of Science</option>
+                <option value="College of Arts and Letters">College of Arts and Letters</option>
+                <option value="College of Education">College of Education</option>
+                <option value="College of Nursing">College of Nursing</option>
+                <option value="College of Education">College of Education</option>
+                <option value="College of Engineering">College of Engineering</option>
+                <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
+                <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
+                <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
+                <option value="IPESR">IPESR</option>
+            </select>
+        </fieldset>`;
+        var colSelectExport = document.getElementById("collegeSelectExport");
+        colSelectExport.innerHTML += `<br>
+            <div class="col-md-4">
+                <fieldset class="form-group">
+                    <select class="form-select" id="college">
+                        <option value="" selected disabled>Select College</option>
+                        <option value="College of Science">College of Science</option>
+                        <option value="College of Arts and Letters">College of Arts and Letters</option>
+                        <option value="College of Education">College of Education</option>
+                        <option value="College of Nursing">College of Nursing</option>
+                        <option value="College of Education">College of Education</option>
+                        <option value="College of Engineering">College of Engineering</option>
+                        <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
+                        <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
+                        <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
+                        <option value="IPESR">IPESR</option>
+                    </select>
+                </fieldset>
+            </div>
+            <button type="button" onclick="generateResult()" class="btn btn-primary"
+                id="genRes" disabled>
+                <span class="spinner-border spinner-border-sm" role="status"
+                    aria-hidden="true" style="display:none" id="loading"></span>
+                <i class="fas fa-download" id="cscdlicon"></i> Export CSC Election Results</button>`;
+        var table2 = $('#table2').DataTable({
+            ajax: {
+                url: `http://localhost:5000/all_csc_ballot_candidate_on_list`,
+                dataSrc: "",
+                /*beforeSend: function (request) {
+                    request.setRequestHeader("authorization", tok);
+                }*/
+            },
+            autoWidth: false,
+            responsive: true,
+            columns: [
+                { data: "csc_candidate_ballot_id", visible: false },
+                { data: "csc_candidate_position" },
+                { data: "csc_candidate_first_name" },
+                { data: "csc_candidate_last_name" },
+                { data: "csc_ballot_college" },
+                { data: "csc_candidate_party" },
+                {
+                    data: "csc_candidate_votes"
+                }
+            ], columnDefs: [
+                {
+                    targets: 6,
+                    className: 'bolded'
+                }
+            ],
+            language: {
+                loadingRecords: `<div class="spinner-border text-secondary" role="status"></div><span>&nbsp&nbspGathering Records...</span>`
+            },
+            initComplete: function () {
+                if (!table2.data().any()) {
+                    document.getElementById("college").disabled = true;
+                } else {
+                    document.getElementById("college").disabled = false;
+                }
             }
-        ], columnDefs: [
-            {
-                targets: 6,
-                className: 'bolded'
+        });
+    } else {
+        var colTitle2 = document.getElementById("collegetitle");
+        colTitle2.innerHTML += `CSC Electoral Report ( ` + college + ` )`
+        var colSelectExport2 = document.getElementById("collegeSelectExport");
+        colSelectExport2.innerHTML += `<br>
+            <button type="button" onclick="generateResult();" class="btn btn-primary"
+                id="genRes">
+                <span class="spinner-border spinner-border-sm" role="status"
+                    aria-hidden="true" style="display:none" id="loading"></span>
+                <i class="fas fa-download" id="cscdlicon"></i> Export CSC Election Results</button>`;
+        var table2 = $('#table2').DataTable({
+            ajax: {
+                url: `http://localhost:5000/college_csc_ballot_candidate_on_list/` + college,
+                dataSrc: "",
+                /*beforeSend: function (request) {
+                    request.setRequestHeader("authorization", tok);
+                }*/
+            },
+            autoWidth: false,
+            responsive: true,
+            columns: [
+                { data: "csc_candidate_ballot_id", visible: false },
+                { data: "csc_candidate_position" },
+                { data: "csc_candidate_first_name" },
+                { data: "csc_candidate_last_name" },
+                { data: "csc_ballot_college" },
+                { data: "csc_candidate_party" },
+                {
+                    data: "csc_candidate_votes"
+                }
+            ], columnDefs: [
+                {
+                    targets: 6,
+                    className: 'bolded'
+                }
+            ],
+            language: {
+                loadingRecords: `<div class="spinner-border text-secondary" role="status"></div><span>&nbsp&nbspGathering Records...</span>`
             }
-        ],
-        language: {
-            loadingRecords: `<div class="spinner-border text-secondary" role="status"></div><span>&nbsp&nbspGathering Records...</span>`
-        },
-        initComplete: function () {
-            if (!table2.data().any()) {
-                document.getElementById("college").disabled = true;
-            } else {
-                document.getElementById("college").disabled = false;
-            }
-        }
-    });
+        });
+
+        getHighestVotes(college)
+    }
+
+    $('#college').change(function () {
+        $('#genRes').prop('disabled', false);
+    })
 });
 
 async function getHighestVotes(college) {

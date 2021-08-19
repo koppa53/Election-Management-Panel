@@ -505,7 +505,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
-                                                        <input class="btn btn-primary ml-1" type="submit" name = "delete" value="ADD">
+                                                        <input class="btn btn-dark ml-1" type="submit" name = "delete" value="ADD">
                                                     </div>
                                                 </form>
                                             </div>
@@ -571,24 +571,10 @@
                             <div class="card shadow">
                                 <div class="card-header">
                                     <h4>College Student Council</h4>
+                                    <br>
                                     <div class="form-group">    
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <fieldset class="form-group">
-                                                    <select class="form-select" id="colleges">
-                                                        <option value="">All Colleges</option>
-                                                        <option value="College of Science">College of Science</option>
-                                                        <option value="College of Arts and Letters">College of Arts and Letters</option>
-                                                        <option value="College of Education">College of Education</option>
-                                                        <option value="College of Nursing">College of Nursing</option>
-                                                        <option value="College of Industrial Technology">College of Industrial Technology</option>
-                                                        <option value="College of Engineering">College of Engineering</option>
-                                                        <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
-                                                        <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
-                                                        <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
-                                                        <option value="IPESR">IPESR</option>
-                                                    </select>
-                                                </fieldset>
+                                            <div class="col-md-4" style="display:none" id="ballotcollege">
                                             </div>
                                             <div class="col-md-4"style="display:none;">
                                                 <fieldset class="form-group" >
@@ -638,7 +624,7 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                             role="document">
                             <div class="modal-content">
-                                <form method="POST" action = "" id="rmmAllCSCFromList"> 
+                                <form method="POST" action = "" name="deleteCSCLIST"> 
                                     <div class="modal-header bg-dark">
                                         <h5 class="modal-title white">
                                             REMOVE ALL CSC CANDIDATES
@@ -803,7 +789,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <input class="btn btn-light-secondary ml-1" type="button" data-bs-dismiss="modal" value="Close">
-                                        <input class="btn btn-primary ml-1" type="submit" name = "delete" value="ADD">
+                                        <input class="btn btn-dark ml-1" type="submit" name = "delete" value="ADD">
                                     </div>
                                 </form>
                             </div>

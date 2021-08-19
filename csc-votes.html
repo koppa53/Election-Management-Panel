@@ -396,7 +396,7 @@
                         <div class="col">
                             <div class="card shadow">
                                 <div class="card-header">
-                                    <h5 class="card-title">CSC Electoral Reports</h5>
+                                    <h5 class="card-title" id="collegetitle"></h5>
                                 </div>
                                 <div class="card-body">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -405,8 +405,8 @@
                                                 role="tab" aria-controls="home" aria-selected="true">Election Results</a>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact"
-                                                role="tab" aria-controls="contact" aria-selected="false">Export Results</a>
+                                            <a class="nav-link" id="collegeSelectExport-tab" data-bs-toggle="tab" href="#collegeSelectExport"
+                                                role="tab" aria-controls="collegeSelectExport" aria-selected="false">Export Results</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
@@ -414,22 +414,7 @@
                                             aria-labelledby="home-tab">
                                             <br>
                                             <h5>Current CSC Election Candidates with Highest Votes</h5>
-                                            <div class="col-md-4">
-                                                <fieldset class="form-group">
-                                                    <select class="form-select" id="colleges" onchange="getHighestVotes(document.getElementById('colleges').value)">
-                                                        <option value=""selected disabled>Select College</option>
-                                                        <option value="College of Science">College of Science</option>
-                                                        <option value="College of Arts and Letters">College of Arts and Letters</option>
-                                                        <option value="College of Education">College of Education</option>
-                                                        <option value="College of Nursing">College of Nursing</option>
-                                                        <option value="College of Education">College of Education</option>
-                                                        <option value="College of Engineering">College of Engineering</option>
-                                                        <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
-                                                        <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
-                                                        <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
-                                                        <option value="IPESR">IPESR</option>
-                                                    </select>
-                                                </fieldset>
+                                            <div class="col-md-4" id="collegeSelect">
                                             </div>
                                             <table class="table table-striped" id="table1">
                                                 <thead>
@@ -444,31 +429,8 @@
                                                 </thead>
                                             </table>
                                         </div>
-                                        <div class="tab-pane fade" id="contact" role="tabpanel"
-                                            aria-labelledby="contact-tab">
-                                            <br>
-                                            <div class="col-md-4">
-                                                <fieldset class="form-group">
-                                                    <select class="form-select" id="college">
-                                                        <option value="" selected disabled>Select College</option>
-                                                        <option value="College of Science">College of Science</option>
-                                                        <option value="College of Arts and Letters">College of Arts and Letters</option>
-                                                        <option value="College of Education">College of Education</option>
-                                                        <option value="College of Nursing">College of Nursing</option>
-                                                        <option value="College of Education">College of Education</option>
-                                                        <option value="College of Engineering">College of Engineering</option>
-                                                        <option value="College of Social Science and Philosophy">College of Social Science and Philosophy</option>
-                                                        <option value="College of Business, Economics and Management">College of Business, Economics and Management</option>
-                                                        <option value="College of Agriculture and Forestry">College of Agriculture and Forestry</option>
-                                                        <option value="IPESR">IPESR</option>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                            <button type="button" onclick="generateResult(document.getElementById('college').value)" class="btn btn-primary" 
-                                            id="genRes"disabled>
-                                                <span class="spinner-border spinner-border-sm" role="status"
-                                                aria-hidden="true" style="display:none" id="loading"></span>
-                                                <i class="fas fa-download" id="cscdlicon"></i> Export CSC Election Results</button>
+                                        <div class="tab-pane fade" id="collegeSelectExport" role="tabpanel"
+                                            aria-labelledby="collegeSelectExport-tab">
                                         </div>
                                     </div>
                                 </div>

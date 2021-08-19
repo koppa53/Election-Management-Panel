@@ -1,10 +1,17 @@
 
-async function generateResult(college) {
+async function generateResult() {
+    const lvl = localStorage.getItem('Level')
+    var coll = ""
+    if (lvl == 1) {
+        coll = document.getElementById('college').value
+    } else {
+        coll = localStorage.getItem('College')
+    }
     const tok = localStorage.getItem("Token")
     document.getElementById("genRes").disabled = true;
     document.getElementById("cscdlicon").style.display = "none";
     document.getElementById("loading").style.display = "inline-block";
-    const response = await fetch(`http://localhost:5000/college_csc_ballot_candidate_on_list/` + college, {
+    const response = await fetch(`http://localhost:5000/college_csc_ballot_candidate_on_list/` + coll, {
         method: "GET",
         headers: {
             "authorization": tok,
@@ -112,9 +119,9 @@ async function generateResult(college) {
         var textOffset = (pdf.internal.pageSize.width - textWidth) / 2;
         pdf.text(textOffset, 42, "SUMMARY OF ELECTION RETURNS " + year);
         pdf.setFontSize(14)
-        var textWidth = pdf.getStringUnitWidth(college.toUpperCase() + " STUDENT COUNCIL") * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+        var textWidth = pdf.getStringUnitWidth(coll.toUpperCase() + " STUDENT COUNCIL") * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
         var textOffset = (pdf.internal.pageSize.width - textWidth) / 2;
-        pdf.text(textOffset, 47, college.toUpperCase() + " STUDENT COUNCIL");
+        pdf.text(textOffset, 47, coll.toUpperCase() + " STUDENT COUNCIL");
         pdf.setFontSize(11)
         pdf.setFont('Helvetica', 'bold')
         pdf.autoTable({

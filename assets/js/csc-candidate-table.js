@@ -1,7 +1,8 @@
 $(document).ready(function () {
+    const college = localStorage.getItem("College")
     $('.table').DataTable({
         ajax: {
-            url: `http://localhost:5000/all_candidate_CSC`,
+            url: `http://localhost:5000/all_college_candidate_CSC/` + college,
             dataSrc: "",
             beforeSend: function (request) {
                 request.setRequestHeader("authorization", tok);
@@ -41,7 +42,8 @@ $(document).ready(function () {
         ],
         language: {
             loadingRecords: `<div class="spinner-border text-secondary" role="status"></div><span>&nbsp&nbspGathering Data...</span>`
-        }
+        },
+        order: [0, "desc"]
     });
 
     //ADD MODAL
@@ -69,6 +71,7 @@ $(document).ready(function () {
                 const partydata = await r.json();
                 var d = new Date();
                 var n = d.getFullYear();
+                $("#candidate_college").val(college);
                 $("#candidate_election_year").val(n);
                 positiondata.forEach(function (v) {
                     var o = new Option(v.position_name, v.position_name);
@@ -194,7 +197,6 @@ $(document).ready(function () {
                 $("input:text").val("");
                 $('input:file').val('');
                 $('#candidate_age').val('');
-                $('#candidate_college').prop('selectedIndex', 0);
                 $('#candidate_party').prop('selectedIndex', 0);
                 $('#candidate_position').prop('selectedIndex', 0);
                 $('#addcandidate').modal('hide');

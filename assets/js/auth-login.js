@@ -25,6 +25,8 @@ async function login() {
             localStorage.setItem("Token", data.token)
             window.location.href = "index.html";
         } else {
+            document.getElementById('username').value = ""
+            document.getElementById('password').value = ""
             document.getElementById("loginbutton").disabled = false;
             document.getElementById("loginbutton").value = "Login"
             Toastify({

@@ -171,7 +171,10 @@
 										<div class="user-menu d-flex">
 											<div class="user-name text-end me-3">
 												<h6 class="mb-0 text-gray-600" id="name"></h6>
-												<p class="mb-0 text-sm text-gray-600" id="accountlevel"></p>
+												<p
+													class="mb-0 text-sm text-gray-600"
+													id="accountlevel"
+												></p>
 											</div>
 											<div class="user-img d-flex align-items-center">
 												<div class="avatar avatar-md">
@@ -657,8 +660,16 @@
 																<div class="card-body">
 																	<div class="row">
 																		<div class="col">
-																			<h6>College</h6>
-																			<select
+																			<h6 for="disabledInput">
+																				Candidate College
+																			</h6>
+																			<input
+																				type="text"
+																				class="form-control"
+																				id="candidate_college"
+																				readonly="readonly"
+																			/>
+																			<!--<select
 																				class="form-select"
 																				id="candidate_college"
 																			>
@@ -700,7 +711,7 @@
 																					College of Agriculture and Forestry
 																				</option>
 																				<option value="IPESR">IPESR</option>
-																			</select>
+																			</select>-->
 																		</div>
 																		<div class="col">
 																			<h6>Candidate Picture</h6>
@@ -994,50 +1005,15 @@
 																<div class="card-body">
 																	<div class="row">
 																		<div class="col-md-5">
-																			<h6>College</h6>
-																			<select
-																				class="form-select"
+																			<h6 for="disabledInput">
+																				Candidate College
+																			</h6>
+																			<input
+																				type="text"
+																				class="form-control"
 																				id="u_candidate_college"
-																			>
-																				<option value="College of Science">
-																					College of Science
-																				</option>
-																				<option
-																					value="College of Arts and Letters"
-																				>
-																					College of Arts and Letters
-																				</option>
-																				<option value="College of Education">
-																					College of Education
-																				</option>
-																				<option value="College of Nursing">
-																					College of Nursing
-																				</option>
-																				<option value="College of Education">
-																					College of Education
-																				</option>
-																				<option value="College of Engineering">
-																					College of Engineering
-																				</option>
-																				<option
-																					value="College of Social Science and Philosophy"
-																				>
-																					College of Social Science and
-																					Philosophy
-																				</option>
-																				<option
-																					value="College of Business, Economics and Management"
-																				>
-																					College of Business, Economics and
-																					Management
-																				</option>
-																				<option
-																					value="College of Agriculture and Forestry"
-																				>
-																					College of Agriculture and Forestry
-																				</option>
-																				<option value="IPESR">IPESR</option>
-																			</select>
+																				readonly="readonly"
+																			/>
 																		</div>
 																	</div>
 																	<br />
