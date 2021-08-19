@@ -50,6 +50,7 @@ $(document).ready(function () {
             <thead>
                 <tr>
                     <th>Student ID</th>
+                    <th>Date & Time Entered</th>
                     <th>Date & Time Voted</th>
                     <th>College</th>
                     <th>Election Year</th>
@@ -103,11 +104,16 @@ $(document).ready(function () {
             columns: [
                 { data: "vote_student_id" },
                 {
+                    data: "date_time_entered"
+                },
+                {
                     data: "created_at",
                 },
                 { data: "vote_college" },
                 { data: "vote_election_year" }
-            ]
+            ],
+            columnDefs: [{ type: 'date', 'targets': [1] }],
+            order: [[2, 'desc']]
         });
 
         /*$('#table2').DataTable({
@@ -164,6 +170,7 @@ $(document).ready(function () {
                 <thead>
                     <tr>
                         <th>Student ID</th>
+                        <th>Date & Time Entered</th>
                         <th>Date & Time Voted</th>
                         <th>Election Year</th>
                     </tr>
@@ -203,12 +210,15 @@ $(document).ready(function () {
             columns: [
                 { data: "vote_student_id" },
                 {
+                    data: "date_time_entered"
+                },
+                {
                     data: "created_at"
                 },
                 { data: "vote_election_year" }
             ],
             columnDefs: [{ type: 'date', 'targets': [1] }],
-            order: [[1, 'desc']]
+            order: [[2, 'desc']]
         });
     }
     $('#electionyear1').change(function () {

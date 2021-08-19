@@ -10,15 +10,16 @@ $(document).ready(function () {
             ]);
             var currentposition = ""
             var dupcurrentposition = ""
+            var MAX_VOTE = 0
             var ballotcounter = 0
             var count = 1
             var rowCount = 0;
             data2.forEach(function (v) {
-                dupcurrentposition = v.usc_candidate_position
-                var MAX_VOTE = 0
-                let obj = data1.find(o => o.position_name === dupcurrentposition);
-                MAX_VOTE = obj.position_max_vote
                 if (currentposition != v.usc_candidate_position) {
+                    dupcurrentposition = v.usc_candidate_position
+                    MAX_VOTE = 0
+                    let obj = data1.find(o => o.position_name === dupcurrentposition);
+                    MAX_VOTE = obj.position_max_vote
                     var binary = '';
                     var bytes = new Uint8Array(v.usc_candidate_photo.data);
                     var len = bytes.byteLength;
@@ -67,7 +68,6 @@ $(document).ready(function () {
                         <div class="box-header with-border">
                             <h4 class="box-title"><b>USC `+ currentposition + `</b></h4>
                             <p> Please select only <b>`+ MAX_VOTE + ` candidate</b>:
-                            <button type="reset" class="btn btn-sm btn-outline-danger">Reset</button>
                             </p> 
                         </div>
                         <br>
@@ -204,15 +204,16 @@ $(document).ready(function () {
             ]);
             var csccurrentposition = ""
             var dupcsccurrentposition = ""
+            var CSCMAX_VOTE = 0
             var csccount = 1
             var cscrowCount = 100;
             var cscballotcounter = 0
             data4.forEach(function (v) {
-                dupcsccurrentposition = v.csc_candidate_position
-                var CSCMAX_VOTE = 0
-                let cscobj = data3.find(o => o.position_name === dupcsccurrentposition);
-                CSCMAX_VOTE = cscobj.position_max_vote
                 if (csccurrentposition != v.csc_candidate_position) {
+                    dupcsccurrentposition = v.csc_candidate_position
+                    CSCMAX_VOTE = 0
+                    let cscobj = data3.find(o => o.position_name === dupcsccurrentposition);
+                    CSCMAX_VOTE = cscobj.position_max_vote
                     if (cscrowCount != 100) {
                         if (CSCMAX_VOTE == 1) {
                             $("#" + cscrowCount).append(
@@ -261,7 +262,6 @@ $(document).ready(function () {
                         <div class="box-header with-border">
                             <h4 class="box-title"><b>CSC `+ csccurrentposition + `</b></h4>
                             <p> Please select only <b>`+ CSCMAX_VOTE + ` candidate</b>:
-                            <button type="reset" class="btn btn-sm btn-outline-danger">Reset</button>
                             </p> 
                         </div>
                         <br>
@@ -285,7 +285,7 @@ $(document).ready(function () {
                         <form>
                         <div class="box-header with-border">
                             <h4 class="box-title"><b>CSC `+ csccurrentposition + `</b></h4>
-                            <p> Please select up to <b>`+ CSCMAX_VOTE + ` candidate/s</b>:
+                            <p> Please select up to <b>`+ CSCMAX_VOTE + ` candidates</b>:
                             <button type="reset" class="btn btn-sm btn-outline-danger">Reset</button>
                             </p> 
                         </div>
