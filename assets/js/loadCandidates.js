@@ -119,7 +119,6 @@ $(document).ready(function () {
                     for (var i = 0; i < len; i++) {
                         binary += String.fromCharCode(bytes[i]);
                     }
-                    console.log(MAX_VOTE)
                     if (MAX_VOTE == 1) {
                         $("#" + rowCount).append(`
                         <div class="col">
